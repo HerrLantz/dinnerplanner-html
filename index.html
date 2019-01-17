@@ -11,18 +11,24 @@
       rel="stylesheet"
       href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"
     />
+    <link
+      rel="stylesheet"
+      href="https://use.fontawesome.com/releases/v5.6.3/css/all.css"
+      integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/"
+      crossorigin="anonymous"
+    />
   </head>
   <body>
     <div class="container">
-      <h1>Dinner planner</h1>
+      <div id="headerView"></div>
       <div id="exampleView">
         <div>Number of guests: <span id="numberOfGuests"></span></div>
         <div>
-          <button id="minusGuest" class="btn">
-            <span class="glyphicon glyphicon-minus"></span>
+          <button id="minusGuest" class="btn btn-primary">
+            <span class="fas fa-minus"></span>
           </button>
-          <button id="plusGuest" class="btn">
-            <span class="glyphicon glyphicon-plus"></span>
+          <button id="plusGuest" class="btn btn-primary">
+            <span class="fas fa-plus"></span>
           </button>
         </div>
       </div>
@@ -38,5 +44,6 @@
     <script src="js/model/dinnerModel.js"></script>
     <script src="js/view/exampleView.js"></script>
     <!-- TODO: Here you should include JS code for your other views -->
+    <script src="js/view/headerView.js"></script>
   </body>
 </html>
