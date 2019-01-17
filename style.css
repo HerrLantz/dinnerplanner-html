@@ -1,0 +1,71 @@
+html,
+body {
+  height: 100%;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+#headerView {
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+
+  background-color: #696969;
+  width: 100%;
+  height: 5em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#createDinner {
+  background-color: #ffbf60;
+  border: 2px solid black;
+  /* border-radius: 0.2rem; */
+  padding: 0.5rem;
+  margin-top: 2rem;
+  box-shadow: 0.2rem 0.2rem;
+}
+
+#createDinner:hover {
+  background-color: #ffcc7e;
+}
+
+#createDinner:active {
+  cursor: pointer;
+  position: relative;
+  box-shadow: none;
+  top: 0.2rem;
+  left: 0.2rem;
+}
+
+#homeView {
+  width: 100%;
+  height: 100%;
+  margin: 3rem 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  justify-content: center;
+}
+
+#homeView p {
+  width: 60%;
+}
+
+@media screen and (max-width: 800px) {
+  #headerView {
+    font-size: 0.7em;
+  }
+
+  #homeView {
+    margin: 2rem 0;
+  }
+}
