@@ -4,7 +4,7 @@ var HomeView = function(container, model) {
 
   container.html(
     `<p> ${loremIpsum}</p>
-    <button id="createDinner">
+    <button class="primaryButton">
         Create new dinner
     </button>`
   )

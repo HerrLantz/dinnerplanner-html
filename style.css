@@ -24,20 +24,19 @@ body {
   justify-content: center;
 }
 
-#createDinner {
+.primaryButton {
   background-color: #ffbf60;
   border: 2px solid black;
-  /* border-radius: 0.2rem; */
   padding: 0.5rem;
   margin-top: 2rem;
   box-shadow: 0.2rem 0.2rem;
 }
 
-#createDinner:hover {
+.primaryButton:hover {
   background-color: #ffcc7e;
 }
 
-#createDinner:active {
+.primaryButton:active {
   cursor: pointer;
   position: relative;
   box-shadow: none;
