@@ -1,10 +1,27 @@
 var CartView = function(container, model) {
   var dishTypesToString = function() {
-    var types = '';
+    var types = `<option value="All" selected>All</option>\n`;
     for (const dishType in model.getAllTypes()) {
-      types += `<option value="${dishType}">\n`;
+      types += `<option value="${dishType}">${dishType}</option>\n`;
     }
     return types;
+  };
+
+  const imageFolderPath = 'images/';
+  var showResults = function(type, filter) {
+    var allDishes = model.getAllDishes(type, filter);
+    console.log(allDishes);
+
+    results = '';
+    allDishes.forEach(dish => {
+      results += `<div>
+      <img src="${imageFolderPath + dish.image}">
+      <p>"${dish.name}"</p>
+      </div>`;
+    });
+    console.log(results);
+
+    return results;
   };
 
   container.html(`
@@ -24,7 +41,7 @@ var CartView = function(container, model) {
           People
           <input
             type="number"
-            value="${model.getNumberOfGuests()} "
+            value="${model.getNumberOfGuests()}"
             max="999"
             min="0"
           />
@@ -67,10 +84,9 @@ var CartView = function(container, model) {
       <div id="searchPanel">
         <h1>FIND A DISH</h1>
         <input type="text" placeholder="Enter keywords"/>
-        <input list="dishes" name="dishes">
-          <datalist id="dishes">
-            ${dishTypesToString()}
-          </datalist>
+        <select id="dishes">
+          ${dishTypesToString()}
+        </select>
         <button class="primaryButton">
           search
         </button>
@@ -78,6 +94,7 @@ var CartView = function(container, model) {
       </div>
       
       <div id="resultPanel">
+        ${showResults('', '')}
       </div>
     </div>
   `);
