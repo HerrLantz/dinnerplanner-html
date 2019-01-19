@@ -29,6 +29,13 @@ span {
   height: 10rem;
   border-width: 2px 0;
   border-color: #000;
+  padding: 0 0 1rem 0;
+}
+
+#confirmDinner {
+  width: 100%;
+  display: flex;
+  justify-content: center;
 }
 
 .divider {
@@ -36,7 +43,7 @@ span {
   justify-content: space-between;
   height: 1.2rem;
   background-color: #ededed;
-  padding: 0 1rem;
+  padding: 0 2rem;
   border-width: 2px 0;
   border-color: #000;
   border-style: solid;
@@ -57,7 +64,7 @@ span {
 #totalPrice {
   color: rgb(184, 60, 60);
   text-align: right;
-  padding: 0 1rem;
+  padding: 0 2rem;
   font-size: 1rem;
   font-weight: 900;
 }
@@ -96,7 +103,7 @@ span {
 
 #burgerIcon {
   stroke: #000;
-  stroke-width: 0.2rem;
+  stroke-width: 0.1rem;
 }
 
 #peopleSelector {
