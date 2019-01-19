@@ -66,7 +66,7 @@ var CartView = function(container, model) {
     <div id="dinnerFinder">
       <div id="searchPanel">
         <h1>FIND A DISH</h1>
-        <input type="text"/>
+        <input type="text" placeholder="Enter keywords"/>
         <input list="dishes" name="dishes">
           <datalist id="dishes">
             ${dishTypesToString()}
