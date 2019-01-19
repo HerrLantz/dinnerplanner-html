@@ -88,8 +88,6 @@ var DinnerModel = function() {
     dishes.forEach(dish => {
       allTypes[dish.type] = dish.type;
     });
-    console.log(allTypes);
-
     return allTypes;
   };
 
