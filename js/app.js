@@ -3,10 +3,10 @@ $(function() {
   var model = new DinnerModel();
 
   var headerView = new HeaderView($('#headerView'), model);
-  var homeView = new HomeView($('#homeView'), model);
+  // var homeView = new HomeView($('#homeView'), model);
   // And create the instance of ExampleView
   // var exampleView = new ExampleView($('#exampleView'), model)
-  //var cartView = new CartView($('#cartView'), model)
+  var cartView = new CartView($('#cartView'), model);
 
   /**
    * IMPORTANT: app.js is the only place where you are allowed to
