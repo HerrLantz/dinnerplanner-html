@@ -1,11 +1,67 @@
 html,
 body {
   height: 100%;
+  font-family: 'Nunito', sans-serif;
 }
 
 * {
   margin: 0;
   padding: 0;
+}
+
+h1 {
+  font-weight: 800;
+}
+
+p, label, span {
+  font-size: 0.8rem;
+  font-weight: 200;
+}
+
+#dinnerOverview {
+  border: 2px solid #000;
+}
+
+#confirmationBox {
+  width: 100%;
+  height: 10rem;
+  border-width: 2px 0;
+  border-color: #000;
+}
+
+.divider {
+  display: flex;
+  justify-content: space-between;
+  height: 1.2rem;
+  background-color: #ededed;
+  padding: 0 1rem;
+  border-width: 2px 0;
+  border-color: #000;
+  border-style: solid;
+}
+
+#dinnerTable {
+  padding: 0 1rem;
+  width: 100%;
+  color: rgb(184, 60, 60);
+}
+
+#dinnerTable tr {
+  display: flex;
+  justify-content: space-between;
+  padding: 0 1rem;
+}
+
+#totalPrice {
+  color: rgb(184, 60, 60);
+  text-align: right;
+  padding: 0 1rem; 
+  font-size: 1rem;
+  font-weight: 900;
+}
+
+#dinnerTable tr:nth-child(odd) {
+  background-color: #ededed;
 }
 
 #headerView {
@@ -17,7 +73,7 @@ body {
   user-select: none;
 
   font-size: 0.7em;
-  background-color: #bebebe;
+  background-color: #ededed;
   width: 100%;
   height: 5em;
   display: flex;
@@ -25,24 +81,56 @@ body {
   justify-content: center;
 }
 
+#cartViewHeader {
+  padding: 0 1rem;
+  padding-top: 0.5rem;
+  font-size: 0.5rem;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  vertical-align: middle;
+}
+
+
+#burgerIcon {
+  stroke: #000;
+  stroke-width: 0.2rem;
+}
+
+#peopleSelector {
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+  padding-left: 1rem;
+}
+
+#peopleSelector input {
+  width: 2rem;
+  text-align: center;
+}
+
 .primaryButton {
   background-color: #ffbf60;
   border: 2px solid black;
   padding: 0.5rem;
-  margin-top: 2rem;
   box-shadow: 0.2rem 0.2rem;
 }
 
-.primaryButton:hover {
+.primaryButton:hover:enabled {
   background-color: #ffcc7e;
 }
 
-.primaryButton:active {
+.primaryButton:active:enabled {
   cursor: pointer;
   position: relative;
   box-shadow: none;
   top: 0.2rem;
   left: 0.2rem;
+}
+
+.primaryButton:disabled {
+  background-color: #ededed;
+  border-color: rgb(79, 78, 78);
 }
 
 #homeView {

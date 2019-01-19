@@ -1,12 +1,12 @@
 $(function() {
   //We instantiate our model
-  var model = new DinnerModel()
+  var model = new DinnerModel();
 
-  var headerView = new HeaderView($('#headerView'), model)
-  // var homeView = new HomeView($('#homeView'), model)
+  var headerView = new HeaderView($('#headerView'), model);
+  var homeView = new HomeView($('#homeView'), model);
   // And create the instance of ExampleView
   // var exampleView = new ExampleView($('#exampleView'), model)
-  var cartView = new CartView($('#cartView'), model)
+  //var cartView = new CartView($('#cartView'), model)
 
   /**
    * IMPORTANT: app.js is the only place where you are allowed to
@@ -14,4 +14,4 @@ $(function() {
    * In other places you should limit the search only to the children
    * of the specific view you're working with (see exampleView.js).
    */
-})
+});
