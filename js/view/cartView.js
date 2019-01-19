@@ -1,4 +1,12 @@
 var CartView = function(container, model) {
+  var dishTypesToString = function() {
+    var types = '';
+    for (const dishType in model.getAllTypes()) {
+      types += `<option value="${dishType}">\n`;
+    }
+    return types;
+  };
+
   container.html(`
     <div id="dinnerOverview">
       <div id="cartViewHeader">
@@ -47,10 +55,30 @@ var CartView = function(container, model) {
           </tr>
         </table>
         <p id="totalPrice">SEK 100000</p>
+        <div id="confirmDinner">
+          <button class="primaryButton" disabled>
+          Confirm Dinner
+          </button>
+        </div>
       </div>
-      <button class="primaryButton" disabled>
-        Confirm Dinner
-    </button>
+    </div>
+
+    <div id="dinnerFinder">
+      <div id="searchPanel">
+        <h1>FIND A DISH</h1>
+        <input type="text"/>
+        <input list="dishes" name="dishes">
+          <datalist id="dishes">
+            ${dishTypesToString()}
+          </datalist>
+        <button class="primaryButton">
+          search
+        </button>
+
+      </div>
+      
+      <div id="resultPanel">
+      </div>
     </div>
   `);
 };
