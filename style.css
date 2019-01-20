@@ -31,7 +31,7 @@ select {
   -moz-appearance: none;
   appearance: none;
 
-  background: url('icons/down_arrow.svg') 96% / 5% no-repeat;
+  background: url('icons/down_arrow.svg') 96% / 0.8rem no-repeat;
 }
 
 input {
