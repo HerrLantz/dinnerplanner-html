@@ -44,6 +44,8 @@ input {
 }
 
 #dinnerOverview {
+  display: flex;
+  flex-direction: column;
   border-style: solid;
   border-width: 0 0 2px 0;
   padding-bottom: 1rem;
@@ -153,12 +155,20 @@ input {
   border-bottom: 2px solid black;
   display: flex;
   flex-direction: column;
-  justify-content: center;
   text-align: center;
 }
 
 #searchPanel * {
   margin: 0.5rem 0;
+}
+
+#filterOptions {
+  display: flex;
+  flex-direction: column;
+}
+
+#filterOptions * {
+  margin-right: 1rem;
 }
 
 .primaryButton {
@@ -207,5 +217,36 @@ input {
 
   #homeView {
     margin: 3rem 0;
+  }
+
+  #dinnerOverview {
+    flex-direction: row;
+  }
+
+  #dinnerPlan {
+    border-right: 2px solid black;
+    border-bottom: 2px solid black;
+    padding-bottom: 1rem;
+  }
+
+  #dinnerFinder {
+    width: 100%;
+  }
+
+  #searchPanel {
+    padding: 0 1rem;
+  }
+
+  #searchPanel h1 {
+    text-align: left;
+    font-size: 1rem;
+  }
+
+  #filterOptions {
+    flex-direction: row;
+  }
+
+  #burgerMenu {
+    display: none;
   }
 }
