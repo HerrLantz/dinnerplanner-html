@@ -20,8 +20,14 @@ span {
   font-weight: 200;
 }
 
+.collapsed {
+  display: none;
+}
+
 #dinnerOverview {
-  border: 2px solid #000;
+  border-style: solid;
+  border-width: 0 0 2px 0;
+  padding-bottom: 1rem;
 }
 
 #confirmationBox {
@@ -90,6 +96,12 @@ span {
   justify-content: center;
 }
 
+#cartView {
+  border-width: 2px 2px 0px 2px;
+  border-style: solid;
+  border-color: #000;
+}
+
 #cartViewHeader {
   padding: 0 1rem;
   padding-top: 0.5rem;
@@ -118,6 +130,7 @@ span {
 }
 
 #searchPanel {
+  display: none;
   padding: 0 0 1rem 0;
   border-bottom: 2px solid black;
 }
@@ -168,5 +181,9 @@ span {
 
   #homeView {
     margin: 3rem 0;
+  }
+
+  #searchPanel {
+    display: block;
   }
 }

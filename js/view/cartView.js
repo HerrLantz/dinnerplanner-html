@@ -10,8 +10,6 @@ var CartView = function(container, model) {
   const imageFolderPath = 'images/';
   var showResults = function(type, filter) {
     var allDishes = model.getAllDishes(type, filter);
-    console.log(allDishes);
-
     results = '';
     allDishes.forEach(dish => {
       results += `<div>
@@ -19,10 +17,31 @@ var CartView = function(container, model) {
       <p>"${dish.name}"</p>
       </div>`;
     });
-    console.log(results);
-
     return results;
   };
+
+  /**
+   * This does not work for some reason
+   */
+  // const toggleCart = function() {
+  //   if ($('#confirmationBox').hasClass('collapsed')) {
+  //     console.log('Removed collapsed');
+  //     $('#confirmationBox').removeClass('collapsed');
+  //   } else {
+  //     console.log('Fuck collapsed');
+  //     $('#confirmationBox').addClass('collapsed');
+  //   }
+  // };
+
+  $(document).ready(function() {
+    $('#burgerMenu').click(function() {
+      if ($('#confirmationBox').hasClass('collapsed')) {
+        $('#confirmationBox').removeClass('collapsed');
+      } else {
+        $('#confirmationBox').addClass('collapsed');
+      }
+    });
+  });
 
   container.html(`
     <div id="dinnerOverview">
