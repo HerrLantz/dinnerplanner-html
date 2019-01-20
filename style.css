@@ -20,6 +20,25 @@ span {
   font-weight: 200;
 }
 
+select {
+  border-radius: 0;
+  border-style: solid;
+  border-color: black;
+  border-width: 2px;
+  padding: 0.1rem;
+
+  -webkit-appearance: none; 
+  -moz-appearance: none;
+  appearance: none;
+
+  background: url('icons/down_arrow.svg') 96% / 5% no-repeat;
+}
+
+input {
+  border: 2px solid black;
+  padding: 0.15rem;
+}
+
 .collapsed {
   display: none;
 }
@@ -130,9 +149,16 @@ span {
 }
 
 #searchPanel {
-  display: none;
-  padding: 0 0 1rem 0;
+  padding: 0 5rem 1rem 5rem;
   border-bottom: 2px solid black;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+}
+
+#searchPanel * {
+  margin: 0.5rem 0;
 }
 
 .primaryButton {
@@ -181,9 +207,5 @@ span {
 
   #homeView {
     margin: 3rem 0;
-  }
-
-  #searchPanel {
-    display: block;
   }
 }

@@ -109,7 +109,6 @@ var CartView = function(container, model) {
         <button class="primaryButton">
           search
         </button>
-
       </div>
       
       <div id="resultPanel">
