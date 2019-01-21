@@ -21,7 +21,8 @@ var CartView = function(container, model) {
   };
 
   const populateResultPanel = (type, filter) => {
-    var dishes = model.getAllDishes('starter', '');
+    // Get all types of dishes
+    var dishes = model.getAllDishes('', '');
 
     dishes.forEach(dish => {
       new DishView($('#resultPanel'), model, dish.id);

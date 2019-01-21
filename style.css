@@ -181,6 +181,43 @@ button:hover:disabled {
   margin-right: 1rem;
 }
 
+#resultPanel {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 1rem 0;
+}
+
+.dishItem {
+  display: flex;
+  flex-direction: column;
+  border: 2px solid black;
+  margin-bottom: 1rem;
+}
+
+.thumbnail {
+  width: 10rem;
+  height: 10rem;
+}
+
+.thumbnailImage {
+  height: 100%;
+  object-fit: contain;
+}
+
+.thumbnail img {
+  max-width:100%;
+  max-height:100%;
+}
+
+.dishItem p {
+  border-top: 2px solid black;
+  text-align: center;
+  background-color: #ededed;
+  padding: 0.5rem 0;
+}
+
 .primaryButton {
   background-color: #ffbf60;
   border: 2px solid black;
@@ -265,5 +302,12 @@ button:hover:disabled {
 
   #burgerMenu {
     display: none;
+  }
+
+  #resultPanel {
+    flex-direction: row;
+    width: 100%;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
   }
 }

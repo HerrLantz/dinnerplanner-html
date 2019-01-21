@@ -108,7 +108,11 @@ var DinnerModel = function() {
           found = true;
         }
       }
-      return dish.type == type && found;
+      if (type) {
+        return dish.type == type && found;
+      } else {
+        return true;
+      }
     });
   };
 
