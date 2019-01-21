@@ -26,8 +26,6 @@ var CartView = function(container, model) {
     dishes.forEach(dish => {
       new DishView($('#resultPanel'), model, dish.id);
     });
-    
-    console.log(dishes);
   };
 
   /**
@@ -53,8 +51,6 @@ var CartView = function(container, model) {
         $('#peopleSelector').addClass('collapsed');
       }
     });
-
-    showResults('', '');
 
     populateResultPanel('b', 'b');
   });
