@@ -20,6 +20,21 @@ var CartView = function(container, model) {
     return results;
   };
 
+  const populateResultPanel = (type, filter) => {
+    var dishes = model.getAllDishes('starter', '');
+
+    dishes.forEach(dish => {
+      new DishView($('#resultPanel'), model, dish.id);
+    });
+
+    // for (const dish in dishes) {
+    //   console.log('Waaah: ' + dish);
+
+    //   new DishView($('#resultPanel'), model, dish.id);
+    // }
+    console.log(dishes);
+  };
+
   /**
    * This does not work for some reason
    */
@@ -37,10 +52,16 @@ var CartView = function(container, model) {
     $('#burgerMenu').click(function() {
       if ($('#confirmationBox').hasClass('collapsed')) {
         $('#confirmationBox').removeClass('collapsed');
+        $('#peopleSelector').removeClass('collapsed');
       } else {
         $('#confirmationBox').addClass('collapsed');
+        $('#peopleSelector').addClass('collapsed');
       }
     });
+
+    showResults('', '');
+
+    populateResultPanel('b', 'b');
   });
 
   container.html(`
@@ -49,7 +70,7 @@ var CartView = function(container, model) {
           <div id="cartViewHeader">
               <h1>My Dinner</h1>
               <div id="burgerMenu">
-              <svg id="burgerIcon" height="25" width="30">
+              <svg id="burgerIcon" height="21" width="30">
                   <line x1="0" y1="5" x2="30" y2="5" />
                   <line x1="0" y1="12" x2="30" y2="12" />
                   <line x1="0" y1="19" x2="30" y2="19" />
