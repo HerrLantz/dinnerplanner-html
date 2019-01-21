@@ -26,12 +26,7 @@ var CartView = function(container, model) {
     dishes.forEach(dish => {
       new DishView($('#resultPanel'), model, dish.id);
     });
-
-    // for (const dish in dishes) {
-    //   console.log('Waaah: ' + dish);
-
-    //   new DishView($('#resultPanel'), model, dish.id);
-    // }
+    
     console.log(dishes);
   };
 
@@ -134,7 +129,6 @@ var CartView = function(container, model) {
               </div>
           </div>
           <div id="resultPanel">
-              ${showResults('', '')}
           </div>
       </div>
     </div>
