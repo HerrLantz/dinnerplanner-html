@@ -1,25 +1,4 @@
 var CartView = function(container, model) {
-  var dishTypesToString = function() {
-    var types = `<option value="All" selected>All</option>\n`;
-    for (const dishType in model.getAllTypes()) {
-      types += `<option value="${dishType}">${dishType}</option>\n`;
-    }
-    return types;
-  };
-
-  const imageFolderPath = 'images/';
-  var showResults = function(type, filter) {
-    var allDishes = model.getAllDishes(type, filter);
-    results = '';
-    allDishes.forEach(dish => {
-      results += `<div>
-      <img src="${imageFolderPath + dish.image}">
-      <p>"${dish.name}"</p>
-      </div>`;
-    });
-    return results;
-  };
-
   const populateResultPanel = (type, filter) => {
     // Get all types of dishes
     var dishes = model.getAllDishes('', '');
@@ -28,19 +7,6 @@ var CartView = function(container, model) {
       new DishView($('#resultPanel'), model, dish.id);
     });
   };
-
-  /**
-   * This does not work for some reason
-   */
-  // const toggleCart = function() {
-  //   if ($('#confirmationBox').hasClass('collapsed')) {
-  //     console.log('Removed collapsed');
-  //     $('#confirmationBox').removeClass('collapsed');
-  //   } else {
-  //     console.log('Fuck collapsed');
-  //     $('#confirmationBox').addClass('collapsed');
-  //   }
-  // };
 
   $(document).ready(function() {
     $('#burgerMenu').click(function() {
@@ -52,6 +18,7 @@ var CartView = function(container, model) {
         $('#peopleSelector').addClass('collapsed');
       }
     });
+    new FinderView($('#finderView'), model);
 
     populateResultPanel('b', 'b');
   });
@@ -112,24 +79,7 @@ var CartView = function(container, model) {
               </div>
           </div>
       </div>
-      <div id="dinnerFinder">
-          <div id="searchPanel">
-              <h1>FIND A DISH</h1>
-              <div id="filterOptions">
-                <input type="text" placeholder="Enter keywords"/>
-                <select id="dishes">
-                    ${dishTypesToString()}
-                </select>
-                <button class="primaryButton">
-                search
-                </button>
-              </div>
-          </div>
-          <div id="resultPanelWrapper">
-            <div id="resultPanel">
-            </div>
-          </div>
-      </div>
+    <div id="finderView"/>
     </div>
   `);
 };
