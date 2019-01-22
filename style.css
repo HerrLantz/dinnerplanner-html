@@ -47,10 +47,6 @@ button:hover:disabled {
   cursor: not-allowed;
 }
 
-.collapsed {
-  display: none;
-}
-
 #dinnerOverview {
   display: flex;
   flex-direction: column;
@@ -293,7 +289,7 @@ button:hover:disabled {
     margin-bottom: 0.2rem;
   }
 
-  .collapsed {
+  #searchPanel span {
     display: inherit;
   }
 

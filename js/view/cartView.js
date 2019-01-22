@@ -8,19 +8,49 @@ var CartView = function(container, model) {
     });
   };
 
+  const populateCart = () => {
+    console.log(model.getSelectedDishes());
+
+    model.getSelectedDishes().forEach(dishID => {
+      let dish = model.getDish(dishID.id);
+      console.log('DISH ' + dish);
+
+      $('#dinnerTable').append(`
+        <tr>
+          <td>${dish.name}</td>
+          <td>500kr</td>
+        </tr>
+      `);
+    });
+  };
+
   $(document).ready(function() {
     $('#burgerMenu').click(function() {
-      if ($('#confirmationBox').hasClass('collapsed')) {
-        $('#confirmationBox').removeClass('collapsed');
-        $('#peopleSelector').removeClass('collapsed');
+      if ($('#confirmationBox').is(':visible')) {
+        $('#confirmationBox').hide();
+        $('#peopleSelector').hide();
+        $('#searchPanel').hide();
+        $('#cartViewHeader span').show();
       } else {
-        $('#confirmationBox').addClass('collapsed');
-        $('#peopleSelector').addClass('collapsed');
+        $('#confirmationBox').show();
+        $('#peopleSelector').show();
+        $('#searchPanel').show();
+        $('#cartViewHeader span').hide();
+      }
+    });
+
+    $(window).resize(function() {
+      if ($(window).width() > 800) {
+        $('#confirmationBox').show();
+        $('#peopleSelector').show();
+        $('#searchPanel').show();
+        $('#cartViewHeader span').hide();
       }
     });
     new FinderView($('#finderView'), model);
 
     populateResultPanel('b', 'b');
+    populateCart();
   });
 
   container.html(`
@@ -28,6 +58,7 @@ var CartView = function(container, model) {
       <div id="dinnerPlan">
           <div id="cartViewHeader">
               <h1>My Dinner</h1>
+              <span>SEK 100000</span>
               <div id="burgerMenu">
               <svg id="burgerIcon" height="21" width="30">
                   <line x1="0" y1="5" x2="30" y2="5" />
@@ -49,27 +80,11 @@ var CartView = function(container, model) {
           </div>
           <div id="confirmationBox">
               <div class="divider">
-              <span>Dish name</span>
-              <span>Cost</span>
+                <span>Dish name</span>
+                <span>Cost</span>
               </div>
 
               <table id="dinnerTable">
-              <tr>
-                  <td>Korvstroganoff</td>
-                  <td>7000kr</td>
-              </tr>
-              <tr>
-                  <td>Korvstroganoff</td>
-                  <td>7000kr</td>
-              </tr>
-              <tr>
-                  <td>Korvstroganoff</td>
-                  <td>7000kr</td>
-              </tr>
-              <tr>
-                  <td>Korvstroganoff</td>
-                  <td>7000kr</td>
-              </tr>
               </table>
               <p id="totalPrice">SEK 100000</p>
               <div id="confirmDinner">

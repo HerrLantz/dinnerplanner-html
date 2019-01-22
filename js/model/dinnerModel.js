@@ -5,7 +5,7 @@ var DinnerModel = function() {
 
   var dinnerPlan = {
     nrOfGuests: 0,
-    selectedDishes: {}
+    selectedDishes: [{ id: 1 }, { id: 100 }]
   };
 
   this.setNumberOfGuests = function(num) {
@@ -22,6 +22,10 @@ var DinnerModel = function() {
 
   this.getNumberOfGuests = function() {
     return dinnerPlan.nrOfGuests;
+  };
+
+  this.getSelectedDishes = function() {
+    return dinnerPlan.selectedDishes;
   };
 
   //Returns the dish that is on the menu for selected type
@@ -74,7 +78,7 @@ var DinnerModel = function() {
   //Adds the passed dish to the menu. If the dish of that type already exists on the menu
   //it is removed from the menu and the new one added.
   this.addDishToMenu = function(id) {
-    dinnerPlan.selectedDishes[this.dishes[id].type] = { id: id };
+    dinnerPlan.selectedDishes[this.getDish(id).type] = { id: id };
   };
 
   //Removes dish from menu
