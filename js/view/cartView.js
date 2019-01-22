@@ -1,18 +1,17 @@
 var CartView = function(container, model) {
   const populateCart = () => {
-    console.log(model.getSelectedDishes());
-
-    model.getSelectedDishes().forEach(dishID => {
-      let dish = model.getDish(dishID.id);
-      console.log('DISH ' + dish);
+    var dishes = model.getSelectedDishes();
+    for (const dishType in dishes) {
+      var dishID = model.getSelectedDishes()[dishType];
+      var dish = model.getDish(dishID);
 
       $('#dinnerTable').append(`
         <tr>
           <td>${dish.name}</td>
-          <td>500kr</td>
+          <td>${model.getTotalDishPrice(dishID)}</td>
         </tr>
-      `);
-    });
+    `);
+    }
   };
 
   $(document).ready(function() {
@@ -46,6 +45,7 @@ var CartView = function(container, model) {
       }
     });
 
+    $('#totalPrice').html(`SEK ${model.getTotalMenuPrice()}`);
     populateCart();
   });
 
@@ -81,7 +81,7 @@ var CartView = function(container, model) {
 
               <table id="dinnerTable">
               </table>
-              <p id="totalPrice">SEK 100000</p>
+              <p id="totalPrice"></p>
               <div id="confirmDinner">
               <button class="primaryButton" disabled>
               Confirm Dinner

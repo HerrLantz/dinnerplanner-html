@@ -398,4 +398,32 @@ button:hover:disabled {
   .dishItem {
     margin: 0.5rem 1rem;
   }
+
+  #dishDesc {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+  }
+
+  #dishDetails {
+    flex-grow: 3;
+    flex-basis: 0;
+  }
+
+  .ingredients {
+    flex-grow: 2;
+    flex-basis: 0;
+    border: 2px solid black;
+    margin-top: 0.5rem;
+    margin-right: 0.5rem;
+  }
+
+  .dishImage {
+    width: 90%;
+  }
+
+  .dishImageWrapper {
+    display: flex;
+    justify-content: center;
+  }
 }
