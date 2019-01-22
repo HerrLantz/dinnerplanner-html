@@ -6,14 +6,16 @@ $(function() {
   // var homeView = new HomeView($('#homeView'), model);
   // And create the instance of ExampleView
   // var exampleView = new ExampleView($('#exampleView'), model)
-  var cartView = new CartView($('#cartView'), model);
-  var dishDetailsView = new DishDetailsView(
-    $('#dishDetailsView'),
-    model,
-    model.getDish(1)
-  );
-
+  // var cartView = new CartView($('#cartView'), model);
   // var finderView = new FinderView($('#finderView'), model);
+  // var dishDetailsView = new DishDetailsView(
+  //   $('#dishDetailsView'),
+  //   model,
+  //   model.getDish(1)
+  // );
+  var subHeaderView = new SubHeaderView($('#subHeaderView'), model);
+  // var printView = new PrintView($('#printView'), model);
+  var overView = new OverView($('#overView'), model);
 
   /**
    * IMPORTANT: app.js is the only place where you are allowed to
