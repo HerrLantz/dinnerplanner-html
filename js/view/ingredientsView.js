@@ -13,7 +13,10 @@ var IngredientsView = function(container, model, dish) {
                     ${ingredient.name}
                 </td>
                 <td>
-                    SEK ${ingredient.price * guests}
+                    SEK
+                </td>
+                <td align="right">
+                    ${ingredient.price * guests}
                 </td>
             </tr>`;
     });
@@ -27,7 +30,7 @@ var IngredientsView = function(container, model, dish) {
             ${createTableOfIngredients()}
         </table>
         <hr>
-        <div>
+        <div id="totalRow">
             <button class="primaryButton">
                 Add to menu
             </button>

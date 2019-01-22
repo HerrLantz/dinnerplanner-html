@@ -58,7 +58,7 @@ button:hover:disabled {
 #confirmationBox {
   width: 100%;
   height: 10rem;
-  border-width: 2px 0;
+  border-width: 0px 0;
   border-color: #000;
   padding: 0 0 2rem 0;
 }
@@ -122,7 +122,7 @@ button:hover:disabled {
 }
 
 #cartView {
-  border-width: 2px 2px 0px 2px;
+  border-width: 2px 2px 2px 2px;
   border-style: solid;
   border-color: #000;
 }
@@ -259,6 +259,75 @@ button:hover:disabled {
 #homeView p {
   width: 60%;
   padding: 0 0 2rem 0;
+}
+
+#dishDetailsView {
+  width: 100%;
+}
+
+.dishImageWrapper {
+  height: 10rem;
+  width: 100%;
+}
+
+.dishImage {
+  width: 100%;
+  object-fit: cover;
+}
+
+#dishDetailsView img {
+  max-width: 100%;
+  max-height: 100%;
+}
+
+#dishDetailsView h1 {
+  text-transform: uppercase;
+  padding-left: 1rem;
+}
+
+#dishDetailsView button {
+  margin: 1rem 1rem;
+}
+
+#dishDetailsView p {
+  padding: 1rem 1rem;
+}
+
+.ingredients {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.ingredients hr {
+  width: 80%;
+}
+
+.ingredients h2 {
+  font-size: 0.8rem;
+  padding: 0.8rem 0rem;
+}
+.ingredients table {
+  width: 80%;
+  font-size: 0.8rem;
+}
+
+.ingredients tr {
+  width: 100%;
+}
+
+#totalRow {
+  width: 80%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem;
+}
+
+#totalRow button {
+  margin: 0;
+  padding: 0.25rem;
 }
 
 @media screen and (min-width: 800px) {
