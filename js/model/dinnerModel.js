@@ -64,11 +64,13 @@ var DinnerModel = function() {
     return allIngredients;
   };
 
+  //Returns the total price of the dish with the given dishID (for 1 person)
   this.getDishPrice = function(dishID) {
     let sum = 0;
     this.getDish(dishID).ingredients.forEach(ingredient => {
       sum += ingredient.price;
     });
+    return sum;
   };
 
   //Returns the total price of the menu (all the ingredients multiplied by number of guests).
@@ -76,11 +78,10 @@ var DinnerModel = function() {
     let sum = 0;
 
     for (var i = 0; i < dinnerPlan.selectedDishes.length; i++) {
-      console.log(selectedDishes[i]);
       sum += this.getDishPrice(selectedDishes[i].id);
     }
 
-    return sum;
+    return sum * dinnerPlan.nrOfGuests;
   };
 
   //Adds the passed dish to the menu. If the dish of that type already exists on the menu
