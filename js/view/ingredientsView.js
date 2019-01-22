@@ -22,7 +22,17 @@ var IngredientsView = function(container, model, dish) {
 
   container.html(`
         <h2>INGREDIENTS FOR ${guests} PEOPLE</h2>
+        <hr>
         <table>
             ${createTableOfIngredients()}
-        </table>`);
+        </table>
+        <hr>
+        <div>
+            <button class="primaryButton">
+                Add to menu
+            </button>
+
+            <span>SEK ${model.getDishPrice(dish.id) * guests}</span>
+        </div>
+    `);
 };
