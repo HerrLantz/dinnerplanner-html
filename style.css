@@ -263,15 +263,20 @@ button:hover:disabled {
     margin: 3rem 0;
   }
 
+  #cartView {
+    width: 40%;
+  }
+
   #dinnerOverview {
     flex-direction: row;
+    width: 100%;
   }
 
   #dinnerPlan {
     border-right: 2px solid black;
-    border-bottom: 2px solid black;
+    border-bottom: none;
     padding-bottom: 1rem;
-    width: 30%;
+    width: 100%;
   }
 
   #dinnerFinder {
@@ -280,7 +285,7 @@ button:hover:disabled {
   }
 
   #searchPanel {
-    padding: 0 1rem;
+    padding: 0.05rem 1rem;
   }
 
   #searchPanel h1 {

@@ -25,6 +25,13 @@ var CartView = function(container, model) {
   };
 
   $(document).ready(function() {
+    if ($(window).width() > 800) {
+      $('#confirmationBox').show();
+      $('#peopleSelector').show();
+      $('#searchPanel').show();
+      $('#cartViewHeader span').hide();
+    }
+
     $('#burgerMenu').click(function() {
       if ($('#confirmationBox').is(':visible')) {
         $('#confirmationBox').hide();
@@ -54,7 +61,6 @@ var CartView = function(container, model) {
   });
 
   container.html(`
-    <div id="dinnerOverview">
       <div id="dinnerPlan">
           <div id="cartViewHeader">
               <h1>My Dinner</h1>
@@ -94,7 +100,5 @@ var CartView = function(container, model) {
               </div>
           </div>
       </div>
-    <div id="finderView"/>
-    </div>
   `);
 };
