@@ -125,7 +125,9 @@ var CartView = function(container, model) {
                 </button>
               </div>
           </div>
-          <div id="resultPanel">
+          <div id="resultPanelWrapper">
+            <div id="resultPanel">
+            </div>
           </div>
       </div>
     </div>

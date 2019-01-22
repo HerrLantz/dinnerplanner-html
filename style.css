@@ -218,6 +218,7 @@ button:hover:disabled {
   padding: 0.5rem 0;
 }
 
+
 .primaryButton {
   background-color: #ffbf60;
   border: 2px solid black;
@@ -306,8 +307,20 @@ button:hover:disabled {
 
   #resultPanel {
     flex-direction: row;
-    width: 100%;
     flex-wrap: wrap;
-    justify-content: space-evenly;
+    justify-content: flex-start;
+    align-items: center;
+    width: 80%;
+  }
+
+  #resultPanelWrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+  }
+
+  .dishItem {
+    margin: 0.5rem 1rem;
   }
 }
