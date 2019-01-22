@@ -7,9 +7,13 @@ $(function() {
   // And create the instance of ExampleView
   // var exampleView = new ExampleView($('#exampleView'), model)
   var cartView = new CartView($('#cartView'), model);
-  var dishDetailsView = new DishDetailsView($('#dishDetailsView'), model);
+  var dishDetailsView = new DishDetailsView(
+    $('#dishDetailsView'),
+    model,
+    model.getDish(1)
+  );
 
-  var finderView = new FinderView($('#finderView'), model);
+  // var finderView = new FinderView($('#finderView'), model);
 
   /**
    * IMPORTANT: app.js is the only place where you are allowed to
