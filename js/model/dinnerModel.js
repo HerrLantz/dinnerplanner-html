@@ -4,9 +4,11 @@ var DinnerModel = function() {
   // and selected dishes for the dinner menu
 
   var dinnerPlan = {
-    nrOfGuests: 0,
+    nrOfGuests: 2,
     selectedDishes: [{ id: 1 }, { id: 100 }]
   };
+
+  this.imgPath = 'images/';
 
   this.setNumberOfGuests = function(num) {
     dinnerPlan.nrOfGuests = num;
