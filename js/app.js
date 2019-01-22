@@ -7,6 +7,7 @@ $(function() {
   // And create the instance of ExampleView
   // var exampleView = new ExampleView($('#exampleView'), model)
   var cartView = new CartView($('#cartView'), model);
+  var dishDetailsView = new DishDetailsView($('#dishDetailsView'), model);
 
   /**
    * IMPORTANT: app.js is the only place where you are allowed to
