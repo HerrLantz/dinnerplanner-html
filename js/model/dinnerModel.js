@@ -3,9 +3,13 @@ var DinnerModel = function() {
   //TODO Lab 1 implement the data structure that will hold number of guest
   // and selected dishes for the dinner menu
 
+  var dummySelectedDishes = [];
+  dummySelectedDishes['starter'] = 1;
+  dummySelectedDishes['main dish'] = 100;
+
   var dinnerPlan = {
     nrOfGuests: 2,
-    selectedDishes: [{ id: 1 }, { id: 100 }]
+    selectedDishes: dummySelectedDishes
   };
 
   this.imgPath = 'images/';
@@ -38,8 +42,8 @@ var DinnerModel = function() {
   //Returns all the dishes on the menu.
   this.getFullMenu = function() {
     let allDishes = [];
-    for (const type in dinnerPlan.selectedDishes) {
-      allDishes.push(this.getDish(type.id));
+    for (let id in dinnerPlan.selectedDishes) {
+      allDishes.push(this.getDish(id));
     }
     return allDishes;
   };
@@ -48,8 +52,8 @@ var DinnerModel = function() {
   this.getAllIngredients = function() {
     let allIngredients;
 
-    for (const type in dinnerPlan.selectedDishes) {
-      this.getDish(type.id).ingredients.forEach(ingredient => {
+    for (let id in dinnerPlan.selectedDishes) {
+      this.getDish(id).ingredients.forEach(ingredient => {
         // If undefined or null then false, otherwise true.
         if (allIngredients[ingredient]) {
           allIngredients[ingredient.name].price += ingredient.price;
@@ -80,7 +84,7 @@ var DinnerModel = function() {
     let sum = 0;
 
     for (var i = 0; i < dinnerPlan.selectedDishes.length; i++) {
-      sum += this.getDishPrice(selectedDishes[i].id);
+      sum += this.getDishPrice(selectedDishes[i]);
     }
 
     return sum * dinnerPlan.nrOfGuests;
@@ -89,12 +93,12 @@ var DinnerModel = function() {
   //Adds the passed dish to the menu. If the dish of that type already exists on the menu
   //it is removed from the menu and the new one added.
   this.addDishToMenu = function(id) {
-    dinnerPlan.selectedDishes[this.getDish(id).type] = { id: id };
+    dinnerPlan.selectedDishes[this.getDish(id).type] = id;
   };
 
   //Removes dish from menu
   this.removeDishFromMenu = function(id) {
-    delete dinnerPlan.selectedDishes[this.dishes[id].type];
+    delete dinnerPlan.selectedDishes[this.getDish(id).type];
   };
 
   //function that returns all dish types available
