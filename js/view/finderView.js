@@ -7,6 +7,18 @@ var FinderView = function(container, model) {
     return types;
   };
 
+  const populateResultPanel = (type, filter) => {
+    // Get all types of dishes
+    var dishes = model.getAllDishes('', '');
+
+    dishes.forEach(dish => {
+      new DishView($('#resultPanel'), model, dish.id);
+    });
+  };
+
+  $(document).ready(function() {
+    populateResultPanel('', '');
+  });
   container.html(`
     <div id="dinnerFinder">
       <div id="searchPanel">
