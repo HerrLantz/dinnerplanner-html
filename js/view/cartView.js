@@ -1,13 +1,4 @@
 var CartView = function(container, model) {
-  const populateResultPanel = (type, filter) => {
-    // Get all types of dishes
-    var dishes = model.getAllDishes('', '');
-
-    dishes.forEach(dish => {
-      new DishView($('#resultPanel'), model, dish.id);
-    });
-  };
-
   const populateCart = () => {
     console.log(model.getSelectedDishes());
 
@@ -54,9 +45,7 @@ var CartView = function(container, model) {
         $('#cartViewHeader span').hide();
       }
     });
-    new FinderView($('#finderView'), model);
 
-    populateResultPanel('b', 'b');
     populateCart();
   });
 

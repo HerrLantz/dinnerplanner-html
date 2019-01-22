@@ -137,6 +137,10 @@ button:hover:disabled {
   vertical-align: middle;
 }
 
+#cartViewHeader span {
+  color: rgb(184, 60, 60);
+}
+
 #burgerIcon {
   stroke: #000;
   stroke-width: 0.1rem;

@@ -8,6 +8,8 @@ $(function() {
   // var exampleView = new ExampleView($('#exampleView'), model)
   var cartView = new CartView($('#cartView'), model);
 
+  var finderView = new FinderView($('#finderView'), model);
+
   /**
    * IMPORTANT: app.js is the only place where you are allowed to
    * use the $('someSelector') to search for elements in the whole HTML.
