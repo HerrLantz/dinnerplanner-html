@@ -255,7 +255,7 @@ button:hover:disabled {
 
 #homeView p {
   width: 60%;
-  padding: 0 0 2rem 0;
+  padding: 2rem 0;
 }
 
 #dishDetailsView {
@@ -333,7 +333,7 @@ button:hover:disabled {
   }
 
   #homeView {
-    margin: 3rem 0;
+    margin-bottom: 3rem;
   }
 
   #cartView {
