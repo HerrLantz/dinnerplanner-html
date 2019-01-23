@@ -4,18 +4,15 @@ var OverView = function(container, model) {
 
     for (let type in selectedDishes) {
       new DishView($('#resultPanel'), model, selectedDishes[type], true);
-      $('#overView').append(`
-        <div>
-          ${model.getTotalDishPrice(selectedDishes[type])}
-        </div>
-      `);
     }
+
+    $('.total').html('Total:<br/>' + model.getTotalMenuPrice() + ' SEK');
   });
 
   container.html(`
 
     <div id="resultPanel"></div>
-    <hr> 
-    <div class="total">Total: <span></span></div>
+    <div class="total"><span></span></div>
+    <hr>
   `);
 };

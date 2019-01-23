@@ -339,8 +339,31 @@ button:hover:disabled {
   padding: 0.25rem;
 }
 
-#overView {
-  
+#subHeaderView {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border-bottom: 2px solid black;
+  padding-bottom: 1rem;
+}
+
+#subHeaderView h1 {
+  padding-bottom: 1rem;
+}
+
+.total {
+  display: flex;
+  justify-content: center;
+  padding: 1rem 0;
+  font-weight: 600;
+}
+
+.showPrice {
+  padding: 0.5rem 0 1rem 0;
+}
+
+#overView #resultPanel .dishItem {
+  margin-bottom: 0;
 }
 
 @media screen and (min-width: 800px) {
@@ -441,5 +464,33 @@ button:hover:disabled {
   .dishImageWrapper {
     display: flex;
     justify-content: center;
+  }
+
+  #subHeaderView {
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 0 3rem;
+    align-items: center;
+    text-align: center;
+    height: 5rem;
+  }
+
+  #subHeaderView h1 {
+    padding: 0;
+  }
+
+  #overView {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+  }
+
+  #overView hr {
+    display: none;
+  }
+
+  .total {
+    justify-content: center;
+    align-items: center;
   }
 }

@@ -7,7 +7,7 @@ var DishView = function(container, model, dishID, showPrice) {
   $(document).ready(function() {
     if (showPrice) {
       $('.showPrice[attr="' + dishID + '"]').html(
-        model.getTotalDishPrice(dishID) + ' SEK'
+        'SEK' + model.getTotalDishPrice(dishID)
       );
     }
   });
