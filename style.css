@@ -243,6 +243,18 @@ button:hover:disabled {
   border-color: rgb(79, 78, 78);
 }
 
+.backButton {
+  background-color: #ffbf60;
+  border: 2px solid black;
+  padding: 0.5rem;
+  border-top-left-radius: 2rem 1rem;
+  border-bottom-left-radius: 2rem 1rem;
+}
+
+.backButton:hover:enabled {
+  background-color: #ffcc7e;
+}
+
 #homeView {
   width: 100%;
   height: 100%;
