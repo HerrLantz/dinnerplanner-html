@@ -12,7 +12,7 @@ var FinderView = function(container, model) {
     var dishes = model.getAllDishes('', '');
 
     dishes.forEach(dish => {
-      new DishView($('#resultPanel'), model, dish.id);
+      new DishView($('#resultPanel'), model, dish.id, false);
     });
   };
 

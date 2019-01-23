@@ -3,8 +3,8 @@ var OverView = function(container, model) {
     var selectedDishes = model.getSelectedDishes();
 
     for (let type in selectedDishes) {
-      new DishView($('#overview'), model, selectedDishes[type]);
-      $('#overview').append(`
+      new DishView($('#resultPanel'), model, selectedDishes[type], true);
+      $('#overView').append(`
         <div>
           ${model.getTotalDishPrice(selectedDishes[type])}
         </div>
@@ -14,7 +14,7 @@ var OverView = function(container, model) {
 
   container.html(`
 
-    <div id="overview"></div>
+    <div id="resultPanel"></div>
     <hr> 
     <div class="total">Total: <span></span></div>
   `);
