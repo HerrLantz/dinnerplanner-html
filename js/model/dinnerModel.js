@@ -39,6 +39,15 @@ var DinnerModel = function() {
     return dinnerPlan.selectedDishes[type];
   };
 
+  //function that returns a dish of specific ID
+  this.getDish = function(id) {
+    for (key in dishes) {
+      if (dishes[key].id == id) {
+        return dishes[key];
+      }
+    }
+  };
+
   //Returns all the dishes on the menu.
   this.getFullMenu = function() {
     let allDishes = [];
@@ -138,15 +147,6 @@ var DinnerModel = function() {
         return true;
       }
     });
-  };
-
-  //function that returns a dish of specific ID
-  this.getDish = function(id) {
-    for (key in dishes) {
-      if (dishes[key].id == id) {
-        return dishes[key];
-      }
-    }
   };
 
   // the dishes variable contains an array of all the
