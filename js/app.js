@@ -31,7 +31,7 @@ $(function() {
   var subHeaderView = new SubHeaderView($('#subHeaderView'), model);
   /* End of overview.html assets: */
 
-  // var printView = new PrintView($('#printView'), model);
+  //var printView = new PrintView($('#printView'), model);
   /* End of printout.html assets: */
 
   /**

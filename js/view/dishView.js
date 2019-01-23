@@ -6,9 +6,9 @@ var DishView = function(container, model, dishID, showPrice) {
 
   $(document).ready(function() {
     if (showPrice) {
-      $('.showPrice')
-        .attr(dishID)
-        .html(model.getTotalPrice());
+      $('.showPrice[attr="' + dishID + '"]').html(
+        model.getTotalDishPrice(dishID) + ' SEK'
+      );
     }
   });
 
