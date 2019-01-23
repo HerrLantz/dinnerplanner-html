@@ -25,13 +25,13 @@ $(function() {
   /* End of dishdetails.html assets: */
 
   /* Start of overview.html assets: */
-  var overView = new OverView($('#overView'), model);
+  // var overView = new OverView($('#overView'), model);
 
   /* Start of printout.html assets: */
   var subHeaderView = new SubHeaderView($('#subHeaderView'), model);
   /* End of overview.html assets: */
 
-  //var printView = new PrintView($('#printView'), model);
+  var printView = new PrintView($('#printView'), model);
   /* End of printout.html assets: */
 
   /**

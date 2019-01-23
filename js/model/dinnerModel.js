@@ -165,6 +165,7 @@ var DinnerModel = function() {
       image: 'toast.jpg',
       description:
         'In a large mixing bowl, beat the eggs. Add the milk, brown sugar and nutmeg; stir well to combine. Soak bread slices in the egg mixture until saturated. Heat a lightly oiled griddle or frying pan over medium high heat. Brown slices on both sides, sprinkle with cinnamon and serve hot.',
+      preparation: 'Lorem ipsum sit dolor amet',
       ingredients: [
         {
           name: 'eggs',
@@ -204,6 +205,7 @@ var DinnerModel = function() {
       type: 'starter',
       image: 'sourdough.jpg',
       description: 'Here is how you make it... Lore ipsum...',
+      preparation: 'Lorem ipsum sit dolor amet',
       ingredients: [
         {
           name: 'active dry yeast',
@@ -231,6 +233,7 @@ var DinnerModel = function() {
       type: 'starter',
       image: 'bakedbrie.jpg',
       description: 'Here is how you make it... Lore ipsum...',
+      preparation: 'Lorem ipsum sit dolor amet',
       ingredients: [
         {
           name: 'round Brie cheese',
@@ -259,6 +262,7 @@ var DinnerModel = function() {
       image: 'meatballs.jpg',
       description:
         'Preheat an oven to 400 degrees F (200 degrees C). Place the beef into a mixing bowl, and season with salt, onion, garlic salt, Italian seasoning, oregano, red pepper flakes, hot pepper sauce, and Worcestershire sauce; mix well. Add the milk, Parmesan cheese, and bread crumbs. Mix until evenly blended, then form into 1 1/2-inch meatballs, and place onto a baking sheet. Bake in the preheated oven until no longer pink in the center, 20 to 25 minutes.',
+      preparation: 'Lorem ipsum sit dolor amet',
       ingredients: [
         {
           name: 'extra lean ground beef',
@@ -334,6 +338,7 @@ var DinnerModel = function() {
       type: 'main dish',
       image: 'bakedbrie.jpg',
       description: 'Here is how you make it... Lore ipsum...',
+      preparation: 'Lorem ipsum sit dolor amet',
       ingredients: [
         {
           name: 'ingredient 1',
@@ -361,6 +366,7 @@ var DinnerModel = function() {
       type: 'main dish',
       image: 'meatballs.jpg',
       description: 'Here is how you make it... Lore ipsum...',
+      preparation: 'Lorem ipsum sit dolor amet',
       ingredients: [
         {
           name: 'ingredient 1',
@@ -388,6 +394,7 @@ var DinnerModel = function() {
       type: 'main dish',
       image: 'meatballs.jpg',
       description: 'Here is how you make it... Lore ipsum...',
+      preparation: 'Lorem ipsum sit dolor amet',
       ingredients: [
         {
           name: 'ingredient 1',
@@ -415,6 +422,7 @@ var DinnerModel = function() {
       type: 'dessert',
       image: 'icecream.jpg',
       description: 'Here is how you make it... Lore ipsum...',
+      preparation: 'Lorem ipsum sit dolor amet',
       ingredients: [
         {
           name: 'ice cream',
@@ -430,6 +438,7 @@ var DinnerModel = function() {
       type: 'dessert',
       image: 'icecream.jpg',
       description: 'Here is how you make it... Lore ipsum...',
+      preparation: 'Lorem ipsum sit dolor amet',
       ingredients: [
         {
           name: 'ice cream',
@@ -445,6 +454,7 @@ var DinnerModel = function() {
       type: 'dessert',
       image: 'icecream.jpg',
       description: 'Here is how you make it... Lore ipsum...',
+      preparation: 'Lorem ipsum sit dolor amet',
       ingredients: [
         {
           name: 'ice cream',
