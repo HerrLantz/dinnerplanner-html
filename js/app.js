@@ -2,37 +2,91 @@ $(function() {
   //We instantiate our model
   var model = new DinnerModel();
 
-  // And create the instance of ExampleView
-  // var exampleView = new ExampleView($('#exampleView'), model)
+  // Hides all views.
+  hideAllViews = () => {
+    $("#homeView").hide();
+    $("#dinnerOverview").hide();
+    $("#cartView").hide();
+    $("#finderView").hide();
+    $("#dishDetailsView").hide(); 
+    $("#subHeaderView").hide(); 
+    $("#printView").hide(); 
+  }
 
+  // Show Home View
+  showHomeView = () => {
+    $("#homeView").show();
+  }
+
+  // @TODO: Correctly implement selectdish view.
+  // Show SelectDish View
+  showSelectDishView = () => {
+    $("#dinnerOverview").show(0, "linear", () => {
+      $("#cartView").show();
+      $("#finderView").show();
+    });
+  }
+  
+  // Show DishDetails View
+  showDishDetailsView = () => {
+    $("#dinnerOverview").show(0, "linear", () => {
+      $("#cartView").show();
+      $("#dishDetailsView").show(); 
+    });
+    $("#overView").show();
+  }
+  
+  // @TODO: Correctly implement dinner overview.
+  // Show Dinner Overview View
+  showDinnerOverView = () => {
+    $("#subHeaderView").show(); 
+    $("#dinnerOverview").show(); 
+    
+    $("#overView").show();
+  }
+  
+  // Show Print View
+  showPrintView = () => {
+    $("#subHeaderView").show();
+    $("#printView").show();
+  }
+ 
+  
   var headerView = new HeaderView($('#headerView'), model);
-
+  
   /* All that is needed for the index.html page: */
-  // var homeView = new HomeView($('#homeView'), model);
-
+  var homeView = new HomeView($('#homeView'), model);
+  
   /* Start of selectdish.html assets: */
-  // var finderView = new FinderView($('#finderView'), model);
-
+  var finderView = new FinderView($('#finderView'), model);
+  
   /* Start of dishdetails.html assets: */
-  // var cartView = new CartView($('#cartView'), model);
+  var cartView = new CartView($('#cartView'), model);
   /* End of selectdish.html assets: */
-
-  // var dishDetailsView = new DishDetailsView(
-  //   $('#dishDetailsView'),
-  //   model,
-  //   model.getDish(1)
-  // );
+  
+  var dishDetailsView = new DishDetailsView(
+    $('#dishDetailsView'),
+    model,
+    model.getDish(1)
+  );
   /* End of dishdetails.html assets: */
-
+  
   /* Start of overview.html assets: */
   var overView = new OverView($('#overView'), model);
-
+  
   /* Start of printout.html assets: */
   var subHeaderView = new SubHeaderView($('#subHeaderView'), model);
   /* End of overview.html assets: */
-
-  // var printView = new PrintView($('#printView'), model);
+  
+  var printView = new PrintView($('#printView'), model);
   /* End of printout.html assets: */
+  
+  hideAllViews();
+  // showHomeView();
+  showSelectDishView();
+  // showDinnerOverView();    
+  // showDishDetailsView();
+  // showPrintView();
 
   /**
    * IMPORTANT: app.js is the only place where you are allowed to
