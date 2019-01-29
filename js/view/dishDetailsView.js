@@ -10,11 +10,12 @@ var DishDetailsView = function(container, model, dish) {
             <img src="${model.imgPath + dish.image}" class="dishImage"/>
           </div>
           <p>${dish.description}</p>
-          <button class="primaryButton">back to search</button>
+          <button class="backButton">back to search</button>
         </div>
         <div class="ingredients">
         </div>
       </div>
       <h1>PREPARATION</h1>
+      <p>${dish.preparation}</p>
     `);
 };
