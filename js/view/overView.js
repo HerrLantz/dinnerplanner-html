@@ -12,7 +12,8 @@ var OverView = function(container, model) {
   container.html(`
 
     <div id="resultPanel"></div>
-    <div class="total"><span></span></div>
+    <div class="total"></div>
     <hr>
+    <button class="primaryButton">Print Full Recipe</button>
   `);
 };
