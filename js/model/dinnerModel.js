@@ -1,67 +1,71 @@
+
+
 //DinnerModel Object constructor
-var DinnerModel = function() {
-  //TODO Lab 1 implement the data structure that will hold number of guest
-  // and selected dishes for the dinner menu
+class DinnerModel extends Observable {
+  constructor() {
+    super();
+    
+    let dummySelectedDishes = [];
+    dummySelectedDishes['starter'] = 1;
+    dummySelectedDishes['main dish'] = 100;
+  
+    this.dinnerPlan = {
+      nrOfGuests: 2,
+      selectedDishes: dummySelectedDishes
+    };
 
-  var dummySelectedDishes = [];
-  dummySelectedDishes['starter'] = 1;
-  dummySelectedDishes['main dish'] = 100;
+    this.imgPath = 'images/';
+  };
+  
 
-  var dinnerPlan = {
-    nrOfGuests: 2,
-    selectedDishes: dummySelectedDishes
+  setNumberOfGuests(num) {
+    this.dinnerPlan.nrOfGuests = num;
   };
 
-  this.imgPath = 'images/';
-
-  this.setNumberOfGuests = function(num) {
-    dinnerPlan.nrOfGuests = num;
+  addGuest() {
+    this.dinnerPlan.nrOfGuests++;
   };
 
-  this.addGuest = function() {
-    dinnerPlan.nrOfGuests++;
+  removeGuest() {
+    this.dinnerPlan.nrOfGuests--;
   };
 
-  this.removeGuest = function() {
-    dinnerPlan.nrOfGuests--;
+  getNumberOfGuests() {
+    return this.dinnerPlan.nrOfGuests;
   };
 
-  this.getNumberOfGuests = function() {
-    return dinnerPlan.nrOfGuests;
-  };
-
-  this.getSelectedDishes = function() {
-    return dinnerPlan.selectedDishes;
+  getSelectedDishes() {
+    return this.dinnerPlan.selectedDishes;
   };
 
   //Returns the dish that is on the menu for selected type
-  this.getSelectedDish = function(type) {
-    return dinnerPlan.selectedDishes[type];
+  getSelectedDish(type) {
+    return this.dinnerPlan.selectedDishes[type];
   };
 
   //function that returns a dish of specific ID
-  this.getDish = function(id) {
-    for (key in dishes) {
-      if (dishes[key].id == id) {
-        return dishes[key];
+  getDish(id) {
+    for (let dish of this.dishes()) {
+      if (dish.id == id) {
+        return dish;
       }
     }
   };
 
   //Returns all the dishes on the menu.
-  this.getFullMenu = function() {
+  getFullMenu() {
     let allDishes = [];
-    for (let id in dinnerPlan.selectedDishes) {
+    for (let id in this.dinnerPlan.selectedDishes) {
       allDishes.push(this.getDish(id));
     }
     return allDishes;
   };
 
   //Returns all ingredients for all the dishes on the menu.
-  this.getAllIngredients = function() {
+  getAllIngredients() {
     let allIngredients;
 
-    for (let id in dinnerPlan.selectedDishes) {
+    for (let id in this.dinnerPlan.selectedDishes) {
       this.getDish(id).ingredients.forEach(ingredient => {
         // If undefined or null then false, otherwise true.
         if (allIngredients[ingredient]) {
@@ -80,7 +84,7 @@ var DinnerModel = function() {
   };
 
   //Returns the total price of the dish with the given dishID (for 1 person)
-  this.getDishPrice = function(dishID) {
+  getDishPrice(dishID) {
     let sum = 0;
     this.getDish(dishID).ingredients.forEach(ingredient => {
       sum += ingredient.price;
@@ -88,37 +92,37 @@ var DinnerModel = function() {
     return sum;
   };
 
-  this.getTotalDishPrice = function(dishID) {
-    return dinnerPlan.nrOfGuests * this.getDishPrice(dishID);
+  getTotalDishPrice(dishID) {
+    return this.dinnerPlan.nrOfGuests * this.getDishPrice(dishID);
   };
 
   //Returns the total price of the menu (all the ingredients multiplied by number of guests).
-  this.getTotalMenuPrice = function() {
+  getTotalMenuPrice() {
     let sum = 0;
 
-    for (const dishType in dinnerPlan.selectedDishes) {
-      var dishID = dinnerPlan.selectedDishes[dishType];
+    for (const dishType in this.dinnerPlan.selectedDishes) {
+      var dishID = this.dinnerPlan.selectedDishes[dishType];
       sum += this.getDishPrice(dishID);
     }
 
-    return sum * dinnerPlan.nrOfGuests;
+    return sum * this.dinnerPlan.nrOfGuests;
   };
 
   //Adds the passed dish to the menu. If the dish of that type already exists on the menu
   //it is removed from the menu and the new one added.
-  this.addDishToMenu = function(id) {
-    dinnerPlan.selectedDishes[this.getDish(id).type] = id;
+  addDishToMenu(id) {
+    this.dinnerPlan.selectedDishes[this.getDish(id).type] = id;
   };
 
   //Removes dish from menu
-  this.removeDishFromMenu = function(id) {
-    delete dinnerPlan.selectedDishes[this.getDish(id).type];
+  removeDishFromMenu(id) {
+    delete this.dinnerPlan.selectedDishes[this.getDish(id).type];
   };
 
   //function that returns all dish types available
-  this.getAllTypes = function() {
+  getAllTypes() {
     var allTypes = [];
-    dishes.forEach(dish => {
+    this.dishes().forEach(dish => {
       allTypes[dish.type] = dish.type;
     });
     return allTypes;
@@ -127,8 +131,8 @@ var DinnerModel = function() {
   //function that returns all dishes of specific type (i.e. "starter", "main dish" or "dessert")
   //you can use the filter argument to filter out the dish by name or ingredient (use for search)
   //if you don't pass any filter all the dishes will be returned
-  this.getAllDishes = function(type, filter) {
-    return dishes.filter(function(dish) {
+  getAllDishes(type, filter) {
+    return this.dishes().filter(function(dish) {
       var found = true;
       if (filter) {
         found = false;
@@ -157,7 +161,8 @@ var DinnerModel = function() {
   // defining the unit i.e. "g", "slices", "ml". Unit
   // can sometimes be empty like in the example of eggs where
   // you just say "5 eggs" and not "5 pieces of eggs" or anything else.
-  var dishes = [
+  dishes() {
+    return [
     {
       id: 1,
       name: 'French toast',
@@ -464,5 +469,5 @@ var DinnerModel = function() {
         }
       ]
     }
-  ];
+  ];}
 };
