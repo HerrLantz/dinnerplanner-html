@@ -9,10 +9,7 @@
     <link rel="stylesheet" href="style.css" />
 
     <!-- Header font -->
-    <link
-      href="https://fonts.googleapis.com/css?family=Nunito:400,800"
-      rel="stylesheet"
-    />
+    <link href="https://fonts.googleapis.com/css?family=Nunito:400,800" rel="stylesheet">
 
     <link
       rel="stylesheet"
@@ -24,7 +21,10 @@
   <body>
     <div class="container">
       <div id="headerView"></div>
-      <div id="homeView"></div>
+      <div id="dinnerOverview">
+        <div id="cartView"></div>
+        <div id="finderView"></div>
+      </div>
     </div>
 
     <!-- jQuery -->
@@ -35,9 +35,11 @@
     <!-- The application JavaScript code -->
     <script src="js/app.js"></script>
     <script src="js/model/dinnerModel.js"></script>
-    <script src="js/view/exampleView.js"></script>
+    <!-- <script src="js/view/exampleView.js"></script> -->
     <!-- TODO: Here you should include JS code for your other views -->
     <script src="js/view/headerView.js"></script>
-    <script src="js/view/homeView.js"></script>
+    <script src="js/view/cartView.js"></script>
+    <script src="js/view/dishView.js"></script>
+    <script src="js/view/finderView.js"></script>
   </body>
 </html>

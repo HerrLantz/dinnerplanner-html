@@ -3,10 +3,16 @@ var DinnerModel = function() {
   //TODO Lab 1 implement the data structure that will hold number of guest
   // and selected dishes for the dinner menu
 
+  var dummySelectedDishes = [];
+  dummySelectedDishes['starter'] = 1;
+  dummySelectedDishes['main dish'] = 100;
+
   var dinnerPlan = {
-    nrOfGuests: 0,
-    selectedDishes: {}
+    nrOfGuests: 2,
+    selectedDishes: dummySelectedDishes
   };
+
+  this.imgPath = 'images/';
 
   this.setNumberOfGuests = function(num) {
     dinnerPlan.nrOfGuests = num;
@@ -24,16 +30,29 @@ var DinnerModel = function() {
     return dinnerPlan.nrOfGuests;
   };
 
+  this.getSelectedDishes = function() {
+    return dinnerPlan.selectedDishes;
+  };
+
   //Returns the dish that is on the menu for selected type
   this.getSelectedDish = function(type) {
     return dinnerPlan.selectedDishes[type];
   };
 
+  //function that returns a dish of specific ID
+  this.getDish = function(id) {
+    for (key in dishes) {
+      if (dishes[key].id == id) {
+        return dishes[key];
+      }
+    }
+  };
+
   //Returns all the dishes on the menu.
   this.getFullMenu = function() {
     let allDishes = [];
-    for (const type in dinnerPlan.selectedDishes) {
-      allDishes.push(this.getDish(type.id));
+    for (let id in dinnerPlan.selectedDishes) {
+      allDishes.push(this.getDish(id));
     }
     return allDishes;
   };
@@ -42,8 +61,8 @@ var DinnerModel = function() {
   this.getAllIngredients = function() {
     let allIngredients;
 
-    for (const type in dinnerPlan.selectedDishes) {
-      this.getDish(type.id).ingredients.forEach(ingredient => {
+    for (let id in dinnerPlan.selectedDishes) {
+      this.getDish(id).ingredients.forEach(ingredient => {
         // If undefined or null then false, otherwise true.
         if (allIngredients[ingredient]) {
           allIngredients[ingredient.name].price += ingredient.price;
@@ -60,26 +79,49 @@ var DinnerModel = function() {
     return allIngredients;
   };
 
+  //Returns the total price of the dish with the given dishID (for 1 person)
+  this.getDishPrice = function(dishID) {
+    let sum = 0;
+    this.getDish(dishID).ingredients.forEach(ingredient => {
+      sum += ingredient.price;
+    });
+    return sum;
+  };
+
+  this.getTotalDishPrice = function(dishID) {
+    return dinnerPlan.nrOfGuests * this.getDishPrice(dishID);
+  };
+
   //Returns the total price of the menu (all the ingredients multiplied by number of guests).
   this.getTotalMenuPrice = function() {
     let sum = 0;
 
-    for (let ingredient in this.getAllIngredients()) {
-      sum += ingredient.price;
+    for (const dishType in dinnerPlan.selectedDishes) {
+      var dishID = dinnerPlan.selectedDishes[dishType];
+      sum += this.getDishPrice(dishID);
     }
 
-    return sum;
+    return sum * dinnerPlan.nrOfGuests;
   };
 
   //Adds the passed dish to the menu. If the dish of that type already exists on the menu
   //it is removed from the menu and the new one added.
   this.addDishToMenu = function(id) {
-    dinnerPlan.selectedDishes[this.dishes[id].type] = { id: id };
+    dinnerPlan.selectedDishes[this.getDish(id).type] = id;
   };
 
   //Removes dish from menu
   this.removeDishFromMenu = function(id) {
-    delete dinnerPlan.selectedDishes[this.dishes[id].type];
+    delete dinnerPlan.selectedDishes[this.getDish(id).type];
+  };
+
+  //function that returns all dish types available
+  this.getAllTypes = function() {
+    var allTypes = [];
+    dishes.forEach(dish => {
+      allTypes[dish.type] = dish.type;
+    });
+    return allTypes;
   };
 
   //function that returns all dishes of specific type (i.e. "starter", "main dish" or "dessert")
@@ -99,17 +141,12 @@ var DinnerModel = function() {
           found = true;
         }
       }
-      return dish.type == type && found;
-    });
-  };
-
-  //function that returns a dish of specific ID
-  this.getDish = function(id) {
-    for (key in dishes) {
-      if (dishes[key].id == id) {
-        return dishes[key];
+      if (type) {
+        return dish.type === type && found;
+      } else {
+        return true;
       }
-    }
+    });
   };
 
   // the dishes variable contains an array of all the
@@ -123,296 +160,306 @@ var DinnerModel = function() {
   var dishes = [
     {
       id: 1,
-      name: "French toast",
-      type: "starter",
-      image: "toast.jpg",
+      name: 'French toast',
+      type: 'starter',
+      image: 'toast.jpg',
       description:
-        "In a large mixing bowl, beat the eggs. Add the milk, brown sugar and nutmeg; stir well to combine. Soak bread slices in the egg mixture until saturated. Heat a lightly oiled griddle or frying pan over medium high heat. Brown slices on both sides, sprinkle with cinnamon and serve hot.",
+        'In a large mixing bowl, beat the eggs. Add the milk, brown sugar and nutmeg; stir well to combine. Soak bread slices in the egg mixture until saturated. Heat a lightly oiled griddle or frying pan over medium high heat. Brown slices on both sides, sprinkle with cinnamon and serve hot.',
+      preparation: 'Lorem ipsum sit dolor amet',
       ingredients: [
         {
-          name: "eggs",
+          name: 'eggs',
           quantity: 0.5,
-          unit: "",
+          unit: '',
           price: 10
         },
         {
-          name: "milk",
+          name: 'milk',
           quantity: 30,
-          unit: "ml",
+          unit: 'ml',
           price: 6
         },
         {
-          name: "brown sugar",
+          name: 'brown sugar',
           quantity: 7,
-          unit: "g",
+          unit: 'g',
           price: 1
         },
         {
-          name: "ground nutmeg",
+          name: 'ground nutmeg',
           quantity: 0.5,
-          unit: "g",
+          unit: 'g',
           price: 12
         },
         {
-          name: "white bread",
+          name: 'white bread',
           quantity: 2,
-          unit: "slices",
+          unit: 'slices',
           price: 2
         }
       ]
     },
     {
       id: 2,
-      name: "Sourdough Starter",
-      type: "starter",
-      image: "sourdough.jpg",
-      description: "Here is how you make it... Lore ipsum...",
+      name: 'Sourdough Starter',
+      type: 'starter',
+      image: 'sourdough.jpg',
+      description: 'Here is how you make it... Lore ipsum...',
+      preparation: 'Lorem ipsum sit dolor amet',
       ingredients: [
         {
-          name: "active dry yeast",
+          name: 'active dry yeast',
           quantity: 0.5,
-          unit: "g",
+          unit: 'g',
           price: 4
         },
         {
-          name: "warm water",
+          name: 'warm water',
           quantity: 30,
-          unit: "ml",
+          unit: 'ml',
           price: 0
         },
         {
-          name: "all-purpose flour",
+          name: 'all-purpose flour',
           quantity: 15,
-          unit: "g",
+          unit: 'g',
           price: 2
         }
       ]
     },
     {
       id: 3,
-      name: "Baked Brie with Peaches",
-      type: "starter",
-      image: "bakedbrie.jpg",
-      description: "Here is how you make it... Lore ipsum...",
+      name: 'Baked Brie with Peaches',
+      type: 'starter',
+      image: 'bakedbrie.jpg',
+      description: 'Here is how you make it... Lore ipsum...',
+      preparation: 'Lorem ipsum sit dolor amet',
       ingredients: [
         {
-          name: "round Brie cheese",
+          name: 'round Brie cheese',
           quantity: 10,
-          unit: "g",
+          unit: 'g',
           price: 8
         },
         {
-          name: "raspberry preserves",
+          name: 'raspberry preserves',
           quantity: 15,
-          unit: "g",
+          unit: 'g',
           price: 10
         },
         {
-          name: "peaches",
+          name: 'peaches',
           quantity: 1,
-          unit: "",
+          unit: '',
           price: 4
         }
       ]
     },
     {
       id: 100,
-      name: "Meat balls",
-      type: "main dish",
-      image: "meatballs.jpg",
+      name: 'Meat balls',
+      type: 'main dish',
+      image: 'meatballs.jpg',
       description:
-        "Preheat an oven to 400 degrees F (200 degrees C). Place the beef into a mixing bowl, and season with salt, onion, garlic salt, Italian seasoning, oregano, red pepper flakes, hot pepper sauce, and Worcestershire sauce; mix well. Add the milk, Parmesan cheese, and bread crumbs. Mix until evenly blended, then form into 1 1/2-inch meatballs, and place onto a baking sheet. Bake in the preheated oven until no longer pink in the center, 20 to 25 minutes.",
+        'Preheat an oven to 400 degrees F (200 degrees C). Place the beef into a mixing bowl, and season with salt, onion, garlic salt, Italian seasoning, oregano, red pepper flakes, hot pepper sauce, and Worcestershire sauce; mix well. Add the milk, Parmesan cheese, and bread crumbs. Mix until evenly blended, then form into 1 1/2-inch meatballs, and place onto a baking sheet. Bake in the preheated oven until no longer pink in the center, 20 to 25 minutes.',
+      preparation: 'Lorem ipsum sit dolor amet',
       ingredients: [
         {
-          name: "extra lean ground beef",
+          name: 'extra lean ground beef',
           quantity: 115,
-          unit: "g",
+          unit: 'g',
           price: 20
         },
         {
-          name: "sea salt",
+          name: 'sea salt',
           quantity: 0.7,
-          unit: "g",
+          unit: 'g',
           price: 3
         },
         {
-          name: "small onion, diced",
+          name: 'small onion, diced',
           quantity: 0.25,
-          unit: "",
+          unit: '',
           price: 2
         },
         {
-          name: "garlic salt",
+          name: 'garlic salt',
           quantity: 0.7,
-          unit: "g",
+          unit: 'g',
           price: 2
         },
         {
-          name: "Italian seasoning",
+          name: 'Italian seasoning',
           quantity: 0.6,
-          unit: "g",
+          unit: 'g',
           price: 3
         },
         {
-          name: "dried oregano",
+          name: 'dried oregano',
           quantity: 0.3,
-          unit: "g",
+          unit: 'g',
           price: 3
         },
         {
-          name: "crushed red pepper flakes",
+          name: 'crushed red pepper flakes',
           quantity: 0.6,
-          unit: "g",
+          unit: 'g',
           price: 3
         },
         {
-          name: "Worcestershire sauce",
+          name: 'Worcestershire sauce',
           quantity: 6,
-          unit: "ml",
+          unit: 'ml',
           price: 7
         },
         {
-          name: "milk",
+          name: 'milk',
           quantity: 20,
-          unit: "ml",
+          unit: 'ml',
           price: 4
         },
         {
-          name: "grated Parmesan cheese",
+          name: 'grated Parmesan cheese',
           quantity: 5,
-          unit: "g",
+          unit: 'g',
           price: 8
         },
         {
-          name: "seasoned bread crumbs",
+          name: 'seasoned bread crumbs',
           quantity: 15,
-          unit: "g",
+          unit: 'g',
           price: 4
         }
       ]
     },
     {
       id: 101,
-      name: "MD 2",
-      type: "main dish",
-      image: "bakedbrie.jpg",
-      description: "Here is how you make it... Lore ipsum...",
+      name: 'MD 2',
+      type: 'main dish',
+      image: 'bakedbrie.jpg',
+      description: 'Here is how you make it... Lore ipsum...',
+      preparation: 'Lorem ipsum sit dolor amet',
       ingredients: [
         {
-          name: "ingredient 1",
+          name: 'ingredient 1',
           quantity: 1,
-          unit: "pieces",
+          unit: 'pieces',
           price: 8
         },
         {
-          name: "ingredient 2",
+          name: 'ingredient 2',
           quantity: 15,
-          unit: "g",
+          unit: 'g',
           price: 7
         },
         {
-          name: "ingredient 3",
+          name: 'ingredient 3',
           quantity: 10,
-          unit: "ml",
+          unit: 'ml',
           price: 4
         }
       ]
     },
     {
       id: 102,
-      name: "MD 3",
-      type: "main dish",
-      image: "meatballs.jpg",
-      description: "Here is how you make it... Lore ipsum...",
+      name: 'MD 3',
+      type: 'main dish',
+      image: 'meatballs.jpg',
+      description: 'Here is how you make it... Lore ipsum...',
+      preparation: 'Lorem ipsum sit dolor amet',
       ingredients: [
         {
-          name: "ingredient 1",
+          name: 'ingredient 1',
           quantity: 2,
-          unit: "pieces",
+          unit: 'pieces',
           price: 8
         },
         {
-          name: "ingredient 2",
+          name: 'ingredient 2',
           quantity: 10,
-          unit: "g",
+          unit: 'g',
           price: 7
         },
         {
-          name: "ingredient 3",
+          name: 'ingredient 3',
           quantity: 5,
-          unit: "ml",
+          unit: 'ml',
           price: 4
         }
       ]
     },
     {
       id: 103,
-      name: "MD 4",
-      type: "main dish",
-      image: "meatballs.jpg",
-      description: "Here is how you make it... Lore ipsum...",
+      name: 'MD 4',
+      type: 'main dish',
+      image: 'meatballs.jpg',
+      description: 'Here is how you make it... Lore ipsum...',
+      preparation: 'Lorem ipsum sit dolor amet',
       ingredients: [
         {
-          name: "ingredient 1",
+          name: 'ingredient 1',
           quantity: 1,
-          unit: "pieces",
+          unit: 'pieces',
           price: 4
         },
         {
-          name: "ingredient 2",
+          name: 'ingredient 2',
           quantity: 12,
-          unit: "g",
+          unit: 'g',
           price: 7
         },
         {
-          name: "ingredient 3",
+          name: 'ingredient 3',
           quantity: 6,
-          unit: "ml",
+          unit: 'ml',
           price: 4
         }
       ]
     },
     {
       id: 200,
-      name: "Chocolat Ice cream",
-      type: "dessert",
-      image: "icecream.jpg",
-      description: "Here is how you make it... Lore ipsum...",
+      name: 'Chocolat Ice cream',
+      type: 'dessert',
+      image: 'icecream.jpg',
+      description: 'Here is how you make it... Lore ipsum...',
+      preparation: 'Lorem ipsum sit dolor amet',
       ingredients: [
         {
-          name: "ice cream",
+          name: 'ice cream',
           quantity: 100,
-          unit: "ml",
+          unit: 'ml',
           price: 6
         }
       ]
     },
     {
       id: 201,
-      name: "Vanilla Ice cream",
-      type: "dessert",
-      image: "icecream.jpg",
-      description: "Here is how you make it... Lore ipsum...",
+      name: 'Vanilla Ice cream',
+      type: 'dessert',
+      image: 'icecream.jpg',
+      description: 'Here is how you make it... Lore ipsum...',
+      preparation: 'Lorem ipsum sit dolor amet',
       ingredients: [
         {
-          name: "ice cream",
+          name: 'ice cream',
           quantity: 100,
-          unit: "ml",
+          unit: 'ml',
           price: 6
         }
       ]
     },
     {
       id: 202,
-      name: "Strawberry",
-      type: "dessert",
-      image: "icecream.jpg",
-      description: "Here is how you make it... Lore ipsum...",
+      name: 'Strawberry',
+      type: 'dessert',
+      image: 'icecream.jpg',
+      description: 'Here is how you make it... Lore ipsum...',
+      preparation: 'Lorem ipsum sit dolor amet',
       ingredients: [
         {
-          name: "ice cream",
+          name: 'ice cream',
           quantity: 100,
-          unit: "ml",
+          unit: 'ml',
           price: 6
         }
       ]
