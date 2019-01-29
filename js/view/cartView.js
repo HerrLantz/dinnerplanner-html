@@ -53,7 +53,7 @@ var CartView = function(container, model) {
       <div id="dinnerPlan">
           <div id="cartViewHeader">
               <h1>My Dinner</h1>
-              <span>SEK 100000</span>
+              <span>SEK ${model.getTotalMenuPrice()}</span>
               <div id="burgerMenu">
               <svg id="burgerIcon" height="21" width="30">
                   <line x1="0" y1="5" x2="30" y2="5" />
