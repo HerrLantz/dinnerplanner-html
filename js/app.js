@@ -56,7 +56,7 @@ $(function() {
     $('#printView').show();
   };
 
-  var headerView = new HeaderView($('#headerView'), model);
+  var headerView = new HeaderView(document.getElementById('headerView'), model);
 
   /* All that is needed for the index.html page: */
   // var homeView = new HomeView($('#homeView'), model);
@@ -88,6 +88,7 @@ $(function() {
 
   hideAllViews();
   showHomeView();
+  headerView.render();
   homeView.render();
 
   var homeViewController = new HomeViewController(
