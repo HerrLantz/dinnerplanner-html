@@ -1,4 +1,10 @@
+/**
+ * Welcome page for the dinnerplanner app
+ */
 class HomeView {
+  /**
+   * Constructs a HomeView
+   */
   constructor(container, model) {
     this.loremIpsum = `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean at metus dui. Morbi consectetur lorem risus. 
     Pellentesque vel ante sit amet nisl dictum dictum eu vel odio. Morbi sit amet massa nunc. Praesent sagittis tortor non diam rhoncus
@@ -8,10 +14,16 @@ class HomeView {
     this.container = container;
   }
 
+  /**
+   * Returns welcome text in a paragraph
+   */
   welcomeText() {
     return `<p>${this.loremIpsum}</p>`;
   }
 
+  /**
+   * Returns a button that takes the user to the page where he/she can create a dinnerplan
+   */
   createDinnerButton() {
     return `<button class="primaryButton">Create new dinner</button>`;
   }
