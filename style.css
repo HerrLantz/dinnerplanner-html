@@ -121,6 +121,10 @@ button:hover:disabled {
   justify-content: center;
 }
 
+#headerView h1:hover {
+  color: #111155;
+}
+
 #cartView {
   border-width: 2px 2px 2px 2px;
   border-style: solid;
@@ -383,7 +387,13 @@ button:hover:disabled {
   }
 
   #cartView {
-    width: 40%;
+    flex-basis: 0;
+    flex-grow: 1;
+  }
+
+  #finderView {
+    flex-basis: 0;
+    flex-grow: 3;
   }
 
   #dinnerOverview {
