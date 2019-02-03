@@ -96,6 +96,13 @@ $(function() {
     model,
     showSelectDishView
   );
+
+  var headerViewController = new HeaderViewController(
+    document.getElementById('headerView'),
+    model,
+    showHomeView
+  );
+
   // showSelectDishView();
   // showDinnerOverView();
   // showDishDetailsView();
