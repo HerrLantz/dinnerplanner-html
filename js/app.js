@@ -86,9 +86,12 @@ $(function() {
   var printView = new PrintView($('#printView'), model);
   /* End of printout.html assets: */
 
+  // Render all views here
   headerView.render();
   homeView.render();
   cartView.render();
+
+  // Hide views here
   cartView.hide();
 
   var homeViewController = new HomeViewController(
