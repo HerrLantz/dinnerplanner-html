@@ -56,6 +56,15 @@ $(function() {
     $('#printView').show();
   };
 
+  hideAllViews = () => {
+    //headerView.hide();
+    homeView.hide();
+    cartView.hide();
+    finderView.hide();
+    subHeaderView.hide();
+    printView.hide();
+  };
+
   var headerView = new HeaderView(document.getElementById('headerView'), model);
 
   /* All that is needed for the index.html page: */
@@ -70,9 +79,8 @@ $(function() {
   /* End of selectdish.html assets: */
 
   var dishDetailsView = new DishDetailsView(
-    $('#dishDetailsView'),
-    model,
-    model.getDish(1)
+    document.getElementById('dishDetailsView'),
+    model
   );
   /* End of dishdetails.html assets: */
 
@@ -80,19 +88,27 @@ $(function() {
   var overView = new OverView($('#overView'), model);
 
   /* Start of printout.html assets: */
-  var subHeaderView = new SubHeaderView($('#subHeaderView'), model);
+  var subHeaderView = new SubHeaderView(
+    document.getElementById('subHeaderView'),
+    model
+  );
   /* End of overview.html assets: */
 
-  var printView = new PrintView($('#printView'), model);
+  var printView = new PrintView(document.getElementById('printView'), model);
   /* End of printout.html assets: */
 
   // Render all views here
   headerView.render();
   homeView.render();
   cartView.render();
+  finderView.render();
+  subHeaderView.render();
+  printView.render();
 
   // Hide views here
   cartView.hide();
+  finderView.hide();
+  subHeaderView.hide();
 
   var homeViewController = new HomeViewController(
     document.getElementById('homeView'),
@@ -103,7 +119,8 @@ $(function() {
   var headerViewController = new HeaderViewController(
     document.getElementById('headerView'),
     model,
-    showHomeView
+    showHomeView,
+    hideAllViews
   );
 
   var cartViewController = new CartViewController(

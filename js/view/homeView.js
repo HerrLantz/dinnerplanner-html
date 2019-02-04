@@ -10,8 +10,9 @@ class HomeView {
     Pellentesque vel ante sit amet nisl dictum dictum eu vel odio. Morbi sit amet massa nunc. Praesent sagittis tortor non diam rhoncus
      blandit et eget sapien. Nulla ligula enim, lobortis quis enim et, aliquet pulvinar dolor. Aliquam sem lacus, porttitor vel nibh vel,
       consequat congue orci. Pellentesque quis lorem et orci efficitur egestas. Quisque cursus ligula felis, nec congue ante placerat at.`;
-
     this.container = container;
+    this.model = model;
+    this.displayProperty = container.style.display;
   }
 
   /**
@@ -28,6 +29,10 @@ class HomeView {
     return `<button class="primaryButton">Create new dinner</button>`;
   }
 
+  hide() {
+    this.container.style.display = 'none';
+  }
+
   /**
    * Updates the view with new data
    */
@@ -40,6 +45,7 @@ class HomeView {
    * the page where he/she can create a dinner plan
    */
   render() {
+    this.container.style.display = this.displayProperty;
     this.container.innerHTML = `${this.welcomeText() +
       this.createDinnerButton()}`;
   }

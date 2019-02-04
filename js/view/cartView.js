@@ -55,6 +55,7 @@ class CartView {
     this.container = container;
     this.model = model;
     this.displayProperty = container.style.display;
+    console.log(this.displayProperty);
   }
 
   populateCart() {
@@ -73,7 +74,7 @@ class CartView {
   }
 
   hide() {
-    this.container.style.displayProperty = 'none';
+    this.container.style.display = 'none';
   }
 
   burgerMenu() {
