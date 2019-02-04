@@ -76,19 +76,25 @@ class CartView {
     this.container.style.displayProperty = 'none';
   }
 
+  burgerMenu() {
+    return `
+    <div id="burgerMenu">
+      <svg id="burgerIcon" height="21" width="30">
+        <line x1="0" y1="5" x2="30" y2="5" />
+        <line x1="0" y1="12" x2="30" y2="12" />
+        <line x1="0" y1="19" x2="30" y2="19" />
+      </svg>
+    </div>
+    `;
+  }
+
   render() {
     this.container.style.displayProperty = this.displayProperty;
     this.container.innerHTML = `
       <div id="cartViewHeader">
         <h1>My Dinner</h1>
         <span>SEK ${this.model.getTotalMenuPrice()}</span>
-        <div id="burgerMenu">
-          <svg id="burgerIcon" height="21" width="30">
-            <line x1="0" y1="5" x2="30" y2="5" />
-            <line x1="0" y1="12" x2="30" y2="12" />
-            <line x1="0" y1="19" x2="30" y2="19" />
-          </svg>
-        </div>
+        ${this.burgerMenu()}
       </div>
       <div id="peopleSelector">
         <label>
@@ -114,7 +120,6 @@ class CartView {
               Confirm Dinner
             </button>
           </div>
-        </div>
-      </div>`;
+        </div>`;
   }
 }
