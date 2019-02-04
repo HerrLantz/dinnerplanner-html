@@ -3,26 +3,26 @@ $(function() {
   var model = new DinnerModel();
 
   // Hides all views.
-  hideAllViews = () => {
-    $('#homeView').hide();
-    $('#dinnerOverview').hide();
-    $('#cartView').hide();
-    $('#finderView').hide();
-    $('#dishDetailsView').hide();
-    $('#subHeaderView').hide();
-    $('#printView').hide();
-  };
+  // hideAllViews = () => {
+  //   $('#homeView').hide();
+  //   $('#dinnerOverview').hide();
+  //   $('#cartView').hide();
+  //   $('#finderView').hide();
+  //   $('#dishDetailsView').hide();
+  //   $('#subHeaderView').hide();
+  //   $('#printView').hide();
+  // };
 
   // Show Home View
   showHomeView = () => {
-    hideAllViews();
+    //hideAllViews();
     $('#homeView').show();
   };
 
   // @TODO: Correctly implement selectdish view.
   // Show SelectDish View
   showSelectDishView = () => {
-    hideAllViews();
+    //hideAllViews();
     $('#dinnerOverview').show(0, 'linear', () => {
       $('#cartView').show();
       $('#finderView').show();
@@ -31,7 +31,7 @@ $(function() {
 
   // Show DishDetails View
   showDishDetailsView = () => {
-    hideAllViews();
+    //hideAllViews();
     $('#dinnerOverview').show(0, 'linear', () => {
       $('#cartView').show();
       $('#dishDetailsView').show();
@@ -42,7 +42,7 @@ $(function() {
   // @TODO: Correctly implement dinner overview.
   // Show Dinner Overview View
   showDinnerOverView = () => {
-    hideAllViews();
+    //hideAllViews();
     $('#subHeaderView').show();
     $('#dinnerOverview').show();
 
@@ -51,7 +51,7 @@ $(function() {
 
   // Show Print View
   showPrintView = () => {
-    hideAllViews();
+    //hideAllViews();
     $('#subHeaderView').show();
     $('#printView').show();
   };
@@ -63,10 +63,10 @@ $(function() {
   var homeView = new HomeView(document.getElementById('homeView'), model);
 
   /* Start of selectdish.html assets: */
-  var finderView = new FinderView($('#finderView'), model);
+  var finderView = new FinderView(document.getElementById('finderView'), model);
 
   /* Start of dishdetails.html assets: */
-  var cartView = new CartView($('#cartView'), model);
+  var cartView = new CartView(document.getElementById('cartView'), model);
   /* End of selectdish.html assets: */
 
   var dishDetailsView = new DishDetailsView(
@@ -86,10 +86,10 @@ $(function() {
   var printView = new PrintView($('#printView'), model);
   /* End of printout.html assets: */
 
-  hideAllViews();
-  showHomeView();
   headerView.render();
   homeView.render();
+  cartView.render();
+  cartView.hide();
 
   var homeViewController = new HomeViewController(
     document.getElementById('homeView'),
@@ -101,6 +101,11 @@ $(function() {
     document.getElementById('headerView'),
     model,
     showHomeView
+  );
+
+  var cartViewController = new CartViewController(
+    document.getElementById('cartView'),
+    model
   );
 
   // showSelectDishView();
