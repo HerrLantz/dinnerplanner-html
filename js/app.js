@@ -113,7 +113,8 @@ $(function() {
   var homeViewController = new HomeViewController(
     document.getElementById('homeView'),
     model,
-    showSelectDishView
+    showSelectDishView,
+    hideAllViews
   );
 
   var headerViewController = new HeaderViewController(
