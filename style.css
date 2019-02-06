@@ -149,7 +149,7 @@ button:hover:disabled {
 }
 
 #cartViewHeader span {
-  display: flex;
+  display: none;
   color: rgb(184, 60, 60);
 }
 
