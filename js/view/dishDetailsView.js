@@ -21,10 +21,11 @@
 // };
 
 class DishDetailsView {
-  constructor(container, model) {
+  constructor(container, model, dish) {
     this.container = container;
     this.model = model;
     this.displayProperty = container.style.display;
+    this.dish = dish;
   }
 
   hide() {
@@ -36,18 +37,18 @@ class DishDetailsView {
     this.container.innerHTML = `
     <div id="dishDesc">
       <div id="dishDetails">
-        <h1>${dish.name}</h1>
+        <h1>TODO: UPDATE WITH DISH</h1>
         <div class="dishImageWrapper">
-          <img src="${model.imgPath + dish.image}" class="dishImage"/>
+          TODO: UPDATE WITH DISH IMAGE
         </div>
-        <p>${dish.description}</p>
+        <p>TODO: UPDATE WITH DESCRIPTION</p>
       <button class="backButton">back to search</button>
     </div>
     <div class="ingredients">
     </div>
   </div>
   <h1>PREPARATION</h1>
-  <p>${dish.preparation}</p>
+  <p>TODO: UPDATE WITH PREPARATION</p>
     `;
   }
 }
