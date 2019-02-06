@@ -1,7 +1,7 @@
 class FinderView {
   constructor(container, model) {
+    model.addObserver(this);
     this.container = container;
-
     this.model = model;
     this.displayProperty = container.style.display;
   }
@@ -24,6 +24,22 @@ class FinderView {
     return types;
   }
 
+  update(model, changeDetails) {
+    var dishes = model.getSearchResult();
+
+    // Clear recent search
+    this.container.querySelector('#resultPanel').innerHTML = '';
+
+    dishes.forEach(dish => {
+      new DishView(
+        this.container.querySelector('#resultPanel'),
+        model,
+        dish.id,
+        true
+      ).render();
+    });
+  }
+
   /**
    * Renders the view
    */
@@ -34,9 +50,9 @@ class FinderView {
       <div id="searchPanel">
         <h1>FIND A DISH</h1>
         <div id="filterOptions">
-          <input type="text" placeholder="Enter keywords" />
+          <input type="text" id="searchField" placeholder="Enter keywords" />
           <select id="dishes">${this.dishTypesToString()}</select>
-          <button class="primaryButton">search</button>
+          <button class="primaryButton" id="searchButton">search</button>
         </div>
       </div>
       <div id="resultPanelWrapper">
