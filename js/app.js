@@ -104,11 +104,13 @@ $(function() {
   finderView.render();
   subHeaderView.render();
   printView.render();
+  dishDetailsView.render();
 
   // Hide views here
   cartView.hide();
   finderView.hide();
   subHeaderView.hide();
+  dishDetailsView.hide();
 
   var homeViewController = new HomeViewController(
     document.getElementById('homeView'),
