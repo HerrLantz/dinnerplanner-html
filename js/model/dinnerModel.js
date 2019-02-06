@@ -12,7 +12,8 @@ class DinnerModel extends Observable {
       selectedDishes: dummySelectedDishes
     };
 
-    this.searchResult = {};
+    // Results from a search
+    this.searchResult;
 
     this.imgPath = 'images/';
   }
@@ -40,6 +41,10 @@ class DinnerModel extends Observable {
   //Returns the dish that is on the menu for selected type
   getSelectedDish(type) {
     return this.dinnerPlan.selectedDishes[type];
+  }
+
+  getSearchResult() {
+    return this.searchResult;
   }
 
   //function that returns a dish of specific ID
@@ -131,7 +136,7 @@ class DinnerModel extends Observable {
   //you can use the filter argument to filter out the dish by name or ingredient (use for search)
   //if you don't pass any filter all the dishes will be returned
   getAllDishes(type, filter) {
-    return this.dishes().filter(function(dish) {
+    this.searchResult = this.dishes().filter(function(dish) {
       var found = true;
       if (filter) {
         found = false;
@@ -144,12 +149,13 @@ class DinnerModel extends Observable {
           found = true;
         }
       }
-      if (type) {
-        return dish.type === type && found;
+      if (type === 'All') {
+        return found;
       } else {
-        return true;
+        return dish.type === type && found;
       }
     });
+    this.notifyObservers();
   }
 
   // the dishes variable contains an array of all the
