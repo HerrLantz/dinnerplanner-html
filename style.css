@@ -47,6 +47,11 @@ button:hover:disabled {
   cursor: not-allowed;
 }
 
+.container {
+  display: flex;
+  flex-direction: column;
+}
+
 #dinnerOverview {
   display: flex;
   flex-direction: column;
