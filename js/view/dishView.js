@@ -39,15 +39,18 @@ class DishView {
 
   render() {
     this.container.style.display = this.displayProperty;
-    this.container.appendChild(`
-      <div class="dishItem" dishID="${dishID}">
+    this.container.insertAdjacentHTML(
+      'beforeend',
+      `
+      <div class="dishItem" dishID="${this.dishID}">
         <div class="thumbnail">
-          <img class="thumbnailImage" src="${model.imgPath +
-            model.getDish(dishID).image}">
+          <img class="thumbnailImage" src="${this.model.imgPath +
+            this.model.getDish(this.dishID).image}">
         </div>
-        <p>${model.getDish(dishID).name}</p>
+        <p>${this.model.getDish(this.dishID).name}</p>
       </div>
-      <span class="showPrice" attr="${dishID}"></span>
-    `);
+      <span class="showPrice" attr="${this.dishID}"></span>
+    `
+    );
   }
 }
