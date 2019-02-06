@@ -2,17 +2,6 @@ $(function() {
   //We instantiate our model
   var model = new DinnerModel();
 
-  // Hides all views.
-  // hideAllViews = () => {
-  //   $('#homeView').hide();
-  //   $('#dinnerOverview').hide();
-  //   $('#cartView').hide();
-  //   $('#finderView').hide();
-  //   $('#dishDetailsView').hide();
-  //   $('#subHeaderView').hide();
-  //   $('#printView').hide();
-  // };
-
   // Show Home View
   showHomeView = () => {
     //hideAllViews();
@@ -130,6 +119,11 @@ $(function() {
     document.getElementById('cartView'),
     model,
     document.getElementById('searchPanel')
+  );
+
+  var finderViewController = new FinderViewController(
+    document.getElementById('finderView'),
+    model
   );
 
   // showSelectDishView();
