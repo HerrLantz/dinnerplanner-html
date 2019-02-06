@@ -128,7 +128,8 @@ $(function() {
 
   var cartViewController = new CartViewController(
     document.getElementById('cartView'),
-    model
+    model,
+    document.getElementById('searchPanel')
   );
 
   // showSelectDishView();

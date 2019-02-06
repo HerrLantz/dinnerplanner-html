@@ -61,6 +61,8 @@ button:hover:disabled {
 }
 
 #confirmationBox {
+  display: flex;
+  flex-direction: column;
   width: 100%;
   height: 10rem;
   border-width: 0px 0;
@@ -147,6 +149,7 @@ button:hover:disabled {
 }
 
 #cartViewHeader span {
+  display: flex;
   color: rgb(184, 60, 60);
 }
 
@@ -156,6 +159,7 @@ button:hover:disabled {
 }
 
 #peopleSelector {
+  display: flex;
   padding-top: 0.5rem;
   padding-bottom: 0.5rem;
   padding-left: 1rem;
