@@ -12,7 +12,6 @@ class FinderViewController {
       let dishType = view.querySelector('#dishes').value;
 
       model.getAllDishes(dishType, searchString);
-      model.notifyObservers({ type: 'search' });
     });
   }
 }
