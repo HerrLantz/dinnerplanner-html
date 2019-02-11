@@ -16,14 +16,17 @@ class DinnerModel extends Observable {
 
   setNumberOfGuests(num) {
     this.dinnerPlan.nrOfGuests = num;
+    this.notifyObservers({ type: 'cart_update' });
   }
 
   addGuest() {
     this.dinnerPlan.nrOfGuests++;
+    this.notifyObservers({ type: 'cart_update' });
   }
 
   removeGuest() {
     this.dinnerPlan.nrOfGuests--;
+    this.notifyObservers({ type: 'cart_update' });
   }
 
   getNumberOfGuests() {
@@ -154,7 +157,7 @@ class DinnerModel extends Observable {
         return dish.type === type && found;
       }
     });
-    this.notifyObservers({type: 'search_update'});
+    this.notifyObservers({ type: 'search_update' });
   }
 
   // the dishes variable contains an array of all the

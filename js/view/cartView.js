@@ -33,6 +33,10 @@ class CartView {
       '#cartViewHeader span'
     ).innerHTML = `SEK ${model.getTotalMenuPrice()}`;
 
+    this.container.querySelector('#totalPrice').innerHTML = `
+      SEK ${model.getTotalMenuPrice()}
+    `;
+
     // Update cart with new items
     var dishes = model.getSelectedDishes();
     this.container.querySelector('#dinnerTable').innerHTML = '';
@@ -50,6 +54,11 @@ class CartView {
         `
       );
     }
+
+    // Update the number of guest displayed
+    this.container.querySelector(
+      '#peopleSelector input'
+    ).value = model.getNumberOfGuests();
 
     // If there exists dishes, enable checkout of dinner
     if (dishes) {

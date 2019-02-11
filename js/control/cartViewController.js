@@ -23,6 +23,36 @@ class CartViewController {
         this.visible = true;
       }
     });
+
+    var peopleSelectorBox = view.querySelector('#peopleSelector input');
+
+    // Add guest to dinner
+    view
+      .querySelector('.arrow[direction="up"]')
+      .addEventListener('click', () => {
+        if (model.getNumberOfGuests() < 999) {
+          model.addGuest();
+        }
+      });
+
+    // Remove guest from dinner
+    view
+      .querySelector('.arrow[direction="down"]')
+      .addEventListener('click', () => {
+        if (model.getNumberOfGuests() > 1) {
+          model.removeGuest();
+        }
+      });
+
+    // Add eventlistener on input box
+    peopleSelectorBox.addEventListener('input', () => {
+      let validInput = '^[1-9][0-9]{0,2}$'; // Matches numbers between 1-999
+      let boxInput = peopleSelectorBox.value;
+      let isValid = new RegExp(validInput).test(boxInput);
+      if (isValid) {
+        model.setNumberOfGuests(boxInput);
+      }
+    });
   }
 
   collapseMenu() {
