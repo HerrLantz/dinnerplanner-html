@@ -126,6 +126,11 @@ $(function() {
     model
   );
 
+  var dishViewController = new DishViewController(
+    document.getElementsByClassName('dishItem'),
+    model
+  );
+
   // showSelectDishView();
   // showDinnerOverView();
   // showDishDetailsView();
