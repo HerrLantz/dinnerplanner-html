@@ -50,6 +50,17 @@ class CartView {
         `
       );
     }
+
+    // If there exists dishes, enable checkout of dinner
+    if (dishes) {
+      this.container.querySelector(
+        '#confirmDinner .primaryButton'
+      ).disabled = false;
+    } else {
+      this.container.querySelector(
+        '#confirmDinner .primaryButton'
+      ).disabled = true;
+    }
   }
 
   render() {
