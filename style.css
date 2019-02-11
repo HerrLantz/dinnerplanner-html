@@ -160,6 +160,7 @@ button:hover:disabled {
 
 #peopleSelector {
   display: flex;
+  flex-direction: row;
   padding-top: 0.5rem;
   padding-bottom: 0.5rem;
   padding-left: 1rem;
@@ -168,6 +169,31 @@ button:hover:disabled {
 #peopleSelector input {
   width: 2rem;
   text-align: center;
+  -webkit-appearance: none;
+  -moz-appearance:textfield;
+}
+
+#arrowButtons {
+  display: flex;
+  flex-direction: column; 
+}
+
+.arrow {
+  display: flex;
+  height: 100%;
+  width: 1rem;
+}
+
+.arrow[direction='up'] {
+  border-style: solid;
+  border-width: 2px 2px 2px 0;
+  background: url('icons/up_arrow.svg') 50% / 0.4rem no-repeat;
+}
+
+.arrow[direction='down'] {
+  border-style: solid;
+  border-width: 0 2px 2px 0;
+  background: url('icons/down_arrow.svg') 50% / 0.4rem no-repeat;
 }
 
 #searchPanel {
