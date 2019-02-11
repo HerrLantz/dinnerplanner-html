@@ -96,7 +96,19 @@ button:hover:disabled {
 #dinnerTable tr {
   display: flex;
   justify-content: space-between;
+  height: 1.5rem;
   padding: 0 1rem;
+}
+
+#dinnerTable td {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis; 
+}
+
+#dinnerTable td:first-child {
+  width: 10rem;
+  height: 100%;
 }
 
 #totalPrice {
