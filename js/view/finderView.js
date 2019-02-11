@@ -25,6 +25,10 @@ class FinderView {
   }
 
   update(model, changeDetails) {
+    if (changeDetails.type !== 'search_update') {
+      return;
+    }
+
     var dishes = model.getSearchResult();
 
     // Clear recent search
