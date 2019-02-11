@@ -3,13 +3,9 @@ class DinnerModel extends Observable {
   constructor() {
     super();
 
-    let dummySelectedDishes = [];
-    dummySelectedDishes['starter'] = 1;
-    dummySelectedDishes['main dish'] = 100;
-
     this.dinnerPlan = {
       nrOfGuests: 2,
-      selectedDishes: dummySelectedDishes
+      selectedDishes: []
     };
 
     // Results from a search
@@ -116,6 +112,9 @@ class DinnerModel extends Observable {
   //it is removed from the menu and the new one added.
   addDishToMenu(id) {
     this.dinnerPlan.selectedDishes[this.getDish(id).type] = id;
+    this.notifyObservers({
+      type: 'cart_update'
+    });
   }
 
   //Removes dish from menu
@@ -155,7 +154,7 @@ class DinnerModel extends Observable {
         return dish.type === type && found;
       }
     });
-    this.notifyObservers();
+    this.notifyObservers({type: 'search_update'});
   }
 
   // the dishes variable contains an array of all the
