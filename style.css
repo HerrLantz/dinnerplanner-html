@@ -108,6 +108,30 @@ button:hover:disabled {
 
 #dinnerTable td:first-child {
   height: 100%;
+  flex-grow: 10;
+  flex-basis: 0;
+}
+
+#dinnerTable td:nth-child(2) {
+  flex-grow: 2;
+  flex-basis: 0;
+}
+
+#dinnerTable td:nth-child(3) {
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  
+  text-align: center; 
+  flex-grow: 1;
+  flex-basis: 0;
+}
+
+#dinnerTable td:nth-child(3):hover {
+  font-weight: 800;
 }
 
 #totalPrice {

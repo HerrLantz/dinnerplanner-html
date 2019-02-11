@@ -50,6 +50,7 @@ class CartView {
         <tr>
           <td>${dish.name}</td>
           <td>SEK ${model.getTotalDishPrice(dishID)}</td>
+          <td class='removeDish' dishid=${dishID}>X</td>
         </tr>
         `
       );
