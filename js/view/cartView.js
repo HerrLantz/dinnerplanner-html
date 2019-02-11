@@ -1,75 +1,9 @@
-// var CartView = function(container, model) {
-//   const populateCart = () => {
-//     var dishes = model.getSelectedDishes();
-//     for (const dishType in dishes) {
-//       var dishID = model.getSelectedDishes()[dishType];
-//       var dish = model.getDish(dishID);
-
-//       $('#dinnerTable').append(`
-//         <tr>
-//           <td>${dish.name}</td>
-//           <td>${model.getTotalDishPrice(dishID)}</td>
-//         </tr>
-//     `);
-//     }
-//   };
-
-//   $(document).ready(function() {
-//     if ($(window).width() > 800) {
-//       $('#confirmationBox').show();
-//       $('#peopleSelector').show();
-//       $('#searchPanel').show();
-//       $('#cartViewHeader span').hide();
-//     }
-
-//     $('#burgerMenu').click(function() {
-//       if ($('#confirmationBox').is(':visible')) {
-//         $('#confirmationBox').hide();
-//         $('#peopleSelector').hide();
-//         $('#searchPanel').hide();
-//         $('#cartViewHeader span').show();
-//       } else {
-//         $('#confirmationBox').show();
-//         $('#peopleSelector').show();
-//         $('#searchPanel').show();
-//         $('#cartViewHeader span').hide();
-//       }
-//     });
-
-//     $(window).resize(function() {
-//       if ($(window).width() > 800) {
-//         $('#confirmationBox').show();
-//         $('#peopleSelector').show();
-//         $('#searchPanel').show();
-//         $('#cartViewHeader span').hide();
-//       }
-//     });
-
-//     $('#totalPrice').html(`SEK ${model.getTotalMenuPrice()}`);
-//     populateCart();
-//   });
-// };
-
 class CartView {
   constructor(container, model) {
+    model.addObserver(this);
     this.container = container;
     this.model = model;
     this.displayProperty = container.style.display;
-  }
-
-  populateCart() {
-    var dishes = model.getSelectedDishes();
-    for (const dishType in dishes) {
-      var dishID = model.getSelectedDishes()[dishType];
-      var dish = model.getDish(dishID);
-
-      $('#dinnerTable').append(`
-        <tr>
-          <td>${dish.name}</td>
-          <td>${model.getTotalDishPrice(dishID)}</td>
-        </tr>
-    `);
-    }
   }
 
   hide() {
@@ -86,6 +20,36 @@ class CartView {
       </svg>
     </div>
     `;
+  }
+
+  update(model, changeDetails) {
+    // Model has not changed items in cart; don't update
+    if (changeDetails.type !== 'cart_update') {
+      return;
+    }
+
+    // Update total price
+    this.container.querySelector(
+      '#cartViewHeader span'
+    ).innerHTML = `SEK ${model.getTotalMenuPrice()}`;
+
+    // Update cart with new items
+    var dishes = model.getSelectedDishes();
+    this.container.querySelector('#dinnerTable').innerHTML = '';
+    for (const dishType in dishes) {
+      let dishID = model.getSelectedDishes()[dishType];
+      let dish = model.getDish(dishID);
+
+      this.container.querySelector('#dinnerTable').insertAdjacentHTML(
+        'beforeend',
+        `
+        <tr>
+          <td>${dish.name}</td>
+          <td>${model.getTotalDishPrice(dishID)}</td>
+        </tr>
+        `
+      );
+    }
   }
 
   render() {
@@ -105,7 +69,11 @@ class CartView {
               max="999"
               min="0"
           />
-        </label>
+          </label>
+          <div id='arrowButtons'>
+            <div class='arrow' direction='up'></div>
+            <div class='arrow' direction='down'></div>
+          </div>
       </div>
       <div id="confirmationBox">
         <div class="divider">
