@@ -74,6 +74,7 @@ button:hover:disabled {
   width: 100%;
   display: flex;
   justify-content: center;
+  padding-top: 1rem;
 }
 
 .divider {
@@ -471,6 +472,7 @@ input::-webkit-inner-spin-button {
   #cartView {
     flex-basis: 0;
     flex-grow: 1;
+    min-width: 200px;
   }
 
   #finderView {
