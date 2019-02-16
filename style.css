@@ -559,7 +559,7 @@ input::-webkit-inner-spin-button {
   }
 
   .dishImage {
-    width: 90%;
+    padding: 0 1rem;
   }
 
   .dishImageWrapper {
