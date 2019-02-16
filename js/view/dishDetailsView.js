@@ -58,7 +58,7 @@ class DishDetailsView {
       </div>
       <h1>PREPARATION</h1>
       <p>${this.dish.preparation}</p>
-        `;
-    
+    `;
+    new IngredientsView(this.container.getElementsByClassName('ingredients')[0] , this.model, this.dish);
   }
 }
