@@ -108,12 +108,12 @@ button:hover:disabled {
 
 #dinnerTable td:first-child {
   height: 100%;
-  flex-grow: 10;
+  flex-grow: 7;
   flex-basis: 0;
 }
 
 #dinnerTable td:nth-child(2) {
-  flex-grow: 2;
+  flex-grow: 4;
   flex-basis: 0;
 }
 
@@ -472,7 +472,7 @@ input::-webkit-inner-spin-button {
   #cartView {
     flex-basis: 0;
     flex-grow: 1;
-    min-width: 200px;
+    min-width: 30%;
   }
 
   #finderView {
