@@ -66,6 +66,9 @@ class IngredientsView {
         <b>SEK ${this.model.getDishPrice(this.dish.id) * this.guests}</b>
       </div>
     `;
+    this.container.getElementsByClassName('primaryButton')[0].addEventListener('click', () => {
+      this.model.addDishToMenu(this.dish.id);
+    });
   }
 }
   
