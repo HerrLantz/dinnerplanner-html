@@ -10,6 +10,8 @@ class DinnerModel extends Observable {
 
     // Results from a search
     this.searchResult;
+    // What dish to show the details of
+    this.dishDetailsID = 1;
 
     this.imgPath = 'images/';
   }
@@ -44,6 +46,15 @@ class DinnerModel extends Observable {
 
   getSearchResult() {
     return this.searchResult;
+  }
+
+  setDishDetailsID(dishID) {
+    this.dishDetailsID = dishID;
+    this.notifyObservers( {type: 'dish_details'});
+  }
+
+  getDishDetailsID() {
+    return this.dishDetailsID;
   }
 
   //function that returns a dish of specific ID

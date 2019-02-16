@@ -128,7 +128,9 @@ $(function() {
 
   var dishViewController = new DishViewController(
     document.getElementsByClassName('dishItem'),
-    model
+    model,
+    showDishDetailsView,
+    hideAllViews
   );
 
   // showSelectDishView();

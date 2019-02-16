@@ -21,34 +21,44 @@
 // };
 
 class DishDetailsView {
-  constructor(container, model, dish) {
+  constructor(container, model) {
+    model.addObserver(this);
     this.container = container;
     this.model = model;
     this.displayProperty = container.style.display;
-    this.dish = dish;
+    this.dish = {}
+    this.update(model, {type: 'dish_details'});
   }
 
   hide() {
     this.container.style.display = 'none';
   }
 
+  update(model, changeDetails) {
+    if (changeDetails.type === 'dish_details') {      
+      this.dish = model.getDish(model.getDishDetailsID());      
+      this.render();
+    }
+  }
+
   render() {
     this.container.style.display = this.displayProperty;
     this.container.innerHTML = `
-    <div id="dishDesc">
-      <div id="dishDetails">
-        <h1>TODO: UPDATE WITH DISH</h1>
-        <div class="dishImageWrapper">
-          TODO: UPDATE WITH DISH IMAGE
+      <div id="dishDesc">
+        <div id="dishDetails">
+          <h1>${this.dish.name}</h1>
+          <div class="dishImageWrapper">
+            <img src="${this.model.imgPath + this.dish.image}" class="dishImage"/>
+          </div>
+          <p>${this.dish.description}</p>
+          <button class="backButton">back to search</button>
         </div>
-        <p>TODO: UPDATE WITH DESCRIPTION</p>
-      <button class="backButton">back to search</button>
-    </div>
-    <div class="ingredients">
-    </div>
-  </div>
-  <h1>PREPARATION</h1>
-  <p>TODO: UPDATE WITH PREPARATION</p>
-    `;
+        <div class="ingredients">
+        </div>
+      </div>
+      <h1>PREPARATION</h1>
+      <p>${this.dish.preparation}</p>
+        `;
+    
   }
 }
