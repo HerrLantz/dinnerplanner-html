@@ -133,6 +133,13 @@ $(function() {
     hideAllViews
   );
 
+  var dishDetailsViewController = new DishDetailsViewController(
+    document.getElementById('dishDetailsView'),
+    model,
+    showSelectDishView,
+    hideAllViews
+  );
+
   // showSelectDishView();
   // showDinnerOverView();
   // showDishDetailsView();
