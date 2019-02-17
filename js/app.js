@@ -1,38 +1,178 @@
 $(function() {
   //We instantiate our model
-  var model = new DinnerModel();
+  const model = new DinnerModel();
+  // Show Home View
+  showHomeView = () => {
+    //hideAllViews();
+    $('#homeView').show();
+  };
 
-  // And create the instance of ExampleView
-  // var exampleView = new ExampleView($('#exampleView'), model)
+  // Show SelectDish View
+  showSelectDishView = () => {
+    //hideAllViews();
+    $('#dinnerOverview').show(0, 'linear', () => {
+      $('#cartView').show();
+      $('#finderView').show();
+    });
+  };
 
-  var headerView = new HeaderView($('#headerView'), model);
+  // Show DishDetails View
+  showDishDetailsView = () => {
+    //hideAllViews();
+    $('#dinnerOverview').show(0, 'linear', () => {
+      $('#cartView').show();
+      $('#dishDetailsView').show();
+    });
+  };
+
+  // @TODO: Correctly implement dinner overview.
+  // Show Dinner Overview View
+  showDinnerOverView = () => {
+    //hideAllViews();
+    $('#subHeaderView').show();
+    $('#dinnerOverview').show();
+
+    $('#overView').show();
+  };
+
+  // Show Print View
+  showPrintView = () => {
+    //hideAllViews();
+    $('#subHeaderView').show();
+    $('#printView').show();
+  };
+
+  hideAllViews = () => {
+    //headerView.hide();
+    homeView.hide();
+    cartView.hide();
+    finderView.hide();
+    dishDetailsView.hide();
+    subHeaderView.hide();
+    overView.hide();
+    printView.hide();
+  };
+
+  var headerView = new HeaderView(document.getElementById('headerView'), model);
 
   /* All that is needed for the index.html page: */
   // var homeView = new HomeView($('#homeView'), model);
+  var homeView = new HomeView(document.getElementById('homeView'), model);
 
   /* Start of selectdish.html assets: */
-  // var finderView = new FinderView($('#finderView'), model);
+  var finderView = new FinderView(document.getElementById('finderView'), model);
 
   /* Start of dishdetails.html assets: */
-  // var cartView = new CartView($('#cartView'), model);
+  var cartView = new CartView(document.getElementById('cartView'), model);
   /* End of selectdish.html assets: */
-
-  // var dishDetailsView = new DishDetailsView(
-  //   $('#dishDetailsView'),
-  //   model,
-  //   model.getDish(1)
-  // );
+  
+  var dishDetailsView = new DishDetailsView(
+    document.getElementById('dishDetailsView'),
+    model,
+    dishDetailsViewController
+  );
+    
   /* End of dishdetails.html assets: */
 
   /* Start of overview.html assets: */
-  var overView = new OverView($('#overView'), model);
+  var overView = new OverView(
+    document.getElementById('overView'),
+    model
+  );
 
   /* Start of printout.html assets: */
-  var subHeaderView = new SubHeaderView($('#subHeaderView'), model);
+  var subHeaderView = new SubHeaderView(
+    document.getElementById('subHeaderView'),
+    model
+  );
   /* End of overview.html assets: */
 
-  // var printView = new PrintView($('#printView'), model);
+  var printView = new PrintView(document.getElementById('printView'), model);
   /* End of printout.html assets: */
+
+  // Render all views here
+  headerView.render();
+  homeView.render();
+  cartView.render();
+  finderView.render();
+  subHeaderView.render();
+  printView.render();
+  dishDetailsView.render();
+  overView.render();
+  
+  // Hide views here
+  cartView.hide();
+  finderView.hide();
+  subHeaderView.hide();
+  dishDetailsView.hide();
+  overView.hide();
+
+
+  var homeViewController = new HomeViewController(
+    document.getElementById('homeView'),
+    model,
+    showSelectDishView,
+    hideAllViews
+  );
+
+  var headerViewController = new HeaderViewController(
+    document.getElementById('headerView'),
+    model,
+    showHomeView,
+    hideAllViews
+  );
+
+  var cartViewController = new CartViewController(
+    document.getElementById('cartView'),
+    model,
+    document.getElementById('searchPanel'),
+    showDishDetailsView,
+    hideAllViews,
+    showDinnerOverView
+  );
+
+  var finderViewController = new FinderViewController(
+    document.getElementById('finderView'),
+    model
+  );
+
+  var dishViewController = new DishViewController(
+    document.getElementsByClassName('dishItem'),
+    model,
+    showDishDetailsView,
+    hideAllViews
+  );
+
+  var dishDetailsViewController = new DishDetailsViewController(
+    document.getElementById('dishDetailsView'),
+    model,
+    showSelectDishView,
+    hideAllViews
+  );
+
+  var ingredientsViewController = new IngredientsViewController(
+    document.getElementById('ingredients'),
+    model
+  );
+
+  var subHeaderViewController = new SubHeaderViewController(
+    document.getElementById('subHeaderView'),
+    model,
+    showSelectDishView,
+    hideAllViews
+  );
+
+  var overViewController = new OverViewController(
+    document.getElementById('overView'),
+    model,
+    showPrintView,
+    hideAllViews
+  );
+
+  // showSelectDishView();
+  // showDinnerOverView();
+  // showDishDetailsView();
+  // showPrintView();
 
   /**
    * IMPORTANT: app.js is the only place where you are allowed to

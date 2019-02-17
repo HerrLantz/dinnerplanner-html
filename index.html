@@ -24,7 +24,15 @@
   <body>
     <div class="container">
       <div id="headerView"></div>
+      <div id="subHeaderView"></div>
       <div id="homeView"></div>
+      <div id="dinnerOverview">
+        <div id="cartView"></div>
+        <div id="finderView"></div>
+        <div id="dishDetailsView"></div>
+      </div>
+      <div id="overView"></div>
+      <div id="printView"></div>
     </div>
 
     <!-- jQuery -->
@@ -34,10 +42,30 @@
 
     <!-- The application JavaScript code -->
     <script src="js/app.js"></script>
-    <script src="js/model/dinnerModel.js"></script>
-    <script src="js/view/exampleView.js"></script>
-    <!-- TODO: Here you should include JS code for your other views -->
+    <script src="js/observable.js"></script>
+    <script src="js/model/dinnerModel.js"></script>    
     <script src="js/view/headerView.js"></script>
     <script src="js/view/homeView.js"></script>
+    <script src="js/view/finderView.js"></script>
+    <script src="js/view/cartView.js"></script>
+    <script src="js/view/subHeaderView.js"></script>
+    <script src="js/view/overView.js"></script>
+    <script src="js/view/dishView.js"></script>
+    <script src="js/view/dishDetailsView.js"></script>
+    <script src="js/view/ingredientsView.js"></script>
+    <script src="js/view/printView.js"></script>
+    <script src="js/view/dishPrintView.js"></script>
+
+    <!-- The application controllers -->
+    <script src="js/control/homeViewController.js"></script>
+    <script src="js/control/headerViewController.js"></script>
+    <script src="js/control/cartViewController.js"></script>
+    <script src="js/control/finderViewController.js"></script>
+    <script src="js/control/dishViewController.js"></script>
+    <script src="js/control/dishDetailsViewController.js"></script>
+    <script src="js/control/ingredientsViewController.js"></script>
+    <script src="js/control/subHeaderViewController.js"></script>
+    <script src="js/control/overViewController.js"></script>
+
   </body>
 </html>

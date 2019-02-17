@@ -1,41 +1,73 @@
-var IngredientsView = function(container, model, dish) {
-  var guests = model.getNumberOfGuests();
+class IngredientsView {
+  constructor(container, model, dish) {
+    model.addObserver(this);
+    this.container = container;
+    this.model = model;
+    this.displayProperty = container.style.display;
+    this.dish = dish
+  }
+  
+  hide() {
+    this.container.style.display = 'none';
+  }
 
-  var createTableOfIngredients = function() {
+  // Set the amount of decimals based on ingredient unit.
+  formatQuantity(ingredient) {
+    let amount = ingredient.quantity * this.guests;
+    let unitIsGramsOrMls = ingredient.unit === 'g' || ingredient.unit === 'ml';
+    return unitIsGramsOrMls ? amount.toFixed() : amount.toFixed(1);
+  }
+
+  createTableOfIngredients() {
     let rows = '';
-    dish.ingredients.forEach(ingredient => {
-      rows += `
-            <tr>
-                <td>
-                    ${ingredient.quantity * guests} ${ingredient.unit}
-                </td>
-                <td>
-                    ${ingredient.name}
-                </td>
-                <td>
-                    SEK
-                </td>
-                <td align="right">
-                    ${ingredient.price * guests}
-                </td>
-            </tr>`;
+    this.dish.ingredients.forEach(ingredient => {
+    rows += `
+      <tr>
+        <td>
+          ${this.formatQuantity(ingredient)} ${ingredient.unit}
+        </td>
+        <td>
+          ${ingredient.name}
+        </td>
+        <td>
+          SEK
+        </td>
+        <td align="right">
+          ${ingredient.price * this.guests}
+        </td>
+      </tr>`;
     });
     return rows;
   };
 
-  container.html(`
-        <h2>INGREDIENTS FOR ${guests} PEOPLE</h2>
-        <hr>
-        <table>
-            ${createTableOfIngredients()}
-        </table>
-        <hr>
-        <div id="totalRow">
-            <button class="primaryButton">
-                Add to menu
-            </button>
+  update(model, changeDetails) {
+    if (changeDetails.type === 'cart_update' || changeDetails.type === 'dish_details') {
+      this.model = model;
+      this.guests = model.getNumberOfGuests();
+      this.dish = this.model.getDish(this.model.getDishDetailsID());
+      this.container.querySelector('#tableOfIngredients').innerHTML = this.createTableOfIngredients();
+      this.container.querySelector('#numberOfPeople').innerHTML = `INGREDIENTS FOR ${this.guests} PEOPLE`;
+      this.container.querySelector('#totalDishPrice').innerHTML = `SEK ${model.getDishPrice(this.dish.id) * this.guests}`;
+    }
+  }
 
-            <span>SEK ${model.getDishPrice(dish.id) * guests}</span>
-        </div>
-    `);
-};
+  render() {
+    this.container.innerHTML = `
+      <h2 id="numberOfPeople">
+        INGREDIENTS FOR ${this.guests} PEOPLE
+      </h2>
+      <hr>
+      <table id="tableOfIngredients">
+        ${this.createTableOfIngredients()}
+      </table>
+      <hr>
+      <div id="totalRow">
+        <button class="primaryButton">
+          Add to menu
+        </button>
+        <b id="totalDishPrice" >SEK ${this.model.getDishPrice(this.dish.id) * this.guests}</b>
+      </div>
+    `;
+  }
+}
+  
