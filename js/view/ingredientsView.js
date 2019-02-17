@@ -5,8 +5,6 @@ class IngredientsView {
     this.model = model;
     this.displayProperty = container.style.display;
     this.dish = dish
-
-    this.update(this.model, {type: 'cart_update'});
   }
   
   hide() {
@@ -43,19 +41,23 @@ class IngredientsView {
   };
 
   update(model, changeDetails) {
-    if (changeDetails.type === 'cart_update') {
+    if (changeDetails.type === 'cart_update' || changeDetails.type === 'dish_details') {
+      this.model = model;
       this.guests = model.getNumberOfGuests();
-      this.render();
+      this.dish = this.model.getDish(this.model.getDishDetailsID());
+      this.container.querySelector('#tableOfIngredients').innerHTML = this.createTableOfIngredients();
+      this.container.querySelector('#numberOfPeople').innerHTML = `INGREDIENTS FOR ${this.guests} PEOPLE`;
+      this.container.querySelector('#totalDishPrice').innerHTML = model.getDishPrice(this.dish.id) * this.guests;
     }
   }
 
   render() {
     this.container.innerHTML = `
-      <h2>
+      <h2 id="numberOfPeople">
         INGREDIENTS FOR ${this.guests} PEOPLE
       </h2>
       <hr>
-      <table>
+      <table id="tableOfIngredients">
         ${this.createTableOfIngredients()}
       </table>
       <hr>
@@ -63,12 +65,9 @@ class IngredientsView {
         <button class="primaryButton">
           Add to menu
         </button>
-        <b>SEK ${this.model.getDishPrice(this.dish.id) * this.guests}</b>
+        <b id="totalDishPrice" >SEK ${this.model.getDishPrice(this.dish.id) * this.guests}</b>
       </div>
     `;
-    this.container.getElementsByClassName('primaryButton')[0].addEventListener('click', () => {
-      this.model.addDishToMenu(this.dish.id);
-    });
   }
 }
   
