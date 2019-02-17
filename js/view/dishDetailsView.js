@@ -5,8 +5,7 @@ class DishDetailsView {
     this.model = model;
     this.controller = controller;
     this.displayProperty = container.style.display;
-    this.dish = {}
-    this.update(model, {type: 'dish_details'});
+    this.dish = model.getDish(model.getDishDetailsID());  
   }
 
   hide() {
@@ -16,7 +15,12 @@ class DishDetailsView {
   update(model, changeDetails) {
     if (changeDetails.type === 'dish_details') {      
       this.dish = model.getDish(model.getDishDetailsID());      
-      this.render();
+      
+      // Update the dish details
+      this.container.querySelector('#dishNameHeader').innerHTML = this.dish.name;
+      this.container.querySelector('.dishImage').setAttribute('src', this.model.imgPath + this.dish.image);
+      this.container.querySelector('#dishDescription').innerHTML = this.dish.description;
+      this.container.querySelector('#dishPreparation').innerHTML = this.dish.preparation;
     }
   }
 
@@ -25,20 +29,19 @@ class DishDetailsView {
     this.container.innerHTML = `
       <div id="dishDesc">
         <div id="dishDetails">
-          <h1>${this.dish.name}</h1>
+          <h1 id="dishNameHeader">${this.dish.name}</h1>
           <div class="dishImageWrapper">
             <img src="${this.model.imgPath + this.dish.image}" class="dishImage"/>
           </div>
-          <p>${this.dish.description}</p>
+          <p id="dishDescription">${this.dish.description}</p>
           <button class="backButton">back to search</button>
         </div>
-        <div class="ingredients">
+        <div id="ingredients">
         </div>
       </div>
       <h1>PREPARATION</h1>
-      <p>${this.dish.preparation}</p>
+      <p id="dishPreparation">${this.dish.preparation}</p>
     `;
-    new IngredientsView(this.container.getElementsByClassName('ingredients')[0] , this.model, this.dish);
-    this.controller.addBackButtonListener(this.container.getElementsByClassName('backButton')[0]);
+    new IngredientsView(this.container.querySelector('#ingredients') , this.model, this.dish).render();
   }
 }
