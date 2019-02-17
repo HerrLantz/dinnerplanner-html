@@ -1,12 +1,13 @@
 class CartViewController {
-  constructor(view, model, searchPanel, newView, hideView) {
+  constructor(view, model, searchPanel, detailsView, hideView, dinnerOverView) {
     model.addObserver(this);
     this.visible = true;
     this.view = view;
     this.model = model;
     this.searchPanel = searchPanel;
-    this.newView = newView;
+    this.detailsView = detailsView;
     this.hideView = hideView;
+    this.dinnerOverView = dinnerOverView;
 
     window.addEventListener('resize', () => {
       if (window.innerWidth >= 800) {
@@ -56,6 +57,11 @@ class CartViewController {
         model.setNumberOfGuests(boxInput);
       }
     });
+
+    view.querySelector('#confirmDinner').addEventListener('click', () => {
+      this.hideView();
+      this.dinnerOverView();
+    });
   }
 
   update(model, changeDetails) {
@@ -66,7 +72,7 @@ class CartViewController {
         dishName.addEventListener('click', () => {
           model.setDishDetailsID(dishName.getAttribute('dishID'));
           this.hideView();
-          this.newView();
+          this.detailsView();
         });
       };
     }
