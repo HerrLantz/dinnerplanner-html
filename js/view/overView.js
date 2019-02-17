@@ -36,18 +36,23 @@ class OverView {
         ).render();
       }
 
-      this.container.querySelector('#total').innerHTML =
-        'Total:<br/>' + model.getTotalMenuPrice() + ' SEK';
+      this.container.querySelector('#total').innerHTML = `<p>Total: <br>
+          <span class="showPrice">
+            ${model.getTotalMenuPrice()} SEK
+          </span>
+        <p/>
+      `;
     }
   }
 
   render() {
     this.container.style.displayProperty = this.displayProperty;
     this.container.innerHTML = `
-      <div id="resultPanel"></div>
-      <div id="total"></div>
-      <hr>
-      <button class="primaryButton">Print Full Recipe</button>
+      <div id="dinnerOverViewPanel">
+        <div id="resultPanel"></div>
+        <div id="total"></div>
+      </div>
+      <button class="primaryButton" id="printButton">Print Full Recipe</button>
     `;
   }
 }
