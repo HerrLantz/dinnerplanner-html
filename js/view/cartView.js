@@ -101,14 +101,14 @@ class CartView {
           <span>Dish name</span>
           <span>Cost</span>
         </div>
-          <table id="dinnerTable">
-          </table>
-          <p id="totalPrice"></p>
-          <div id="confirmDinner">
-            <button class="primaryButton" disabled>
-              Confirm Dinner
-            </button>
-          </div>
-        </div>`;
+        <table id="dinnerTable">
+        </table>
+        <p id="totalPrice"></p>
+        <div id="confirmDinner">
+          <button class="primaryButton" disabled>
+            Confirm Dinner
+          </button>
+        </div>
+      </div>`;
   }
 }
