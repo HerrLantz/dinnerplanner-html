@@ -47,7 +47,7 @@ class IngredientsView {
       this.dish = this.model.getDish(this.model.getDishDetailsID());
       this.container.querySelector('#tableOfIngredients').innerHTML = this.createTableOfIngredients();
       this.container.querySelector('#numberOfPeople').innerHTML = `INGREDIENTS FOR ${this.guests} PEOPLE`;
-      this.container.querySelector('#totalDishPrice').innerHTML = model.getDishPrice(this.dish.id) * this.guests;
+      this.container.querySelector('#totalDishPrice').innerHTML = `SEK ${model.getDishPrice(this.dish.id) * this.guests}`;
     }
   }
 
