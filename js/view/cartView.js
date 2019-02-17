@@ -48,7 +48,7 @@ class CartView {
         'beforeend',
         `
         <tr>
-          <td>${dish.name}</td>
+          <td class="dishNameInTable" dishID="${dishID}">${dish.name}</td>
           <td>SEK ${model.getTotalDishPrice(dishID)}</td>
           <td class='removeDish' dishid=${dishID}>X</td>
         </tr>
