@@ -50,7 +50,7 @@ class DinnerModel extends Observable {
 
   setDishDetailsID(dishID) {
     this.dishDetailsID = dishID;
-    this.notifyObservers( {type: 'dish_details'});
+    this.notifyObservers({ type: 'dish_details' });
   }
 
   getDishDetailsID() {
@@ -134,6 +134,7 @@ class DinnerModel extends Observable {
   //Removes dish from menu
   removeDishFromMenu(id) {
     delete this.dinnerPlan.selectedDishes[this.getDish(id).type];
+    this.notifyObservers({ type: 'cart_update' });
   }
 
   //function that returns all dish types available

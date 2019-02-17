@@ -61,14 +61,21 @@ class CartViewController {
   update(model, changeDetails) {
     // Add eventlisteners to dish names
     if (changeDetails.type === 'cart_update') {
-      let dishNames = this.view.getElementsByClassName('dishNameInTable');
-      for (const dishName of dishNames) {
+      let tableRows = this.view.getElementsByTagName('tr');
+      for (const row of tableRows) {
+        let dishName = row.querySelector('.dishNameInTable');
+        let remove = row.querySelector('.removeDish');
         dishName.addEventListener('click', () => {
-          model.setDishDetailsID(dishName.getAttribute('dishID'));
+          console.log(dishName);
+          model.setDishDetailsID(dishName.getAttribute('dishid'));
           this.hideView();
           this.newView();
         });
-      };
+
+        remove.addEventListener('click', () => {
+          model.removeDishFromMenu(remove.getAttribute('dishid'));
+        });
+      }
     }
   }
 
