@@ -21,29 +21,23 @@ class OverView {
     if (changeDetails.type === 'cart_update') {
       this.model = model;
       var dishes = model.getSelectedDishes();
-      
+
       // Clear recent search
       this.container.querySelector('#resultPanel').innerHTML = '';
-      console.log(dishes);
-      console.log("PORQUE?");
-      console.log(dishes.length);
-      
+
       // dishes.forEach(dishID => {
       for (const dishType in dishes) {
         let dishID = model.getSelectedDishes()[dishType];
-  
-        console.log(dishID);
-        console.log("korv");
-        
         new DishView(
           this.container.querySelector('#resultPanel'),
           model,
           dishID,
           true
         ).render();
-      };
+      }
 
-      this.container.querySelector('#total').innerHTML = 'Total:<br/>' + model.getTotalMenuPrice() + ' SEK'
+      this.container.querySelector('#total').innerHTML =
+        'Total:<br/>' + model.getTotalMenuPrice() + ' SEK';
     }
   }
 
