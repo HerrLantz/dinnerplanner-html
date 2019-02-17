@@ -486,8 +486,16 @@ input::-webkit-inner-spin-button {
   font-size: 1.6rem;
 }
 
+.printDishDescription {
+  padding: 0.3rem 1rem 1rem 1rem;
+}
+
+.printPreparation {
+  padding: 0 1rem 1rem 1rem;
+}
+
 .preparation {
-  font-size: 1rem !important;
+  font-size: .9rem;
 }
 
 .printDish {
@@ -495,7 +503,7 @@ input::-webkit-inner-spin-button {
 }
 
 .dishNameHeader {
-  font-size: 1.5rem;
+  font-size: 1.25rem;
 }
 
 @media screen and (min-width: 800px) {
@@ -664,12 +672,11 @@ input::-webkit-inner-spin-button {
   .printDishDescription {
     flex-grow: 2;
     flex-basis: 0;
-    padding: 0 1rem;
+    padding: 0 1rem 1rem 1rem;
   }
   .printPreparation {
     flex-grow: 2;
     flex-basis: 0;
-    padding: 0 1rem;
   }
 
   #dinnerOverViewPanel {
