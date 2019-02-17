@@ -11,6 +11,7 @@ body {
 
 h1 {
   font-weight: 800;
+  font-size: 1.8rem;
 }
 
 p,
@@ -269,13 +270,13 @@ input::-webkit-inner-spin-button {
   justify-content: center;
   align-items: center;
   padding: 1rem 0;
-  border-bottom: 2px solid black;
+  border-bottom: 3px solid black;
 }
 
 .dishItem {
   display: flex;
   flex-direction: column;
-  border: 2px solid black;
+  border: 3px solid black;
   margin-bottom: 1rem;
 }
 
@@ -372,7 +373,7 @@ input::-webkit-inner-spin-button {
   justify-content: center;
 }
 
-.dishImage {
+.dishImage, .dishPrintImage {
   width: 100%;
   object-fit: cover;
 }
@@ -481,6 +482,30 @@ input::-webkit-inner-spin-button {
   width: 14rem;
 }
 
+#numberOfGuestsHeader {
+  font-size: 1.6rem;
+}
+
+.printDishDescription {
+  padding: 0.3rem 1rem 1rem 1rem;
+}
+
+.printPreparation {
+  padding: 0 1rem 1rem 1rem;
+}
+
+.preparation {
+  font-size: .9rem;
+}
+
+.printDish {
+  padding-bottom: 3rem;
+}
+
+.dishNameHeader {
+  font-size: 1.25rem;
+}
+
 @media screen and (min-width: 800px) {
   #headerView {
     font-size: 1rem;
@@ -550,7 +575,6 @@ input::-webkit-inner-spin-button {
     flex-wrap: wrap;
     justify-content: center;
     align-items: center;
-    width: 80%;
     border: none;
   }
 
@@ -588,6 +612,12 @@ input::-webkit-inner-spin-button {
     padding: 0 1rem;
   }
 
+  .dishPrintImage {
+    border: 3px solid black;
+    height: 8rem;
+    width: 8rem;
+  }
+
   .dishImageWrapper {
     display: flex;
     justify-content: center;
@@ -611,7 +641,7 @@ input::-webkit-inner-spin-button {
     align-items: flex-end;
     border-left: 2px solid #000;
     padding: 1rem;
-    margin: 4rem 0;
+    margin: 2rem 0;
     height: 217px;
   }
 
@@ -620,28 +650,32 @@ input::-webkit-inner-spin-button {
     font-weight: 800;
   }
   
-  .dishImagePrinter {
-    width: 10rem;
-    height: 10rem;
-  }
-
   #dishPrinter {
     display: flex;
     flex-direction: column;
   }
-
+  
   .printDish {
     display: flex;
     justify-content: space-between;
     margin: 1rem;
+    padding-bottom: 1rem;
   }
-
-  .printDishDescription {
+  
+  .dishImagePrinter {
+    width: 10rem;
+    height: 10rem;
     flex-grow: 1;
     flex-basis: 0;
   }
+
+  .printDishDescription {
+    flex-grow: 2;
+    flex-basis: 0;
+    padding: 0 1rem 1rem 1rem;
+  }
   .printPreparation {
-    flex-grow: 1;
+    flex-grow: 2;
     flex-basis: 0;
   }
 

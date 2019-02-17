@@ -17,7 +17,7 @@ class DishDetailsView {
       this.dish = model.getDish(model.getDishDetailsID());      
       
       // Update the dish details
-      this.container.querySelector('#dishNameHeader').innerHTML = this.dish.name;
+      this.container.querySelector('.dishNameHeader').innerHTML = this.dish.name;
       this.container.querySelector('.dishImage').setAttribute('src', this.model.imgPath + this.dish.image);
       this.container.querySelector('#dishDescription').innerHTML = this.dish.description;
       this.container.querySelector('#dishPreparation').innerHTML = this.dish.preparation;
@@ -29,7 +29,7 @@ class DishDetailsView {
     this.container.innerHTML = `
       <div id="dishDesc">
         <div id="dishDetails">
-          <h1 id="dishNameHeader">${this.dish.name}</h1>
+          <h1 class="dishNameHeader">${this.dish.name}</h1>
           <div class="dishImageWrapper">
             <img src="${this.model.imgPath + this.dish.image}" class="dishImage"/>
           </div>
