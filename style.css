@@ -445,7 +445,7 @@ input::-webkit-inner-spin-button {
   padding-bottom: 1rem;
 }
 
-.total {
+#total {
   display: flex;
   justify-content: center;
   padding: 1rem 0;
@@ -594,7 +594,7 @@ input::-webkit-inner-spin-button {
     display: none;
   }
 
-  .total {
+  #total {
     justify-content: center;
     align-items: center;
   }
