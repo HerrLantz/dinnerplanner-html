@@ -55,8 +55,6 @@ button:hover:disabled {
 #dinnerOverview {
   display: flex;
   flex-direction: column;
-  border-style: solid;
-  border-width: 0 0 2px 0;
   padding-bottom: 1rem;
 }
 
@@ -271,6 +269,7 @@ input::-webkit-inner-spin-button {
   justify-content: center;
   align-items: center;
   padding: 1rem 0;
+  border-bottom: 2px solid black;
 }
 
 .dishItem {
@@ -454,10 +453,32 @@ input::-webkit-inner-spin-button {
 
 .showPrice {
   padding: 0.5rem 0 1rem 0;
+  text-align: center;
+  color: rgb(184, 60, 60);
+  font-weight: 800 !important;
 }
 
 #overView #resultPanel .dishItem {
   margin-bottom: 0;
+}
+
+.priceAndDishItem {
+  display: flex;
+  flex-direction: column;
+}
+
+#overView {
+  display: flex;
+  flex-direction: column;
+  /* justify-content: space-around; */
+  align-items: center;
+  margin: 0 1rem;
+}
+
+#printButton {
+  margin-top: 1rem;
+  height: 3rem;
+  width: 14rem;
 }
 
 @media screen and (min-width: 800px) {
@@ -527,9 +548,10 @@ input::-webkit-inner-spin-button {
   #resultPanel {
     flex-direction: row;
     flex-wrap: wrap;
-    justify-content: flex-start;
+    justify-content: center;
     align-items: center;
     width: 80%;
+    border: none;
   }
 
   #resultPanelWrapper {
@@ -584,19 +606,18 @@ input::-webkit-inner-spin-button {
     padding: 0;
   }
 
-  #overView {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-around;
-  }
-
-  #overView hr {
-    display: none;
-  }
-
   #total {
     justify-content: center;
-    align-items: center;
+    align-items: flex-end;
+    border-left: 2px solid #000;
+    padding: 1rem;
+    margin: 4rem 0;
+    height: 217px;
+  }
+
+  #total p {
+    font-size: 1rem;
+    font-weight: 800;
   }
   
   .dishImagePrinter {
@@ -622,5 +643,14 @@ input::-webkit-inner-spin-button {
   .printPreparation {
     flex-grow: 1;
     flex-basis: 0;
+  }
+
+  #dinnerOverViewPanel {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    border-bottom: 2px solid black;
   }
 }
