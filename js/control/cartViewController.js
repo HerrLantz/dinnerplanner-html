@@ -1,9 +1,12 @@
 class CartViewController {
-  constructor(view, model, searchPanel) {
+  constructor(view, model, searchPanel, newView, hideView) {
+    model.addObserver(this);
     this.visible = true;
     this.view = view;
     this.model = model;
     this.searchPanel = searchPanel;
+    this.newView = newView;
+    this.hideView = hideView;
 
     window.addEventListener('resize', () => {
       if (window.innerWidth >= 800) {
@@ -53,6 +56,20 @@ class CartViewController {
         model.setNumberOfGuests(boxInput);
       }
     });
+  }
+
+  update(model, changeDetails) {
+    // Add eventlisteners to dish names
+    if (changeDetails.type === 'cart_update') {
+      let dishNames = this.view.getElementsByClassName('dishNameInTable');
+      for (const dishName of dishNames) {
+        dishName.addEventListener('click', () => {
+          model.setDishDetailsID(dishName.getAttribute('dishID'));
+          this.hideView();
+          this.newView();
+        });
+      };
+    }
   }
 
   collapseMenu() {
