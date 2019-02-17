@@ -1,9 +1,10 @@
 class OverView {
   constructor(container, model) {
+    model.addObserver(this);
     this.container = container;
     this.model = model;
     this.displayProperty = container.style.display;
-    var selectedDishes = model.getSelectedDishes();
+    this.selectedDishes = model.getSelectedDishes();
 
     // for (let type in selectedDishes) {
     //   new DishView($('#resultPanel'), model, selectedDishes[type], true);
@@ -17,30 +18,40 @@ class OverView {
   }
 
   update(model, changeDetails) {
-    if (changeDetails.type !== 'search_update') {
-      return;
+    if (changeDetails.type === 'cart_update') {
+      this.model = model;
+      var dishes = model.getSelectedDishes();
+      
+      // Clear recent search
+      this.container.querySelector('#resultPanel').innerHTML = '';
+      console.log(dishes);
+      console.log("PORQUE?");
+      console.log(dishes.length);
+      
+      // dishes.forEach(dishID => {
+      for (const dishType in dishes) {
+        let dishID = model.getSelectedDishes()[dishType];
+  
+        console.log(dishID);
+        console.log("korv");
+        
+        new DishView(
+          this.container.querySelector('#resultPanel'),
+          model,
+          dishID,
+          true
+        ).render();
+      };
+
+      this.container.querySelector('#total').innerHTML = 'Total:<br/>' + model.getTotalMenuPrice() + ' SEK'
     }
-
-    var dishes = model.getSearchResult();
-
-    // Clear recent search
-    this.container.querySelector('#resultPanel').innerHTML = '';
-
-    dishes.forEach(dish => {
-      new DishView(
-        this.container.querySelector('#resultPanel'),
-        model,
-        dish.id,
-        true
-      ).render();
-    });
   }
 
   render() {
     this.container.style.displayProperty = this.displayProperty;
     this.container.innerHTML = `
       <div id="resultPanel"></div>
-      <div class="total"></div>
+      <div id="total"></div>
       <hr>
       <button class="primaryButton">Print Full Recipe</button>
     `;
