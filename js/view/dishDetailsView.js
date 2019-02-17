@@ -21,10 +21,11 @@
 // };
 
 class DishDetailsView {
-  constructor(container, model) {
+  constructor(container, model, controller) {
     model.addObserver(this);
     this.container = container;
     this.model = model;
+    this.controller = controller;
     this.displayProperty = container.style.display;
     this.dish = {}
     this.update(model, {type: 'dish_details'});
@@ -60,5 +61,6 @@ class DishDetailsView {
       <p>${this.dish.preparation}</p>
     `;
     new IngredientsView(this.container.getElementsByClassName('ingredients')[0] , this.model, this.dish);
+    this.controller.addBackButtonListener(this.container.getElementsByClassName('backButton')[0]);
   }
 }
