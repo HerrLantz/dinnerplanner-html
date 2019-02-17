@@ -121,7 +121,9 @@ $(function() {
   var cartViewController = new CartViewController(
     document.getElementById('cartView'),
     model,
-    document.getElementById('searchPanel')
+    document.getElementById('searchPanel'),
+    showDishDetailsView,
+    hideAllViews
   );
 
   var finderViewController = new FinderViewController(
