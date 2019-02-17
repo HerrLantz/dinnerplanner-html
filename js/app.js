@@ -1,7 +1,6 @@
 $(function() {
   //We instantiate our model
-  var model = new DinnerModel();
-
+  const model = new DinnerModel();
   // Show Home View
   showHomeView = () => {
     //hideAllViews();
@@ -50,6 +49,7 @@ $(function() {
     homeView.hide();
     cartView.hide();
     finderView.hide();
+    dishDetailsView.hide();
     subHeaderView.hide();
     printView.hide();
   };
@@ -67,9 +67,17 @@ $(function() {
   var cartView = new CartView(document.getElementById('cartView'), model);
   /* End of selectdish.html assets: */
 
+  var dishDetailsViewController = new DishDetailsViewController(
+    document.getElementById('dishDetailsView'),
+    model,
+    showSelectDishView,
+    hideAllViews
+  );
+
   var dishDetailsView = new DishDetailsView(
     document.getElementById('dishDetailsView'),
-    model
+    model,
+    dishDetailsViewController
   );
   /* End of dishdetails.html assets: */
 
@@ -133,12 +141,6 @@ $(function() {
     hideAllViews
   );
 
-  var dishDetailsViewController = new DishDetailsViewController(
-    document.getElementById('dishDetailsView'),
-    model,
-    showSelectDishView,
-    hideAllViews
-  );
 
   // showSelectDishView();
   // showDinnerOverView();
