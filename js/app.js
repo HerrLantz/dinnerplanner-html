@@ -23,7 +23,6 @@ $(function() {
       $('#cartView').show();
       $('#dishDetailsView').show();
     });
-    $('#overView').show();
   };
 
   // @TODO: Correctly implement dinner overview.
