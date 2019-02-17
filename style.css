@@ -302,7 +302,7 @@ input::-webkit-inner-spin-button {
   padding: 0.5rem 0;
 }
 
-.ingredients {
+#ingredients {
   background-color: #ffe599;
 }
 
@@ -396,26 +396,26 @@ input::-webkit-inner-spin-button {
   padding: 1rem 1rem;
 }
 
-.ingredients {
+#ingredients {
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
-.ingredients hr {
+#ingredients hr {
   width: 80%;
 }
 
-.ingredients h2 {
+#ingredients h2 {
   font-size: 0.8rem;
   padding: 0.8rem 0rem;
 }
-.ingredients table {
+#ingredients table {
   width: 80%;
   font-size: 0.8rem;
 }
 
-.ingredients tr {
+#ingredients tr {
   width: 100%;
 }
 
@@ -554,7 +554,7 @@ input::-webkit-inner-spin-button {
     flex-basis: 0;
   }
 
-  .ingredients {
+  #ingredients {
     flex-grow: 2;
     flex-basis: 0;
     border: 2px solid black;
