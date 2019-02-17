@@ -162,6 +162,13 @@ $(function() {
     hideAllViews
   );
 
+  var overViewController = new OverViewController(
+    document.getElementById('overView'),
+    model,
+    showPrintView,
+    hideAllViews
+  );
+
   // showSelectDishView();
   // showDinnerOverView();
   // showDishDetailsView();
