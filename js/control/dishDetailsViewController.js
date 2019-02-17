@@ -2,13 +2,12 @@ class DishDetailsViewController {
   constructor(view, model, newView, hideView) {   
     this.newView = newView;
     this.hideView = hideView;   
-  }
-  
-  addBackButtonListener(backBut) {
-    backBut.addEventListener('click', () => {
-        this.hideView();
-        this.newView();
-      });
+    let bb = view.querySelector('.backButton')
+    
+    bb.addEventListener('click', () => {
+      this.hideView();
+      this.newView();
+    });
   }
 }
   
