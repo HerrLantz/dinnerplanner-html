@@ -13,7 +13,7 @@ class DishView {
 
   getPrice() {
     if (this.showPrice) {      
-      return `<span class="showPrice" attr="${this.dishID}">SEK ${this.model.getTotalDishPrice(this.dishID)}</span>`
+      return `<span class="showPrice" attr="${this.dishID}">${this.model.getTotalDishPrice(this.dishID)} SEK</span>`
     }
     return '';
   }
@@ -23,14 +23,16 @@ class DishView {
     this.container.insertAdjacentHTML(
       'beforeend',
       `
-      <div class="dishItem" dishID="${this.dishID}">
-        <div class="thumbnail">
-          <img class="thumbnailImage" src="${this.model.imgPath +
+      <div class="priceAndDishItem">
+        <div class="dishItem" dishID="${this.dishID}">
+          <div class="thumbnail">
+            <img class="thumbnailImage" src="${this.model.imgPath +
             this.model.getDish(this.dishID).image}">
+          </div>
+          <p>${this.model.getDish(this.dishID).name}</p>
         </div>
-        <p>${this.model.getDish(this.dishID).name}</p>
+        ${this.getPrice()}
       </div>
-      ${this.getPrice()}
     `
     );
   }
