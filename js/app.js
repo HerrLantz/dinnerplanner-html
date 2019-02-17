@@ -66,19 +66,13 @@ $(function() {
   /* Start of dishdetails.html assets: */
   var cartView = new CartView(document.getElementById('cartView'), model);
   /* End of selectdish.html assets: */
-
-  var dishDetailsViewController = new DishDetailsViewController(
-    document.getElementById('dishDetailsView'),
-    model,
-    showSelectDishView,
-    hideAllViews
-  );
-
+  
   var dishDetailsView = new DishDetailsView(
     document.getElementById('dishDetailsView'),
     model,
     dishDetailsViewController
-  );
+    );
+    
   /* End of dishdetails.html assets: */
 
   /* Start of overview.html assets: */
@@ -102,12 +96,13 @@ $(function() {
   subHeaderView.render();
   printView.render();
   dishDetailsView.render();
-
+  
   // Hide views here
   cartView.hide();
   finderView.hide();
   subHeaderView.hide();
   dishDetailsView.hide();
+
 
   var homeViewController = new HomeViewController(
     document.getElementById('homeView'),
@@ -141,6 +136,17 @@ $(function() {
     hideAllViews
   );
 
+  var dishDetailsViewController = new DishDetailsViewController(
+    document.getElementById('dishDetailsView'),
+    model,
+    showSelectDishView,
+    hideAllViews
+  );
+
+  var ingredientsViewController = new IngredientsViewController(
+    document.getElementById('ingredients'),
+    model
+  );
 
   // showSelectDishView();
   // showDinnerOverView();
