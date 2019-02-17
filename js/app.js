@@ -7,7 +7,6 @@ $(function() {
     $('#homeView').show();
   };
 
-  // @TODO: Correctly implement selectdish view.
   // Show SelectDish View
   showSelectDishView = () => {
     //hideAllViews();
@@ -51,6 +50,7 @@ $(function() {
     finderView.hide();
     dishDetailsView.hide();
     subHeaderView.hide();
+    overView.hide();
     printView.hide();
   };
 
@@ -71,12 +71,15 @@ $(function() {
     document.getElementById('dishDetailsView'),
     model,
     dishDetailsViewController
-    );
+  );
     
   /* End of dishdetails.html assets: */
 
   /* Start of overview.html assets: */
-  var overView = new OverView($('#overView'), model);
+  var overView = new OverView(
+    document.getElementById('overView'),
+    model
+  );
 
   /* Start of printout.html assets: */
   var subHeaderView = new SubHeaderView(
@@ -96,12 +99,14 @@ $(function() {
   subHeaderView.render();
   printView.render();
   dishDetailsView.render();
+  overView.render();
   
   // Hide views here
   cartView.hide();
   finderView.hide();
   subHeaderView.hide();
   dishDetailsView.hide();
+  overView.hide();
 
 
   var homeViewController = new HomeViewController(
@@ -123,7 +128,8 @@ $(function() {
     model,
     document.getElementById('searchPanel'),
     showDishDetailsView,
-    hideAllViews
+    hideAllViews,
+    showDinnerOverView
   );
 
   var finderViewController = new FinderViewController(

@@ -62,15 +62,10 @@ class CartView {
     ).value = model.getNumberOfGuests();
 
     // If there exists dishes, enable checkout of dinner
-    if (dishes) {
-      this.container.querySelector(
-        '#confirmDinner .primaryButton'
-      ).disabled = false;
-    } else {
-      this.container.querySelector(
-        '#confirmDinner .primaryButton'
-      ).disabled = true;
-    }
+    this.container.querySelector(
+      '#confirmDinner .primaryButton'
+    ).disabled = !dishes;
+    
   }
 
   render() {

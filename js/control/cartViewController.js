@@ -72,7 +72,6 @@ class CartViewController {
         let dishName = row.querySelector('.dishNameInTable');
         let remove = row.querySelector('.removeDish');
         dishName.addEventListener('click', () => {
-          console.log(dishName);
           model.setDishDetailsID(dishName.getAttribute('dishid'));
           this.hideView();
           this.detailsView();
