@@ -155,6 +155,13 @@ $(function() {
     model
   );
 
+  var subHeaderViewController = new SubHeaderViewController(
+    document.getElementById('subHeaderView'),
+    model,
+    showSelectDishView,
+    hideAllViews
+  );
+
   // showSelectDishView();
   // showDinnerOverView();
   // showDishDetailsView();
