@@ -39,7 +39,7 @@ class FinderView {
         this.container.querySelector('#resultPanel'),
         model,
         dish.id,
-        true
+        false
       ).render();
     });
   }
