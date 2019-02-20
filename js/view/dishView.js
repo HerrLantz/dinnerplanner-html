@@ -1,9 +1,9 @@
 class DishView {
-  constructor(container, model, dishID, showPrice) {
+  constructor(container, model, dish, showPrice) {
     this.container = container;
     this.model = model;
     this.displayProperty = container.style.display;
-    this.dishID = dishID;
+    this.dish = dish;    
     this.showPrice = showPrice;
   }
 
@@ -13,7 +13,7 @@ class DishView {
 
   getPrice() {
     if (this.showPrice) {      
-      return `<span class="showPrice" attr="${this.dishID}">${this.model.getTotalDishPrice(this.dishID)} SEK</span>`
+      return `<span class="showPrice" attr="${this.dish.id}">${this.model.getTotalDishPrice(this.dish.id)} SEK</span>`
     }
     return '';
   }
@@ -24,12 +24,12 @@ class DishView {
       'beforeend',
       `
       <div class="priceAndDishItem">
-        <div class="dishItem" dishID="${this.dishID}">
+        <div class="dishItem" dishID="${this.dish.id}">
           <div class="thumbnail">
             <img class="thumbnailImage" src="${this.model.imgPath +
-            this.model.getDish(this.dishID).image}">
+            this.dish.image}">
           </div>
-          <p>${this.model.getDish(this.dishID).name}</p>
+          <p>${this.dish.name}</p>
         </div>
         ${this.getPrice()}
       </div>

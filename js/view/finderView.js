@@ -29,18 +29,23 @@ class FinderView {
       return;
     }
 
-    var dishes = model.getSearchResult();
-
+    
     // Clear recent search
     this.container.querySelector('#resultPanel').innerHTML = '';
-
-    dishes.forEach(dish => {
-      new DishView(
-        this.container.querySelector('#resultPanel'),
-        model,
-        dish.id,
-        false
-      ).render();
+    let dishes = [];
+    const dishPromise = new Promise((resolve, reject) => {
+      resolve(model.getSearchResult());
+    }).then((dishes) => {
+      console.log(dishes);
+      
+      dishes.forEach(dish => {        
+        new DishView(
+          this.container.querySelector('#resultPanel'),
+          model,
+          dish,
+          false
+        ).render();
+      });
     });
   }
 

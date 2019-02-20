@@ -13,7 +13,8 @@ class DinnerModel extends Observable {
     // What dish to show the details of
     this.dishDetailsID = 1;
 
-    this.imgPath = 'images/';
+    // this.imgPath = 'images/';
+    this.imgPath = API.API_IMAGE_URL;
   }
 
   setNumberOfGuests(num) {
@@ -150,26 +151,49 @@ class DinnerModel extends Observable {
   //you can use the filter argument to filter out the dish by name or ingredient (use for search)
   //if you don't pass any filter all the dishes will be returned
   getAllDishes(type, filter) {
-    this.searchResult = this.dishes().filter(function(dish) {
-      var found = true;
-      if (filter) {
-        found = false;
-        dish.ingredients.forEach(function(ingredient) {
-          if (ingredient.name.indexOf(filter) != -1) {
-            found = true;
-          }
-        });
-        if (dish.name.indexOf(filter) != -1) {
-          found = true;
+    let now = Date.now();
+    console.log("Counting...");
+    
+    fetch(API.API_URL + '/recipes/search?number=15&instructionsRequired=true',{ 
+      headers:{   
+          'X-Mashape-Key': API.API_KEY
+      }
+    }).then(response => response.json())
+      .then(dishes => {        
+        this.searchResult = [];
+        for (const dish of dishes.results) {
+          let dishToAdd = {
+            id: dish.id,
+            name: dish.title,
+            image: dish.image
+          };
+          this.searchResult.push(dishToAdd);
         }
-      }
-      if (type === 'All') {
-        return found;
-      } else {
-        return dish.type === type && found;
-      }
-    });
-    this.notifyObservers({ type: 'search_update' });
+        // this.searchResult = dishes.results;
+
+
+        console.log(Date.now() - now);
+        this.notifyObservers({ type: 'search_update' });
+      });
+    // this.searchResult = this.dishes().filter(function(dish) {
+    //   var found = true;
+    //   if (filter) {
+    //     found = false;
+    //     dish.ingredients.forEach(function(ingredient) {
+    //       if (ingredient.name.indexOf(filter) != -1) {
+    //         found = true;
+    //       }
+    //     });
+    //     if (dish.name.indexOf(filter) != -1) {
+    //       found = true;
+    //     }
+    //   }
+    //   if (type === 'All') {
+    //     return found;
+    //   } else {
+    //     return dish.type === type && found;
+    //   }
+    // });
   }
 
   // the dishes variable contains an array of all the
