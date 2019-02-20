@@ -11,7 +11,7 @@ class DinnerModel extends Observable {
     // Results from a search
     this.searchResult;
     // What dish to show the details of
-    this.dishDetailsID = 1;
+    this.dishDetailsID = 87731;
 
     // this.imgPath = 'images/';
     this.imgPath = API.API_IMAGE_URL;
@@ -56,15 +56,6 @@ class DinnerModel extends Observable {
 
   getDishDetailsID() {
     return this.dishDetailsID;
-  }
-
-  //function that returns a dish of specific ID
-  getDish(id) {
-    for (let dish of this.dishes()) {
-      if (dish.id == id) {
-        return dish;
-      }
-    }
   }
 
   //Returns all the dishes on the menu.
@@ -147,6 +138,34 @@ class DinnerModel extends Observable {
     return allTypes;
   }
 
+  
+  //function that returns a dish of specific ID
+  getDish(id) {
+    fetch(`${API.API_URL}/recipes/${id}/information`, {
+      headers: {   
+        'X-Mashape-Key': API.API_KEY
+      }
+    }).then(response => response.json())
+      .then(dish => {
+        console.log(dish);
+        let dishToAdd = {
+          id: dish.id,
+          name: dish.title,
+          image: dish.image,
+          description: dish.instructions || 'This is a description.',
+          preparation: 'This is a preparation.',
+          ingredients: []
+        }
+
+        return dish;
+      });
+    // for (let dish of this.dishes()) {
+    //   if (dish.id == id) {
+    //     return dish;
+    //   }
+    // }
+  }
+
   //function that returns all dishes of specific type (i.e. "starter", "main dish" or "dessert")
   //you can use the filter argument to filter out the dish by name or ingredient (use for search)
   //if you don't pass any filter all the dishes will be returned
@@ -155,7 +174,7 @@ class DinnerModel extends Observable {
     console.log("Counting...");
     
     fetch(API.API_URL + '/recipes/search?number=15&instructionsRequired=true',{ 
-      headers:{   
+      headers: {   
           'X-Mashape-Key': API.API_KEY
       }
     }).then(response => response.json())

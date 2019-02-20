@@ -11,24 +11,19 @@ class DishViewController {
   update(model, changeDetails) {
     
     if (changeDetails.type === 'search_update' || changeDetails.type === 'cart_update') {
-      console.log("dishViewController UPDATE");
-      console.log(this.view.length);
-      console.log(this.view);
-      
+      setTimeout(
+      () => {
       for (let dish of this.view) {
-        console.log(this.view);
-        
-        console.log(dish);
-        
         dish.addEventListener('click', () => {
           console.log("MUUUUUUUU");
           
-          let dishID = dish.getAttribute('dishID');
+          let dishID = dish.getAttribute('dishid');
           model.setDishDetailsID(dishID);
           this.hideView();
           this.newView();
         });
       }
+    }, 3000);
     }
   }
 }

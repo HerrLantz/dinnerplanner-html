@@ -5,7 +5,8 @@ class DishDetailsView {
     this.model = model;
     this.controller = controller;
     this.displayProperty = container.style.display;
-    this.dish = model.getDish(model.getDishDetailsID());  
+    this.dish = model.getDish(model.getDishDetailsID()).then(   console.log(this.dish));  
+    
   }
 
   hide() {
@@ -15,6 +16,8 @@ class DishDetailsView {
   update(model, changeDetails) {
     if (changeDetails.type === 'dish_details') {      
       this.dish = model.getDish(model.getDishDetailsID());      
+      
+      console.log(this.dish);
       
       // Update the dish details
       this.container.querySelector('.dishNameHeader').innerHTML = this.dish.name;
