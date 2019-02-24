@@ -5,12 +5,6 @@ class OverView {
     this.model = model;
     this.displayProperty = container.style.display;
     this.selectedDishes = model.getSelectedDishes();
-
-    // for (let type in selectedDishes) {
-    //   new DishView($('#resultPanel'), model, selectedDishes[type], true);
-    // }
-
-    // $('.total').html('Total:<br/>' + model.getTotalMenuPrice() + ' SEK');
   }
 
   hide() {
@@ -20,18 +14,16 @@ class OverView {
   update(model, changeDetails) {
     if (changeDetails.type === 'cart_update') {
       this.model = model;
-      var dishes = model.getSelectedDishes();
+      let dishes = model.getSelectedDishes();
 
       // Clear recent search
       this.container.querySelector('#resultPanel').innerHTML = '';
 
-      // dishes.forEach(dishID => {
-      for (const dishType in dishes) {
-        let dishID = model.getSelectedDishes()[dishType];
+      for (const dishID in dishes) {
         new DishView(
           this.container.querySelector('#resultPanel'),
           model,
-          dishID,
+          dishes[dishID],
           true
         ).render();
       }
