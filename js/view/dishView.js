@@ -26,8 +26,7 @@ class DishView {
       <div class="priceAndDishItem">
         <div class="dishItem" dishID="${this.dish.id}">
           <div class="thumbnail">
-            <img class="thumbnailImage" src="${this.model.imgPath +
-            this.dish.image}">
+            <img class="thumbnailImage" src="${(this.showPrice ? '' : API.API_IMAGE_URL) + this.dish.image}">
           </div>
           <p>${this.dish.name}</p>
         </div>
