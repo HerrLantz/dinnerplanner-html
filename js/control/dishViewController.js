@@ -3,7 +3,6 @@ class DishViewController {
     model.addObserver(this);
     this.view = view;
     this.model = model;
-    // this.update(this.model, { type: 'search_update' });
     this.newView = newView;
     this.hideView = hideView;
   }
