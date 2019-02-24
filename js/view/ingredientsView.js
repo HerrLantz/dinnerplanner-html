@@ -54,7 +54,6 @@ class IngredientsView {
   update(model, changeDetails) {
     if (changeDetails.type === 'cart_update' || changeDetails.type === 'dish_details') {
       this.guests = model.getNumberOfGuests();
-      let selectedDishes = model.getSelectedDishes();
       let id = model.getDishDetailsID();
       if (id in model.dishes) {
         this.dish = model.dishes[id];
