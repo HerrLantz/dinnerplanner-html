@@ -36,7 +36,6 @@ class FinderView {
     const dishPromise = new Promise((resolve, reject) => {
       resolve(model.getSearchResult());
     }).then((dishes) => {
-      console.log(dishes);
       
       dishes.forEach(dish => {        
         new DishView(
