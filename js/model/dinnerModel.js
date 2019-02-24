@@ -155,44 +155,24 @@ class DinnerModel extends Observable {
         }
       }).then(response => response.json())
         .then(dish => {
+          let ingredients = [];
+          for (const ingredient of dish.extendedIngredients) {
+            let ingredientToAdd = {
+              name: ingredient.name || 'NoName',
+              quantity: ingredient.amount || 'Unknown amount',
+              unit: ingredient.measures.metric.unitShort || '',
+              price: 1
+            };
+            ingredients.push(ingredientToAdd);
+          } 
+
           let dishToAdd = {
             id: dish.id,
             name: dish.title,
             image: dish.image,
             description: dish.instructions || 'This is a description.',
             preparation: 'This is a preparation.',
-            ingredients: [
-              {
-                name: 'eggs',
-                quantity: 0.5,
-                unit: '',
-                price: 10
-              },
-              {
-                name: 'milk',
-                quantity: 30,
-                unit: 'ml',
-                price: 6
-              },
-              {
-                name: 'brown sugar',
-                quantity: 7,
-                unit: 'g',
-                price: 1
-              },
-              {
-                name: 'ground nutmeg',
-                quantity: 0.5,
-                unit: 'g',
-                price: 12
-              },
-              {
-                name: 'white bread',
-                quantity: 2,
-                unit: 'slices',
-                price: 2
-              }
-            ]
+            ingredients: ingredients
           }          
           return dishToAdd;
         });
