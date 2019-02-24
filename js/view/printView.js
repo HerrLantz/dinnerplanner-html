@@ -18,11 +18,13 @@ class PrintView {
       let dishPrinter = this.container.querySelector('#dishPrinter');
       dishPrinter.innerHTML = '';
       for (let type in selectedDishes) {
-        new DishPrintView(
-          dishPrinter,
-          model,
-          model.getDish(selectedDishes[type])
-        ).render();
+        getDish(selectedDishes[type]).then(dish => {
+          new DishPrintView(
+            dishPrinter,
+            model,
+            model.dish
+          ).render();
+        });
       }
     }
   }

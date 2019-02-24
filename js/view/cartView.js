@@ -42,18 +42,18 @@ class CartView {
     this.container.querySelector('#dinnerTable').innerHTML = '';
     for (const dishType in dishes) {
       let dishID = model.getSelectedDishes()[dishType];
-      let dish = model.getDish(dishID);
-
-      this.container.querySelector('#dinnerTable').insertAdjacentHTML(
-        'beforeend',
-        `
-        <tr>
+      model.getDish(dishID).then(dish => {
+        this.container.querySelector('#dinnerTable').insertAdjacentHTML(
+          'beforeend',
+          `
+          <tr>
           <td class="dishNameInTable" dishID="${dishID}">${dish.name}</td>
           <td>SEK ${model.getTotalDishPrice(dishID)}</td>
           <td class='removeDish' dishid=${dishID}>X</td>
-        </tr>
-        `
-      );
+          </tr>
+          `
+          );
+      });
     }
 
     // Update the number of guest displayed
