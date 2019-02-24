@@ -60,7 +60,7 @@ class IngredientsView {
         this.dish = model.dishes[id];
         this.updateFields();
       } else {
-        model.getDish(id).then((dish) => {
+        model.getDish(id, `ingredientsView(${this.dish ? this.dish.id : 'undef'})`).then((dish) => {
           this.dish = dish;
           this.updateFields();
         });

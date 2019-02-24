@@ -88,7 +88,7 @@ class DinnerModel extends Observable {
       this.notifyObservers({ type: 'cart_update' });
     }
     else {
-      this.getDish(id).then(fetchedDish => {   
+      this.getDish(id, `addDishToMenu(${id})`).then(fetchedDish => {   
         this.dishes[id] = fetchedDish;
         this.dinnerPlan.selectedDishes[id] = fetchedDish;
         this.notifyObservers({ type: 'cart_update' });
@@ -114,8 +114,8 @@ class DinnerModel extends Observable {
 
   
   //function that returns a dish of specific ID
-  getDish(id) {
-    console.log(`API call: getDish(${id})`);
+  getDish(id, caller) {
+    console.log(`API call: getDish(${id}) - caller: ${caller}`);
     
     return  fetch(`${API.API_URL}recipes/${id}/information`, {
         mode: 'cors',

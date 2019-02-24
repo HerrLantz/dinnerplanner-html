@@ -8,6 +8,8 @@ class Observable {
   }
 
   notifyObservers(changeDetails) {
+    console.log(changeDetails.type);
+    
     for (var i = 0; i < this._observers.length; i++) {
       this._observers[i].update(this, changeDetails);
     }
