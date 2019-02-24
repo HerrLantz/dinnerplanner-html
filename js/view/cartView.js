@@ -33,15 +33,12 @@ class CartView {
       '#cartViewHeader span'
     ).innerHTML = `SEK ${model.getTotalMenuPrice()}`;
 
-    this.container.querySelector('#totalPrice').innerHTML = `
-      SEK ${model.getTotalMenuPrice()}
-    `;
+    this.container.querySelector('#totalPrice').innerHTML = `SEK ${model.getTotalMenuPrice()}`;
 
     // Update cart with new items
     var dishes = model.getSelectedDishes();
     this.container.querySelector('#dinnerTable').innerHTML = '';
-    for (const dishType in dishes) {
-      let dishID = model.getSelectedDishes()[dishType];
+    for (const dishID in dishes) {
       model.getDish(dishID).then(dish => {
         this.container.querySelector('#dinnerTable').insertAdjacentHTML(
           'beforeend',
