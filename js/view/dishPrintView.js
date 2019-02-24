@@ -13,10 +13,10 @@ class DishPrintView {
 
   update(model, changeDetails) {
     if (changeDetails.type === 'cart_update') {
-      this.container.querySelector('.dishNameHeader').innerHTML = this.dish.name.toUpperCase();
-      this.container.querySelector('.dishPrintImage').setAttribute('src', this.dish.image);
-      this.container.querySelector('#dishDescription').innerHTML = this.dish.description;
-      this.container.querySelector('#dishPreparation').innerHTML = this.dish.preparation;
+      this.container.querySelector(`#header${this.dish.id}`).innerHTML = this.dish.name.toUpperCase();
+      this.container.querySelector(`#image${this.dish.id}`).setAttribute('src', this.dish.image);
+      this.container.querySelector(`#dishDescription${this.dish.id}`).innerHTML = this.dish.description;
+      this.container.querySelector(`#dishPreparation${this.dish.id}`).innerHTML = this.dish.preparation;
     }
   }
 
@@ -24,18 +24,18 @@ class DishPrintView {
     this.container.insertAdjacentHTML('beforeend', `
       <div class="printDish">
         <div class="dishImagePrinter">
-          <img src="" class="dishPrintImage"/>
+          <img src="" class="dishPrintImage" id="image${this.dish.id}"/>
         </div>
         <div class="printDishDescription">
-          <h1 class="dishNameHeader"></h1>
-          <p id="dishDescription">
+          <h1 class="dishNameHeader" id="header${this.dish.id}"></h1>
+          <p id="dishDescription${this.dish.id}">
           </p>
         </div>
         <div class="printPreparation">
           <h1 class="preparation">
             PREPARATION
           </h1>
-          <p id="dishPreparation">
+          <p id="dishPreparation${this.dish.id}">
           </p>
         </div>
       </div>
