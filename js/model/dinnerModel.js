@@ -124,7 +124,7 @@ class DinnerModel extends Observable {
           'Access-Control-Allow-Origin': '*'
         }
       }).then(response => response.json())
-        .then(dish => {
+        .then(dish => {          
           let ingredients = [];
           for (const ingredient of dish.extendedIngredients) {
             let ingredientToAdd = {
@@ -134,14 +134,19 @@ class DinnerModel extends Observable {
               price: 1
             };
             ingredients.push(ingredientToAdd);
-          } 
+          }
+          let instructions = "<ol>";
+          for (const instruction of dish.analyzedInstructions[0].steps) {
+            instructions += `<li>${instruction.step}</li>`;
+          }
+          instructions += "</ol>";
 
           let dishToAdd = {
             id: dish.id,
             name: dish.title,
             image: dish.image,
-            description: dish.instructions || 'This is a description.',
-            preparation: 'This is a preparation.',
+            description: `Ready in ${dish.readyInMinutes} min.` || 'This is a description.',
+            preparation: instructions || 'This is a preparation.',
             ingredients: ingredients
           }         
 
@@ -164,7 +169,7 @@ class DinnerModel extends Observable {
               'X-Mashape-Key': API.API_KEY
           }
         }).then(response => response.json())
-          .then(dishes => {        
+          .then(dishes => {                    
             this.searchResult = [];
             for (const dish of dishes.results) {
               let dishToAdd = {
