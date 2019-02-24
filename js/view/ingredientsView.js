@@ -20,23 +20,27 @@ class IngredientsView {
 
   createTableOfIngredients() {
     let rows = '';
-    this.dish.ingredients.forEach(ingredient => {
-    rows += `
-      <tr>
-        <td>
+    if(this.dish) {
+      if (this.dish.ingredients) {
+        this.dish.ingredients.forEach(ingredient => {
+          rows += `
+          <tr>
+          <td>
           ${this.formatQuantity(ingredient)} ${ingredient.unit}
-        </td>
-        <td>
+          </td>
+          <td>
           ${ingredient.name}
-        </td>
-        <td>
+          </td>
+          <td>
           SEK
-        </td>
-        <td align="right">
+          </td>
+          <td align="right">
           ${ingredient.price * this.guests}
-        </td>
-      </tr>`;
-    });
+          </td>
+          </tr>`;
+        });
+      }
+    }
     return rows;
   };
 
@@ -44,10 +48,12 @@ class IngredientsView {
     if (changeDetails.type === 'cart_update' || changeDetails.type === 'dish_details') {
       this.model = model;
       this.guests = model.getNumberOfGuests();
-      this.dish = this.model.getDish(this.model.getDishDetailsID());
-      this.container.querySelector('#tableOfIngredients').innerHTML = this.createTableOfIngredients();
-      this.container.querySelector('#numberOfPeople').innerHTML = `INGREDIENTS FOR ${this.guests} PEOPLE`;
-      this.container.querySelector('#totalDishPrice').innerHTML = `SEK ${model.getDishPrice(this.dish.id) * this.guests}`;
+      this.model.getDish(this.model.getDishDetailsID()).then((dish) => {
+        this.dish = dish;
+        this.container.querySelector('#tableOfIngredients').innerHTML = this.createTableOfIngredients();
+        this.container.querySelector('#numberOfPeople').innerHTML = `INGREDIENTS FOR ${this.guests} PEOPLE`;
+        this.container.querySelector('#totalDishPrice').innerHTML = `SEK ${model.getDishPrice(this.dish.id) * this.guests}`;
+      });
     }
   }
 
@@ -65,7 +71,7 @@ class IngredientsView {
         <button class="primaryButton">
           Add to menu
         </button>
-        <b id="totalDishPrice" >SEK ${this.model.getDishPrice(this.dish.id) * this.guests}</b>
+        <b id="totalDishPrice" ></b>
       </div>
     `;
   }
