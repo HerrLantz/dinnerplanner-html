@@ -5,10 +5,6 @@ class DishDetailsView {
     this.model = model;
     this.controller = controller;
     this.displayProperty = container.style.display;
-    model.getDish(model.getDishDetailsID()).then(dish => {
-      this.dish = dish;
-      return dish;
-    });
   }
 
   hide() {
