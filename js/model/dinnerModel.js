@@ -9,7 +9,7 @@ class DinnerModel extends Observable {
     };
 
     // Results from a search
-    this.searchResult;
+    this.searchResult = [];
     // What dish to show the details of
     this.dishDetailsID = 87731;
 
@@ -91,11 +91,15 @@ class DinnerModel extends Observable {
 
   //Returns the total price of the dish with the given dishID (for 1 person)
   getDishPrice(dishID) {
-    let sum = 0;
-    this.getDish(dishID).ingredients.forEach(ingredient => {
-      sum += ingredient.price;
-    });
-    return sum;
+    // let sum = 0;
+    this.getDish(dishID).then( (dish) => {return dish.ingredients.length});
+    
+    // if (ingredients) {
+    //   ingredients.forEach(ingredient => {
+    //     sum += ingredient.price;
+    //   });
+    // }
+    // return sum;
   }
 
   getTotalDishPrice(dishID) {
@@ -141,59 +145,85 @@ class DinnerModel extends Observable {
   
   //function that returns a dish of specific ID
   getDish(id) {
-    fetch(`${API.API_URL}/recipes/${id}/information`, {
-      headers: {   
-        'X-Mashape-Key': API.API_KEY
-      }
-    }).then(response => response.json())
-      .then(dish => {
-        console.log(dish);
-        let dishToAdd = {
-          id: dish.id,
-          name: dish.title,
-          image: dish.image,
-          description: dish.instructions || 'This is a description.',
-          preparation: 'This is a preparation.',
-          ingredients: []
+    console.log(`API call: getDish(${id})`);
+    
+    return  fetch(`${API.API_URL}recipes/${id}/information`, {
+        mode: 'cors',
+        headers: {   
+          'X-Mashape-Key': API.API_KEY,
+          'Access-Control-Allow-Origin': '*'
         }
-
-        return dish;
-      });
-    // for (let dish of this.dishes()) {
-    //   if (dish.id == id) {
-    //     return dish;
-    //   }
-    // }
+      }).then(response => response.json())
+        .then(dish => {
+          let dishToAdd = {
+            id: dish.id,
+            name: dish.title,
+            image: dish.image,
+            description: dish.instructions || 'This is a description.',
+            preparation: 'This is a preparation.',
+            ingredients: [
+              {
+                name: 'eggs',
+                quantity: 0.5,
+                unit: '',
+                price: 10
+              },
+              {
+                name: 'milk',
+                quantity: 30,
+                unit: 'ml',
+                price: 6
+              },
+              {
+                name: 'brown sugar',
+                quantity: 7,
+                unit: 'g',
+                price: 1
+              },
+              {
+                name: 'ground nutmeg',
+                quantity: 0.5,
+                unit: 'g',
+                price: 12
+              },
+              {
+                name: 'white bread',
+                quantity: 2,
+                unit: 'slices',
+                price: 2
+              }
+            ]
+          }          
+          return dishToAdd;
+        });
   }
 
   //function that returns all dishes of specific type (i.e. "starter", "main dish" or "dessert")
   //you can use the filter argument to filter out the dish by name or ingredient (use for search)
   //if you don't pass any filter all the dishes will be returned
   getAllDishes(type, filter) {
-    let now = Date.now();
-    console.log("Counting...");
-    
-    fetch(API.API_URL + '/recipes/search?number=15&instructionsRequired=true',{ 
-      headers: {   
-          'X-Mashape-Key': API.API_KEY
-      }
-    }).then(response => response.json())
-      .then(dishes => {        
-        this.searchResult = [];
-        for (const dish of dishes.results) {
-          let dishToAdd = {
-            id: dish.id,
-            name: dish.title,
-            image: dish.image
-          };
-          this.searchResult.push(dishToAdd);
-        }
-        // this.searchResult = dishes.results;
+    console.log(`API call: getAllDishes(${type}, ${filter})`);
 
+      return  fetch(`${API.API_URL}recipes/search?number=15&instructionsRequired=true`,{ 
+          mode: 'cors',
+          headers: {   
+              'X-Mashape-Key': API.API_KEY
+          }
+        }).then(response => response.json())
+          .then(dishes => {        
+            this.searchResult = [];
+            for (const dish of dishes.results) {
+              let dishToAdd = {
+                id: dish.id,
+                name: dish.title,
+                image: dish.image
+              };
+              this.searchResult.push(dishToAdd);
+            }
+            this.notifyObservers({ type: 'search_update'});
+            return this.searchResult;
+          });
 
-        console.log(Date.now() - now);
-        this.notifyObservers({ type: 'search_update' });
-      });
     // this.searchResult = this.dishes().filter(function(dish) {
     //   var found = true;
     //   if (filter) {
