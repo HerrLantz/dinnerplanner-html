@@ -44,27 +44,37 @@ class IngredientsView {
     return rows;
   };
 
+
+  updateFields() {    
+    this.container.querySelector('#tableOfIngredients').innerHTML = this.createTableOfIngredients();
+    this.container.querySelector('#numberOfPeople').innerHTML = `INGREDIENTS FOR ${this.guests} PEOPLE`;
+    this.container.querySelector('#totalDishPrice').innerHTML = `SEK ${this.dish.ingredients.length * this.guests}`;
+  }
+
   update(model, changeDetails) {
     if (changeDetails.type === 'cart_update' || changeDetails.type === 'dish_details') {
-      this.model = model;
       this.guests = model.getNumberOfGuests();
-      this.model.getDish(this.model.getDishDetailsID()).then((dish) => {
-        this.dish = dish;
-        this.container.querySelector('#tableOfIngredients').innerHTML = this.createTableOfIngredients();
-        this.container.querySelector('#numberOfPeople').innerHTML = `INGREDIENTS FOR ${this.guests} PEOPLE`;
-        this.container.querySelector('#totalDishPrice').innerHTML = `SEK ${this.dish.ingredients.length * this.guests}`;
-      });
+      let selectedDishes = model.getSelectedDishes();
+      let id = model.getDishDetailsID();
+      if (id in model.dishes) {
+        this.dish = model.dishes[id];
+        this.updateFields();
+      } else {
+        model.getDish(id).then((dish) => {
+          this.dish = dish;
+          this.updateFields();
+        });
+      }
     }
   }
 
   render() {
     this.container.innerHTML = `
       <h2 id="numberOfPeople">
-        INGREDIENTS FOR ${this.guests} PEOPLE
+        INGREDIENTS FOR SOME AMOUNT OF PEOPLE
       </h2>
       <hr>
       <table id="tableOfIngredients">
-        ${this.createTableOfIngredients()}
       </table>
       <hr>
       <div id="totalRow">
