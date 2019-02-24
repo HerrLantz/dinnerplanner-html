@@ -28,23 +28,17 @@ class FinderView {
     if (changeDetails.type !== 'search_update') {
       return;
     }
-
     
     // Clear recent search
     this.container.querySelector('#resultPanel').innerHTML = '';
-    let dishes = [];
-    const dishPromise = new Promise((resolve, reject) => {
-      resolve(model.getSearchResult());
-    }).then((dishes) => {
-      
-      dishes.forEach(dish => {        
-        new DishView(
-          this.container.querySelector('#resultPanel'),
-          model,
-          dish,
-          false
-        ).render();
-      });
+    let dishes = model.getSearchResult();
+    dishes.forEach(dish => {        
+      new DishView(
+        this.container.querySelector('#resultPanel'),
+        model,
+        dish,
+        false
+      ).render();
     });
   }
 
