@@ -5,23 +5,34 @@ class DishDetailsView {
     this.model = model;
     this.controller = controller;
     this.displayProperty = container.style.display;
+    this.dish = {};
   }
 
   hide() {
     this.container.style.display = 'none';
   }
 
+  // Update the dish details
+  updateDishDetails() {
+    this.container.querySelector('.dishNameHeader').innerHTML = this.dish.name;
+    this.container.querySelector('.dishImage').setAttribute('src', this.dish.image);
+    this.container.querySelector('#dishDescription').innerHTML = this.dish.description;
+    this.container.querySelector('#dishPreparation').innerHTML = this.dish.preparation;
+  }
+
   update(model, changeDetails) {
-    if (changeDetails.type === 'dish_details') {      
-      model.getDish(model.getDishDetailsID()).then(dish => {
-        this.dish = dish;
-                
-        // Update the dish details
-        this.container.querySelector('.dishNameHeader').innerHTML = this.dish.name;
-        this.container.querySelector('.dishImage').setAttribute('src', this.dish.image);
-        this.container.querySelector('#dishDescription').innerHTML = this.dish.description;
-        this.container.querySelector('#dishPreparation').innerHTML = this.dish.preparation;
-      });      
+    if (changeDetails.type === 'dish_details') {
+      let id = model.getDishDetailsID();
+      if (id in model.dishes) {
+        this.dish = model.dishes[id];
+        this.updateDishDetails();
+      } else {
+        model.getDish(id, `DishDetailsView(${id}:${changeDetails.type})`).then(dish => {
+          model.dishes[id] = dish;
+          this.dish = dish;
+          this.updateDishDetails();
+        });      
+      }
     }
   }
 
