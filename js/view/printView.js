@@ -12,7 +12,6 @@ class PrintView {
 
   update(model, changeDetails) {
     if (changeDetails.type === 'cart_update') {
-      this.model = model;
       
       let selectedDishes = model.getSelectedDishes();
       let dishPrinter = this.container.querySelector('#dishPrinter');
