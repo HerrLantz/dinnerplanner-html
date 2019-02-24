@@ -52,7 +52,7 @@ class IngredientsView {
         this.dish = dish;
         this.container.querySelector('#tableOfIngredients').innerHTML = this.createTableOfIngredients();
         this.container.querySelector('#numberOfPeople').innerHTML = `INGREDIENTS FOR ${this.guests} PEOPLE`;
-        this.container.querySelector('#totalDishPrice').innerHTML = `SEK ${model.getDishPrice(this.dish.id) * this.guests}`;
+        this.container.querySelector('#totalDishPrice').innerHTML = `SEK ${this.dish.ingredients.length * this.guests}`;
       });
     }
   }
