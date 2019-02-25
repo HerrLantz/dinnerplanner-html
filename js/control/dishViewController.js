@@ -8,9 +8,8 @@ class DishViewController {
   }
 
   update(model, changeDetails) {
-    
-    if (changeDetails.type === 'search_update' || changeDetails.type === 'cart_update') {
-      for (let dish of this.view) {
+    if (changeDetails.type === 'search_update') {
+      for (let dish of this.view) {        
         dish.addEventListener('click', () => {          
           let dishID = dish.getAttribute('dishid');
           model.setDishDetailsID(dishID);

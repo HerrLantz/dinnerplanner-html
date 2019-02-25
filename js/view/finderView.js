@@ -32,7 +32,7 @@ class FinderView {
     // Clear recent search
     this.container.querySelector('#resultPanel').innerHTML = '';
     let dishes = model.getSearchResult();
-    dishes.forEach(dish => {        
+    dishes.forEach(dish => {              
       new DishView(
         this.container.querySelector('#resultPanel'),
         model,
