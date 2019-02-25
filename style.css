@@ -96,12 +96,11 @@ button:hover:disabled {
   display: flex;
   justify-content: space-between;
   height: 1.5rem;
-  padding: 0 1rem;
 }
 
 #dinnerTable td {
   overflow: hidden;
-  white-space: nowrap;
+  /* white-space: nowrap; */
   text-overflow: ellipsis; 
 }
 
@@ -112,7 +111,7 @@ button:hover:disabled {
 }
 
 #dinnerTable td:nth-child(2) {
-  flex-grow: 4;
+  flex-grow: 3;
   flex-basis: 0;
 }
 
@@ -276,6 +275,7 @@ input::-webkit-inner-spin-button {
 .dishItem {
   display: flex;
   flex-direction: column;
+  max-width: 10rem;
   border: 3px solid black;
   margin-bottom: 1rem;
 }
@@ -286,8 +286,9 @@ input::-webkit-inner-spin-button {
 }
 
 .thumbnailImage {
-  height: 100%;
-  object-fit: contain;
+  height: 10rem;
+  width: 10rem;
+  object-fit: cover;
 }
 
 .thumbnail img {
@@ -574,7 +575,7 @@ input::-webkit-inner-spin-button {
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: center;
-    align-items: center;
+    align-items: flex-start;
     border: none;
   }
 
