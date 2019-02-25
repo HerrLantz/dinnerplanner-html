@@ -18,6 +18,10 @@ class DinnerModel extends Observable {
 
     // Dishes saved on disk
     this.dishes = [];
+
+    // All dish types
+    this.styledTypes = ['Main course', 'Side dish', 'Dessert', 'Appetizer', 'Salad', 'Bread', 'Breakfast', 'Soup', 'Beverage', 'Sauce', 'Drink'];
+    this.allTypes = ['main+course', 'side+dish', 'dessert', 'appetizer', 'salad', 'bread', 'breakfast', 'soup', 'beverage', 'sauce', 'drink'];
   }
 
   setNumberOfGuests(num) {
@@ -102,16 +106,6 @@ class DinnerModel extends Observable {
     delete this.dinnerPlan.selectedDishes[id];
     this.notifyObservers({ type: 'cart_update' });
   }
-
-  //function that returns all dish types available
-  getAllTypes() {
-    var allTypes = [];
-    this.dishes.forEach(dish => {
-      allTypes[dish.type] = dish.type;
-    });
-    return allTypes;
-  }
-
   
   //function that returns a dish of specific ID
   getDish(id, caller) {
@@ -162,26 +156,28 @@ class DinnerModel extends Observable {
   //if you don't pass any filter all the dishes will be returned
   getAllDishes(type, filter) {
     console.log(`API call: getAllDishes(${type}, ${filter})`);
-
-      return  fetch(`${API.API_URL}recipes/search?number=15&instructionsRequired=true`,{ 
-          mode: 'cors',
-          headers: {   
-              'X-Mashape-Key': API.API_KEY
+    if(type === "All") {
+      type = "";
+    }
+    return fetch(`${API.API_URL}recipes/search?number=15&instructionsRequired=true${type ? "&type=" + type : ""}${filter ? "&query="+filter : ""}`,{ 
+        mode: 'cors',
+        headers: {   
+            'X-Mashape-Key': API.API_KEY
+        }
+      }).then(response => response.json())
+        .then(dishes => {                    
+          this.searchResult = [];
+          for (const dish of dishes.results) {
+            let dishToAdd = {
+              id: dish.id,
+              name: dish.title,
+              image: dish.image
+            };
+            this.searchResult.push(dishToAdd);
           }
-        }).then(response => response.json())
-          .then(dishes => {                    
-            this.searchResult = [];
-            for (const dish of dishes.results) {
-              let dishToAdd = {
-                id: dish.id,
-                name: dish.title,
-                image: dish.image
-              };
-              this.searchResult.push(dishToAdd);
-            }
-            this.notifyObservers({ type: 'search_update'});
-            return this.searchResult;
-          });
+          this.notifyObservers({ type: 'search_update'});
+          return this.searchResult;
+        });
 
     // this.searchResult = this.dishes().filter(function(dish) {
     //   var found = true;
