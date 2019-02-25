@@ -11,6 +11,8 @@ class FinderViewController {
       let searchString = view.querySelector('#searchField').value;
       let dishType = view.querySelector('#dishes').value;
 
+      let spinner = view.querySelector('#resultPanel');
+      spinner.innerHTML = `<img src="images/loading.gif" width="64" height="64"/>`;
       model.getAllDishes(dishType, searchString);
     }
 
@@ -26,6 +28,6 @@ class FinderViewController {
 
     view.querySelector('#dishes').addEventListener('change', () => {
       search();
-    });
+    }, false);
   }
 }

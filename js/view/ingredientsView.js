@@ -59,7 +59,13 @@ class IngredientsView {
         this.dish = model.dishes[id];
         this.updateFields();
       } else {
+        let spinner = this.container.querySelector('#spinner');
+        let ingredientsComponent = this.container.querySelector('#ingredientsComponent');
+        ingredientsComponent.style.display = 'none';
+        spinner.innerHTML = `<img src="images/loading.gif" width="64" height="64"/>`;
         model.getDish(id, `ingredientsView(${this.dish ? this.dish.id : 'undef'})`).then((dish) => {
+          ingredientsComponent.style.display = this.displayProperty;
+          spinner.innerHTML = "";
           model.dishes[id] = dish;
           this.dish = dish;
           this.updateFields();
@@ -70,18 +76,21 @@ class IngredientsView {
 
   render() {
     this.container.innerHTML = `
-      <h2 id="numberOfPeople">
-        INGREDIENTS FOR SOME AMOUNT OF PEOPLE
-      </h2>
-      <hr>
-      <table id="tableOfIngredients">
-      </table>
-      <hr>
-      <div id="totalRow">
-        <button class="primaryButton">
-          Add to menu
-        </button>
-        <b id="totalDishPrice" ></b>
+      <div id="spinner"></div>
+      <div id="ingredientsComponent">
+        <h2 id="numberOfPeople">
+          INGREDIENTS FOR SOME AMOUNT OF PEOPLE
+        </h2>
+        <hr>
+        <table id="tableOfIngredients">
+        </table>
+        <hr>
+        <div id="totalRow">
+          <button class="primaryButton">
+            Add to menu
+          </button>
+          <b id="totalDishPrice" ></b>
+        </div>
       </div>
     `;
   }
