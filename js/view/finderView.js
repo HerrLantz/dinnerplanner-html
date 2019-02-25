@@ -18,8 +18,8 @@ class FinderView {
    */
   dishTypesToString() {
     var types = `<option value="All" selected>All</option>\n`;
-    for (const dishType in this.model.getAllTypes()) {
-      types += `<option value="${dishType}">${dishType}</option>\n`;
+    for (let i = 0; i < this.model.allTypes.length; i++) {
+      types += `<option value="${this.model.allTypes[i]}">${this.model.styledTypes[i]}</option>\n`;
     }
     return types;
   }
