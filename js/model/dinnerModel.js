@@ -118,7 +118,7 @@ class DinnerModel extends Observable {
           'Access-Control-Allow-Origin': '*'
         }
       }).then(response => response.json())
-        .then(dish => {          
+        .then(dish => {                    
           let ingredients = [];
           for (const ingredient of dish.extendedIngredients) {
             let ingredientToAdd = {
@@ -130,8 +130,12 @@ class DinnerModel extends Observable {
             ingredients.push(ingredientToAdd);
           }
           let instructions = "<ol>";
-          for (const instruction of dish.analyzedInstructions[0].steps) {
-            instructions += `<li>${instruction.step}</li>`;
+          if (dish.analyzedInstructions.length > 0) {
+            for (const instruction of dish.analyzedInstructions[0].steps) {
+              instructions += `<li>${instruction.step}</li>`;
+            }
+          } else {
+            instructions += `<li> Preparation instructions missing. </li>`
           }
           instructions += "</ol>";
 
