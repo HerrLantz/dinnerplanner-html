@@ -148,6 +148,8 @@ class DinnerModel extends Observable {
             this.dishes[dish.id] = dishToAdd;
           }
           return dishToAdd;
+        }).catch(err => {
+          alert("Could not retrieve dish information.\n", err);
         });
   }
 
@@ -177,6 +179,8 @@ class DinnerModel extends Observable {
           }
           this.notifyObservers({ type: 'search_update'});
           return this.searchResult;
+        }).catch(err => {
+          alert("Could not retrieve dishes.\n", err);
         });
 
     // this.searchResult = this.dishes().filter(function(dish) {
