@@ -269,8 +269,7 @@ input::-webkit-inner-spin-button {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding: 1rem 0;
-  border-bottom: 3px solid black;
+  margin: 1rem 0;
 }
 
 .dishItem {
@@ -589,8 +588,8 @@ input::-webkit-inner-spin-button {
     flex-wrap: wrap;
     justify-content: center;
     align-items: flex-start;
-    border: none;
-  }
+    border-right: 2px solid black;
+    }
 
   #resultPanelWrapper {
     display: flex;
@@ -653,7 +652,6 @@ input::-webkit-inner-spin-button {
   #total {
     justify-content: center;
     align-items: flex-end;
-    border-left: 2px solid #000;
     padding: 1rem;
     margin: 2rem 0;
     height: 217px;
