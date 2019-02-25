@@ -27,6 +27,7 @@ select {
   border-color: black;
   border-width: 2px;
   padding: 0.1rem;
+  width: 7rem;
 
   -webkit-appearance: none;
   -moz-appearance: none;
