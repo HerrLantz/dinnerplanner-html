@@ -22,8 +22,6 @@ class DishPrintView {
   // }
 
   render() {
-    console.log(this.dish.id);
-
     this.container.insertAdjacentHTML(
       'beforeend',
       `
