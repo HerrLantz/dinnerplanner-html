@@ -26,10 +26,9 @@ $(function() {
     });
   };
 
-  // @TODO: Correctly implement dinner overview.
   // Show Dinner Overview View
   showDinnerOverView = () => {
-    //hideAllViews();
+    //hideAllViews();    
     $('#subHeaderView').show();
     $('#dinnerOverview').show();
 
