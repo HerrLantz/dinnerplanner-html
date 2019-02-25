@@ -159,7 +159,7 @@ class DinnerModel extends Observable {
     if(type === "All") {
       type = "";
     }
-    return fetch(`${API.API_URL}recipes/search?number=15&instructionsRequired=true${type ? "&type=" + type : ""}${filter ? "&query="+filter : ""}`,{ 
+    return fetch(`${API.API_URL}recipes/search?number=100&instructionsRequired=true${type ? "&type=" + type : ""}${filter ? "&query="+filter : ""}`,{ 
         mode: 'cors',
         headers: {   
             'X-Mashape-Key': API.API_KEY
