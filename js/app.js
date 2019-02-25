@@ -14,6 +14,7 @@ $(function() {
       $('#cartView').show();
       $('#finderView').show();
     });
+    $('#searchField').focus();
   };
 
   // Show DishDetails View
