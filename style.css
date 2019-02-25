@@ -305,7 +305,12 @@ input::-webkit-inner-spin-button {
 }
 
 #ingredients {
+  padding: 0 1rem;
   background-color: #ffe599;
+}
+
+#ingredientsComponent {
+  width: 100%;
 }
 
 .primaryButton {
@@ -395,7 +400,14 @@ input::-webkit-inner-spin-button {
 }
 
 #dishDetailsView p {
-  padding: 1rem 1rem;
+  padding: 1rem 2rem;
+}
+
+
+#spinner {
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 #ingredients {
@@ -405,7 +417,7 @@ input::-webkit-inner-spin-button {
 }
 
 #ingredients hr {
-  width: 80%;
+  width: 100%;
 }
 
 #ingredients h2 {
@@ -413,7 +425,7 @@ input::-webkit-inner-spin-button {
   padding: 0.8rem 0rem;
 }
 #ingredients table {
-  width: 80%;
+  width: 100%;
   font-size: 0.8rem;
 }
 
